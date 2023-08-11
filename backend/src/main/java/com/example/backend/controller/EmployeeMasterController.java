@@ -15,18 +15,15 @@ import com.example.backend.services.EmployeeMasterService;
 
 @RestController
 @CrossOrigin("http://localhost:3000")
-//@CrossOrigin("*")
-
 public class EmployeeMasterController {
 	@Autowired 
-	
 	private EmployeeMasterService employeeMasterService;
 	
 	@PostMapping("/addEmployee")
-	public EmployeeMaster addEmployeeMaster(@RequestBody EmployeeMaster emp)
+	public EmployeeMaster addEmployeeMaster(@RequestBody EmployeeMaster newEmployee)
 	{
-		EmployeeMaster e = employeeMasterService.addEmployeeMaster(emp);
-		return e;
+		EmployeeMaster employee = employeeMasterService.addEmployeeMaster(newEmployee);
+		return employee;
 	}
 	
 	@PostMapping("/loginEmployee")

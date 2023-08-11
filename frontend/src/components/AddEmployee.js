@@ -49,14 +49,13 @@ export default function AddEmployee(){
     const submitActionHandler = (event) => {
         axios
             .post(baseURL, {
-                "employee_id": employeeId,
-                "employee_name": employeeName,
-                // "password": password,
+                "employeeId": employeeId,
+                "employeeName": employeeName,
                 "department": department,
                 "designation": designation,
                 "gender": gender,
-                "date_of_birth": dateOfBirth,
-                "date_of_joining": dateOfJoining
+                "dateOfBirth": dateOfBirth,
+                "dateOfJoining": dateOfJoining
             })
             .then((response) => {
                 alert(response.data);
@@ -68,13 +67,7 @@ export default function AddEmployee(){
 
     return (
         <div style={{width:"70%",margin:"auto"}}>
-            <h3> Add Employee </h3>
-             {/* <form onSubmit={submitActionHandler}>
-                ID : <input type="text" value={employeeId} onChange={employeeIdChangeHandler} id="employeeId"/><br></br>
-                Name : <input type="text" value={employeeName} onChange={employeeNameChangeHandler} id="employeeName"/><br></br>
-                <button type="submit">Submit</button>
-             </form> */}
-             
+            <h3> Add Employee </h3>             
             <Form onSubmit={submitActionHandler}>
                 <Form.Group className="mb-3">
                     <Form.Label>Employee Id</Form.Label>
