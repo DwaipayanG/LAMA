@@ -12,9 +12,9 @@ function Home() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/login">Login</Nav.Link>
+            <Nav.Link href="/loginAdmin">Admin Login</Nav.Link>
+            <Nav.Link href="/loginEmployee">Employee Login</Nav.Link>
             <Nav.Link href="/about">About</Nav.Link>
-            <Nav.Link href="/addEmployee">AddEmployee</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
