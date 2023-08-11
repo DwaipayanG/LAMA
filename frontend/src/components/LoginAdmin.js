@@ -4,13 +4,13 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 function LoginAdmin() {
-    const baseURL = "http://localhost:8080/addEmployee";
+    const baseURL = "http://localhost:8080/loginAdmin";
 
-    const [employeeId, setEmployeeId] = useState('');
+    const [adminId, setAdminId] = useState('');
     const [password, setPassword] = useState("");
 
-    const employeeIdChangeHandler = (event) => {
-        setEmployeeId(event.target.value)
+    const adminIdChangeHandler = (event) => {
+        setAdminId(event.target.value)
     }
     const passwordChangeHandler = (event) => {
         setPassword(event.target.value)
@@ -19,7 +19,7 @@ function LoginAdmin() {
     const submitActionHandler = (event) => {
         axios
         .post(baseURL, {
-            "employee_id": employeeId,
+            "adminId": adminId,
             "password": password
         })
         .then((response) => {
@@ -35,10 +35,7 @@ function LoginAdmin() {
         <Form onSubmit={submitActionHandler}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Admin ID</Form.Label>
-            <Form.Control type="text" value={employeeId} onChange={employeeIdChangeHandler} placeholder="Enter ID" />
-            <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-            </Form.Text>
+            <Form.Control type="text" value={adminId} onChange={adminIdChangeHandler} placeholder="Enter ID" />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
