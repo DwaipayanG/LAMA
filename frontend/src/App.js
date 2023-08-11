@@ -2,7 +2,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Login from './components/LoginEmployee';
+import LoginEmployee from './components/LoginEmployee';
+import LoginAdmin from './components/LoginAdmin';
 import Home from './components/Home';
 import About from './components/About';
 import AddEmployee from './components/AddEmployee';
@@ -13,7 +14,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={ <Home/> }/> 
-          <Route exact path="/login" element={ <Login/> }/>
+          <Route exact path="/loginAdmin" element={ <LoginAdmin/> }/>
+          <Route exact path="/loginEmployee"element= { <LoginEmployee/> }/>
           <Route exact path="/about" element={ <About/> }/>
           <Route exact path="/addEmployee" element={ <AddEmployee/> }/> 
         </Routes>
