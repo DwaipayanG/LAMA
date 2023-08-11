@@ -11,15 +11,15 @@ import com.example.backend.services.EmployeeMasterService;
 
 
 @RestController
-////@CrossOrigin("http://localhost:3000")
-@CrossOrigin("*")
+@CrossOrigin("http://localhost:3000")
+//@CrossOrigin("*")
 
 public class EmployeeMasterController {
 	@Autowired 
 	
 	private EmployeeMasterService employeeMasterService;
 	
-	@PostMapping("/addEmployeeMaster")
+	@PostMapping("/addEmployee")
 	public EmployeeMaster addEmployeeMaster(@RequestBody EmployeeMaster emp)
 	{
 		EmployeeMaster e = employeeMasterService.addEmployeeMaster(emp);

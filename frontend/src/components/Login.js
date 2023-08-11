@@ -44,13 +44,13 @@ export default function Login(){
     const submitActionHandler = (event) => {
         axios
             .post(baseURL, {
-                "employee_id": employeeId,
-                "employee_name": employeeName,
+                "employeeId": employeeId,
+                "employeeName": employeeName,
                 "department": department,
                 "designation": designation,
                 "gender": gender,
-                "date_of_birth": dateOfBirth,
-                "date_of_joining": dateOfJoining
+                "dateOfBirth": dateOfBirth,
+                "dateOfJoining": dateOfJoining
             })
             .then((response) => {
                 alert(response.data);
