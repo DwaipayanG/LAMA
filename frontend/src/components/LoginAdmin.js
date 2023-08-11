@@ -32,10 +32,10 @@ function LoginAdmin() {
 
     return (
         <div style={{width:"70%",margin:"auto"}}>
-        <Form>
+        <Form onSubmit={submitActionHandler}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
+            <Form.Label>Admin ID</Form.Label>
+            <Form.Control type="text" value={employeeId} onChange={employeeIdChangeHandler} placeholder="Enter ID" />
             <Form.Text className="text-muted">
             We'll never share your email with anyone else.
             </Form.Text>
@@ -43,7 +43,7 @@ function LoginAdmin() {
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
+            <Form.Control type="password" value={password} onChange={passwordChangeHandler} placeholder="Password" />
         </Form.Group>
         <Button variant="primary" type="submit">
             Submit
