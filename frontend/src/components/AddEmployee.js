@@ -51,7 +51,7 @@ export default function AddEmployee(){
             .post(baseURL, {
                 "employee_id": employeeId,
                 "employee_name": employeeName,
-                "password": password,
+                // "password": password,
                 "department": department,
                 "designation": designation,
                 "gender": gender,
