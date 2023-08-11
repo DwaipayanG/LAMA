@@ -1,8 +1,5 @@
 package com.example.backend.controller;
 
-
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,10 +11,12 @@ import com.example.backend.services.EmployeeMasterService;
 
 
 @RestController
-@CrossOrigin("http://localhost:3000")
+////@CrossOrigin("http://localhost:3000")
+@CrossOrigin("*")
 
 public class EmployeeMasterController {
-	@Autowired
+	@Autowired 
+	
 	private EmployeeMasterService employeeMasterService;
 	
 	@PostMapping("/addEmployeeMaster")
