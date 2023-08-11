@@ -35,6 +35,9 @@ public class EmployeeMaster {
 	@Column(name="date_of_joining")
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date dateOfJoining;
+	
+	@Column
+	private String password;
 
 	public String getEmployeeId() {
 		return employeeId;
@@ -90,6 +93,14 @@ public class EmployeeMaster {
 
 	public void setDateOfJoining(Date dateOfJoining) {
 		this.dateOfJoining = dateOfJoining;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 	
