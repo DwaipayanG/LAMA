@@ -62,13 +62,7 @@ export default function Login(){
 
     return (
         <div style={{width:"70%",margin:"auto"}}>
-            <h3> Add Employee </h3>
-             {/* <form onSubmit={submitActionHandler}>
-                ID : <input type="text" value={employeeId} onChange={employeeIdChangeHandler} id="employeeId"/><br></br>
-                Name : <input type="text" value={employeeName} onChange={employeeNameChangeHandler} id="employeeName"/><br></br>
-                <button type="submit">Submit</button>
-             </form> */}
-             
+            <h3> Add Employee </h3>             
             <Form onSubmit={submitActionHandler}>
                 <Form.Group className="mb-3">
                     <Form.Label>Employee Id</Form.Label>
