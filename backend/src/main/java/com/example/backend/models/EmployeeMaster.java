@@ -2,6 +2,8 @@ package com.example.backend.models;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -27,10 +29,15 @@ public class EmployeeMaster {
 	private char gender;
 	
 	@Column(name="date_of_birth")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date dateOfBirth;
 	
 	@Column(name="date_of_joining")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date dateOfJoining;
+	
+	@Column
+	private String password;
 
 	public String getEmployeeId() {
 		return employeeId;
@@ -86,6 +93,14 @@ public class EmployeeMaster {
 
 	public void setDateOfJoining(Date dateOfJoining) {
 		this.dateOfJoining = dateOfJoining;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 	
