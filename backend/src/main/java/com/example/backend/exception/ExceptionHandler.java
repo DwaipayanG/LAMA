@@ -16,21 +16,17 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class ExceptionHandler extends ResponseEntityExceptionHandler{
 	
-	@Override
+	
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request){
 		Map<String, Object> responseBody = new LinkedHashMap<>();
 		responseBody.put("timestamp",  new Date());
-		responseBody.put("status",  status.value())
+		responseBody.put("status",  status.value());
 		
-		List<String> errors = ex.getBindingResult().getFieldErrors().stream().map(x->x.getDefaultMessage())collect(Collectors.toList())
-		responseBody.put("errors", errors);.
+		List<String> errors = ex.getBindingResult().getFieldErrors().stream().map(x->x.getDefaultMessage()).collect(Collectors.toList());
+		responseBody.put("errors", errors);
 		return new ResponseEntity<>(responseBody, headers, status);
 	}
 }
 
-@Service 
-public class CustService{
-				+ "
-	}
-}
+
 
