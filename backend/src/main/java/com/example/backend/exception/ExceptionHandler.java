@@ -15,7 +15,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @ControllerAdvice
 public class ExceptionHandler extends ResponseEntityExceptionHandler{
-	
+	/*
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request){
 		Map<String, Object> responseBody = new LinkedHashMap<>();
@@ -31,6 +31,6 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler{
 @Service 
 public class CustService{
 				+ "
-	}
+	}*/
 }
 
