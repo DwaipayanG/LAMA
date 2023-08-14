@@ -55,7 +55,8 @@ export default function AddEmployee(){
                 "designation": designation,
                 "gender": gender,
                 "dateOfBirth": dateOfBirth,
-                "dateOfJoining": dateOfJoining
+                "dateOfJoining": dateOfJoining,
+                "password":password
             })
             .then((response) => {
                 alert(response.data);
