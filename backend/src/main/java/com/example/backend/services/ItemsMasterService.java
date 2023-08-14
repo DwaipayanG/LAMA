@@ -13,6 +13,11 @@ public class ItemsMasterService {
 	@Autowired
 	private ItemsMasterRepository itemsMasterRepo;
 	
+	public List<String> getAllCategory(){
+		return itemsMasterRepo.getAllCategory();	
+	}
+
+	
 	public List<String> getDistinctMakesByCategory (String category){
 		return itemsMasterRepo.findDistinctMakesByCategory(category);
 	}

@@ -9,6 +9,12 @@ import com.example.backend.models.ItemsMaster;
 
 public interface ItemsMasterRepository extends JpaRepository <ItemsMaster , String>  {
 
+
 	@Query("SELECT DISTINCT itemMake FROM ItemsMaster WHERE itemCategory = :category")
 	List<String> findDistinctMakesByCategory(String category);
+
+	
+	@Query ("SELECT DISTINCT itemCategory from ItemsMaster")
+	List<String> getAllCategory();
+
 }
