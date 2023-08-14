@@ -17,7 +17,7 @@ public interface ItemsMasterRepository extends JpaRepository <ItemsMaster , Stri
 	@Query ("SELECT DISTINCT itemCategory from ItemsMaster")
 	List<String> getAllCategory();
 	
-	@Query(value= " SELECT * FROM ItemMaster WHERE itemCategory= :itemCategory AND itemMake= :itemMake", nativeQuery=true)
-	List<ItemsMaster> getItemByMakeAndCategory(String itemCategory, String itemMake);
+	@Query(value= "SELECT * FROM items_master WHERE item_category= :itemCategory AND item_make= :itemMake LIMIT 1", nativeQuery=true)
+	ItemsMaster getItemByMakeAndCategory(String itemCategory, String itemMake);
 
 }
