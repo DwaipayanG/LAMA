@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.backend.models.EmployeeMaster;
@@ -27,17 +28,20 @@ public class EmployeeMasterController {
 	}
 	
 	@PostMapping("/loginEmployee")
-	public String loginEmployeeMaster(@RequestBody EmployeeMasterLogin empLogin) {
-		String response = "";
+	@ResponseBody
+	public Object loginEmployeeMaster(@RequestBody EmployeeMasterLogin empLogin) {
+		//String response = "";
+		Object response;
 		Optional<EmployeeMaster> existingEmployee = employeeMasterService.getEmployeeMasterById(empLogin.getEmployeeId());
 		if(existingEmployee.isPresent()) {
 			if(existingEmployee.get().getPassword().equals(empLogin.getPassword())) {
-				response = "Login successful";
+				//response = "Login successful";
+				response = existingEmployee.get();
 			}else {
-				response = "Wrong password";
+				response = new String("Wrong password");
 			}
 		}else {
-			response = "Invalid employee ID";
+			response = new String("Invalid employee ID");
 		}
 		return response;
 	}
