@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Card from 'react-bootstrap/Card';
 
-export default function Dasboard(){
+export default function ShowLoans(){
 
     const [user,setUser]=useState(null);
 
@@ -21,7 +21,7 @@ export default function Dasboard(){
 
     return (
         <div style={{width:"70%",margin:"auto"}} className="d-flex justify-content-center my-2">
-            
+
             <Card style={{ width: '18rem' }}>
             <Card.Body>
                 <Card.Title>Show Loans</Card.Title>

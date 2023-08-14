@@ -21,7 +21,7 @@ export default function Dasboard(){
 
     return (
         <div style={{width:"70%",margin:"auto"}} className="d-flex justify-content-center my-2">
-            Welcome <b>{sessionStorage.getItem("id")}</b>
+            Welcome <b>{sessionStorage.getItem("empName")}</b>
             <br/>
             <Card style={{ width: '18rem' }}>
             <Card.Body>

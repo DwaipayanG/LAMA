@@ -8,6 +8,7 @@ import Home from './components/Home';
 import About from './components/About';
 import AddEmployee from './components/AddEmployee';
 import Dashboard from './components/Dasboard';
+import ApplyLoans from './components/ApplyLoan';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route exact path="/about" element={ <About/> }/>
           <Route exact path="/addEmployee" element={ <AddEmployee/> }/> 
           <Route exact path="/dashboard" element={ <Dashboard/> }/> 
+          <Route exact path="/applyLoan" element={ <ApplyLoans/> }/> 
         </Routes>
       </BrowserRouter>
       <></>
