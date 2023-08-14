@@ -27,10 +27,15 @@ function LoginEmployee() {
             "password": password
         })
         .then((response) => {
-            alert(response.data);
-            if(response.data=="Login successful"){
-                sessionStorage.setItem("id",employeeId);
-                navigate("/dashboard");
+            //alert(response.data);
+            if(response.data==="Invalid employee ID"){
+              alert(response.data)
+            }else if(response.data ==="Wrong password"){
+              alert(response.data)
+            }else{
+              sessionStorage.setItem("empId", response.data.employeeId);
+              sessionStorage.setItem("empName",response.data.employeeName);
+               navigate("/dashboard");
             }
         })
         .catch((error) => {
