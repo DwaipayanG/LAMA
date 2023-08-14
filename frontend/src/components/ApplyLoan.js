@@ -6,7 +6,6 @@ import Form from 'react-bootstrap/Form';
 import { Link } from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
-import { setMaxIdleHTTPParsers } from "http";
 
 export default function ApplyLoans(){
 
@@ -15,17 +14,20 @@ export default function ApplyLoans(){
     const [id,setId] = useState("");
     const [employeeId, setEmployeeId] = useState("");
     const [category, setCategory] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState("");
     const [makeList, setMakeList] = useState([]);
     const [make, setMake] = useState("");
     const [value, setValue] = useState("");
+    const [description, setDescription] = useState("");
 
     useEffect(()=>{
         const id=sessionStorage.getItem("id");
+        console.log(id);
         setId(id);
     },[]);
 
     useEffect(()=>{
-        const url="http://localhost:8080/getAllCategories";
+        const url="http://localhost:8080/getAllCategory";
         axios
         .get(url)
         .then((response) => {
@@ -38,35 +40,36 @@ export default function ApplyLoans(){
     },[]);
 
     useEffect(()=>{
-        const url="http://localhost:8080/getAllMakes";
+        const url="http://localhost:8080/getDistinctMakesByCategory";
         axios
-        .get(url,{data:{
-            itemCategory:category
-        }})
+        .post(url,{
+            "itemCategory":selectedCategory
+        })
         .then((response) => {
             console.log(response.data);
-            setMake(response.data);
+            setMakeList(response.data);
         })
         .catch((error) => {
             console.log(error);
         });
-    },[category]);
+    },[selectedCategory]);
 
     useEffect(()=>{
-        const url="http://localhost:8080/getValue";
+        const url="http://localhost:8080/getItem";
         axios
-        .get(url,{data:{
-            itemCategory:category,
+        .post(url,{
+            itemCategory:selectedCategory,
             itemMake:make
-        }})
+        })
         .then((response) => {
             console.log(response.data);
-            setValue(response.data.value);
+            setValue(response.data.itemValuation);
+            setDescription(response.data.itemDescription);
         })
         .catch((error) => {
             console.log(error);
         });
-    },[category,make]);
+    },[selectedCategory,make]);
 
 
 
@@ -75,7 +78,7 @@ export default function ApplyLoans(){
     }
     const categoryChangeHandler = (event) => {
         console.log(event.target.value);
-        setCategory(event.target.value);
+        setSelectedCategory(event.target.value);
 
         // axios();
 
@@ -87,7 +90,7 @@ export default function ApplyLoans(){
 
         // axios();
 
-        setValue("Yo");
+        setValue("0");
     }
 
     const submitActionHandler = () => {
@@ -100,14 +103,16 @@ export default function ApplyLoans(){
 
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Employee ID</Form.Label>
-                <Form.Control type="text" value={employeeId} onChange={employeeIdChangeHandler} placeholder="Enter employee ID" disabled/>
+                <Form.Control type="text" value={id} onChange={employeeIdChangeHandler} placeholder="Enter employee ID" disabled/>
             </Form.Group>
             <div>
                 Item Category:
                 <select id="dropdown-basic-button" title="Dropdown button" onChange={categoryChangeHandler}>
-                    <option value={"Furniture1"}>Action</option>
-                    <option value={"Furniture2"}>Another action</option>
-                    <option value={"Furniture3"}>Something else</option>
+                    {
+                        category.map((val)=>{
+                            return (<option value={val}>{val}</option>);
+                        })
+                    }
                 </select>
             </div>
             
@@ -126,6 +131,11 @@ export default function ApplyLoans(){
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Value</Form.Label>
                 <Form.Control type="text" value={value} disabled/>
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Description</Form.Label>
+                <Form.Control type="text" value={description} disabled/>
             </Form.Group>
 
             <Button variant="primary" type="submit">
