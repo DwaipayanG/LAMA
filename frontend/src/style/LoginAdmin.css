@@ -1,0 +1,26 @@
+#loginAdminForm{
+    width:70%;
+    max-width: 600px;
+    border: solid 2px rgba(107, 92, 92, 0.377);
+    border-radius: 30px;
+    margin: 25px auto;
+    padding: 15px;
+    height: 90vh;;
+    vertical-align: middle;
+
+}
+
+
+.textInput{
+    padding: 20px 15px;
+    font-size: 1em;
+    text-align: center;
+    width: 90%;
+    margin: 0 auto;
+    vertical-align: middle;
+
+}
+
+.textField{
+    font-size: 1.5em;
+}
