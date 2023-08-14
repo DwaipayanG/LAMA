@@ -1,10 +1,12 @@
 package com.example.backend.models;
 
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -31,6 +33,13 @@ public class EmployeeMaster {
 	
 	@Column(name="date_of_joining")
 	private Date dateOfJoining;
+	
+	@OneToMany(mappedBy="employee_master")
+	private List<EmployeeCardDetails> employeeCardDetails;
+	
+	
+	@OneToMany(mappedBy="employee_master")
+	private List<EmployeeIssueDetails> employeeIssueDetails;
 
 	public String getEmployeeId() {
 		return employeeId;
