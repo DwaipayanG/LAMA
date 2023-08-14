@@ -3,9 +3,11 @@ import { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function LoginEmployee() {
     const baseURL = "http://localhost:8080/loginEmployee";
+    const navigate = useNavigate();
 
     const [employeeId, setEmployeeId] = useState('');
     const [password, setPassword] = useState("");
@@ -18,6 +20,7 @@ function LoginEmployee() {
     }
 
     const submitActionHandler = (event) => {
+        event.preventDefault();
         axios
         .post(baseURL, {
             "employeeId": employeeId,
@@ -25,11 +28,16 @@ function LoginEmployee() {
         })
         .then((response) => {
             alert(response.data);
+            if(response.data=="Login successful"){
+                sessionStorage.setItem("id",employeeId);
+                navigate("/dashboard");
+            }
         })
         .catch((error) => {
             alert(error);
         })
     }
+
 
     return (
         <div style={{width:"70%",margin:"auto"}}>
