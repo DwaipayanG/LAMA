@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Card from 'react-bootstrap/Card';
 
-export default function Dasboard(){
+export default function EmployeeDasboard(){
 
     const [user,setUser]=useState(null);
 
@@ -40,7 +40,7 @@ export default function Dasboard(){
                 Some quick example text to build on the card title and make up the
                 bulk of the card's content.
                 </Card.Text>
-                <Card.Link href="#">Card Link</Card.Link>
+                <Card.Link href="/applyLoan">Apply Loan</Card.Link>
             </Card.Body>
             </Card>
             <Card style={{ width: '18rem' }}>
