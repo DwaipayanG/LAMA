@@ -29,11 +29,17 @@ public class EmployeeMasterController {
 	@Autowired 
 	private EmployeeMasterService employeeMasterService;
 	
+
 	@Autowired
 	private LoanCardMasterService loanCardMasterService;
 	
 	@Autowired
 	private EmployeeCardDetailsService employeeCardDetailsService;
+	
+	@GetMapping("/getEmployee")
+	public Optional<EmployeeMaster> getEmployeeMaster(@RequestBody EmployeeMaster employee) {
+		return employeeMasterService.getEmployeeMasterById(employee.getEmployeeId());
+	}
 	
 	@PostMapping("/addEmployee")
 	public EmployeeMaster addEmployeeMaster(@RequestBody EmployeeMaster newEmployee)

@@ -1,0 +1,25 @@
+.borderBox{
+    width:70%;
+    max-width: 600px;
+    border: solid 2px rgba(107, 92, 92, 0.377);
+    border-radius: 30px;
+    margin: 25px auto;
+    padding: 15px;
+    height: 90vh;;
+    vertical-align: middle;
+
+}
+
+.field{
+    font-size: 1.5em;
+}
+
+.column, .value{
+    padding: 30px;
+    margin :25px;
+    text-align: center;
+}
+
+.column{
+    font-weight: bold;
+}
