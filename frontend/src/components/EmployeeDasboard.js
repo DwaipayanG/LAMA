@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Card from 'react-bootstrap/Card';
+import Header from "./Header";
 
 export default function EmployeeDasboard(){
 
@@ -21,7 +22,7 @@ export default function EmployeeDasboard(){
 
     return (
         <div>
-            <Headers></Headers>
+            <Header></Header>
         <div style={{width:"70%",margin:"auto"}} className="d-flex justify-content-center my-2">
             Welcome <b>{sessionStorage.getItem("employeeName")}</b>
             <br/>
