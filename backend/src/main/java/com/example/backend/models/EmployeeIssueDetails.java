@@ -5,6 +5,7 @@ import java.util.Date;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -25,7 +26,12 @@ public class EmployeeIssueDetails {
 	
 	@Column(name="return_date")
 	private Date returnDate;
-
+	
+	@ManyToOne
+	private ItemsMaster itemsMaster;
+	
+	@ManyToOne
+	private EmployeeMaster employeeMaster;
 	public String getIssueId() {
 		return issueId;
 	}

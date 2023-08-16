@@ -1,8 +1,11 @@
 package com.example.backend.models;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -26,6 +29,9 @@ public class ItemsMaster {
 	
 	@Column(name="item_valuation")
 	private int itemValuation;
+	
+	@OneToMany(mappedBy="items_master")
+	private List<EmployeeIssueDetails> employeeIssueDetails;
 
 	public String getItemId() {
 		return itemId;
