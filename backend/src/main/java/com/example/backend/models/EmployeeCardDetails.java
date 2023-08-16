@@ -15,30 +15,29 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="employee_card_details")
-@AllArgsConstructor
-@NoArgsConstructor
-@IdClass(EmployeeLoanId.class)
 public class EmployeeCardDetails implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 3750002964740346087L;
 
-	@Id
-	@Column(name="employee_id", nullable=false, length=6)
-	private String employeeId;
 	
-	@Column(name="loan_id", nullable=false, length=6)
-	private String loanId;
+	@Id
+	@Column(name="card_id",nullable=false)
+	private int cardId;
 	
 	@Column(name="card_issue_date")
 	private Date cardIssueDate;
 	
-	private LoanCardMaster loanCardMaster;
-	@ManyToOne
-	@JoinColumn(name = "loan_id")
 	
+	@ManyToOne
+	@JoinColumn(name = "loan_id",nullable=false)
+	private LoanCardMaster loanCardMaster;
+	
+	@ManyToOne
+	@JoinColumn(name = "employee_id",nullable=false)
 	private EmployeeMaster employeeMaster;
+	
 	public EmployeeMaster getEmployeeMaster() {
 		return employeeMaster;
 	}
@@ -47,25 +46,7 @@ public class EmployeeCardDetails implements Serializable {
 		this.employeeMaster = employeeMaster;
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "employee_id")
 
-
-	public String getEmployeeId() {
-		return employeeId;
-	}
-
-	public void setEmployeeId(String employeeId) {
-		this.employeeId = employeeId;
-	}
-
-	public String getLoanId() {
-		return loanId;
-	}
-
-	public void setLoanId(String loanId) {
-		this.loanId = loanId;
-	}
 
 	public Date getCardIssueDate() {
 		return cardIssueDate;

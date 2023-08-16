@@ -23,8 +23,7 @@ public class LoanCardMaster {
 	@Column(name="duration_in_years")
 	private int durationInYears;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "loan_id")
+	@OneToMany(mappedBy="loanCardMaster",cascade = CascadeType.ALL)
 	private List<EmployeeCardDetails> employeeCardDetails;
 	
 	public String getLoanId() {
