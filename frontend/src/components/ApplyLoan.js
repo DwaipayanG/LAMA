@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 
+import "../style/ApplyLoan.css"
+
 export default function ApplyLoans(){
 
     const [user,setUser]=useState(null);
@@ -95,15 +97,18 @@ export default function ApplyLoans(){
     }
 
     return (
-        <div style={{width:"70%",margin:"auto"}}>
+        <div  className="borderBox"style={{width:"70%",margin:"auto"}}>
+            <h1> Apply Loan </h1>
+            <br></br>
+            <hr></hr>
+            <br></br>
             <Form onSubmit={submitActionHandler}>
-
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Employee ID</Form.Label>
-                <Form.Control type="text" value={employeeId} onChange={employeeIdChangeHandler} placeholder="Enter employee ID" disabled/>
-            </Form.Group>
-            <div>
-                Item Category:
+            <div className="field"> 
+                <span className="column"> Employee ID :</span>
+                <span className="value">{employeeId}</span>
+            </div>
+            <div className="field">
+            <span className="column"> Item Category :</span>
                 <select id="dropdown-basic-button" title="Dropdown button" onChange={categoryChangeHandler}>
                     <option selected="selected">--Select--</option>
                     {
@@ -114,8 +119,8 @@ export default function ApplyLoans(){
                 </select>
             </div>
             
-            <div>
-                Item Make:
+            <div className="field">
+            <span className="column"> Item Make :</span>
                 <select id="dropdown-basic-button" title="Dropdown button" onChange={makeChangeHandler}>
                 <option selected="selected">--Select--</option>
                     {
@@ -126,16 +131,15 @@ export default function ApplyLoans(){
                 </select>
             </div>
 
+            <div className="field">
+                <span className="column"> Value :</span>
+                <span className="value">{value}</span>
+            </div>
 
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Value</Form.Label>
-                <Form.Control type="text" value={value} disabled/>
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Description</Form.Label>
-                <Form.Control type="text" value={description} disabled/>
-            </Form.Group>
+            <div className="field">
+                <span className="column"> Description :</span>
+                <span className="value" >{description}</span>
+            </div>
 
             <Button variant="primary" type="submit">
                 Submit
