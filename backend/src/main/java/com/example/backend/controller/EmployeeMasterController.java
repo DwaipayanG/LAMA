@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,6 +20,12 @@ import com.example.backend.services.EmployeeMasterService;
 public class EmployeeMasterController {
 	@Autowired 
 	private EmployeeMasterService employeeMasterService;
+	
+	
+	@GetMapping("/getEmployee")
+	public Optional<EmployeeMaster> getEmployeeMaster(@RequestBody EmployeeMaster employee) {
+		return employeeMasterService.getEmployeeMasterById(employee.getEmployeeId());
+	}
 	
 	@PostMapping("/addEmployee")
 	public EmployeeMaster addEmployeeMaster(@RequestBody EmployeeMaster newEmployee)
