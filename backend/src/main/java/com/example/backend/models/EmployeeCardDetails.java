@@ -28,7 +28,6 @@ public class EmployeeCardDetails implements Serializable {
 	@Column(name="employee_id", nullable=false, length=6)
 	private String employeeId;
 	
-	@Id
 	@Column(name="loan_id", nullable=false, length=6)
 	private String loanId;
 	
