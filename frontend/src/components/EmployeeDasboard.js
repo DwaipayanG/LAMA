@@ -8,7 +8,7 @@ export default function EmployeeDasboard(){
 
     useEffect(()=>{
         const url="http://localhost:8080/getUser"
-        const id=sessionStorage.getItem("id");
+        const id=sessionStorage.getItem("employeeId");
         axios
         .get(url)
         .then((response) => {
@@ -21,7 +21,7 @@ export default function EmployeeDasboard(){
 
     return (
         <div style={{width:"70%",margin:"auto"}} className="d-flex justify-content-center my-2">
-            Welcome <b>{sessionStorage.getItem("empName")}</b>
+            Welcome <b>{sessionStorage.getItem("employeeName")}</b>
             <br/>
             <Card style={{ width: '18rem' }}>
             <Card.Body>
