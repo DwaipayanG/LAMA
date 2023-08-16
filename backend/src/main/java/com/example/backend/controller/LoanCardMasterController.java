@@ -17,6 +17,11 @@ public class LoanCardMasterController {
 	@Autowired
 	private LoanCardMasterService loanCardMasterService;
 	
+	@PostMapping("/addLoanCard")
+	public LoanCardMaster addLoanCard(@RequestBody LoanCardMaster loanCard) {
+		return loanCardMasterService.addLoanCard(loanCard);
+	}
+	
 	@PostMapping("/getLoanCardByLoanType")
 	@ResponseBody
 	public LoanCardMaster getLoanCardByLoanType(@RequestBody LoanCardMaster loanCard) {
