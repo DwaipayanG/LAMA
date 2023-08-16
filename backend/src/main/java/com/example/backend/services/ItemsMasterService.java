@@ -2,6 +2,7 @@ package com.example.backend.services;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,5 +26,10 @@ public class ItemsMasterService {
 	
 	public List<String> getDistinctMakesByCategory (String category){
 		return itemsMasterRepo.findDistinctMakesByCategory(category);
+	}
+	
+	public ItemsMaster saveItemsMaster (ItemsMaster item){
+		return itemsMasterRepo.save(item);
+	
 	}
 }
