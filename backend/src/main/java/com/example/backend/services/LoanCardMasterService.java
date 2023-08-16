@@ -19,4 +19,8 @@ public class LoanCardMasterService {
 	public LoanCardMaster addLoanCard(LoanCardMaster loanCard) {
 		return loanCardMasterRepo.save(loanCard);
 	}
+	
+	public LoanCardMaster getLoanCardById(String id) {
+		return loanCardMasterRepo.findById(id).get();
+	}
 }

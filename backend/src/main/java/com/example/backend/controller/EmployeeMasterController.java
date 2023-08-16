@@ -1,6 +1,7 @@
 package com.example.backend.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +23,11 @@ import com.example.backend.services.EmployeeCardDetailsService;
 import com.example.backend.services.EmployeeMasterService;
 import com.example.backend.services.LoanCardMasterService;
 
+
+class ApplyLoanData{
+	public String loanId;
+	public String employeeId;
+};
 
 @RestController
 @CrossOrigin("http://localhost:3000")
@@ -65,23 +71,29 @@ public class EmployeeMasterController {
 		return response;
 	}
 	
-	@GetMapping("/applyLoan")
-	public void applyLoan() {
-		LoanCardMaster loanCard=new LoanCardMaster();
-		loanCard.setLoanId("123456");
-		loanCard.setLoanType("0123456789abcde");
-		loanCard.setDurationInYears(1);
+	@PostMapping("/applyLoan")
+	public void applyLoan(@RequestBody ApplyLoanData loanData) {
+//		String loanId = employeeCardDetails.get
+		LoanCardMaster loanCardMaster = loanCardMasterService.getLoanCardById(loanData.loanId);
+		EmployeeMaster employeeMaster = employeeMasterService.getEmployeeMasterById(loanData.employeeId).get(); 
 		
-		EmployeeCardDetails ecd = new EmployeeCardDetails();
-		ecd.setCardId(1);
+//		LoanCardMaster loanCard=new LoanCardMaster();
+//		loanCard.setLoanId("123456");
+//		loanCard.setLoanType("0123456789abcde");
+//		loanCard.setDurationInYears(1);
+		
+		EmployeeCardDetails employeeCardDetails = new EmployeeCardDetails(); 
 		List<EmployeeCardDetails> l = new ArrayList<EmployeeCardDetails>();
-		l.add(ecd);
+		l.add(employeeCardDetails);
 		
-		loanCard.setEmployeeCardDetails(l);
-		ecd.setLoanCardMaster(loanCard);
+		loanCardMaster.setEmployeeCardDetails(l);
+		employeeMaster.setEmployeeCardDetails(l);
+		employeeCardDetails.setLoanCardMaster(loanCardMaster);
+		employeeCardDetails.setEmployeeMaster(employeeMaster);
 		
-		loanCardMasterService.addLoanCard(loanCard);
-		employeeCardDetailsService.addEmployeeCardDetails(ecd);
+		loanCardMasterService.addLoanCard(loanCardMaster);
+		employeeCardDetailsService.addEmployeeCardDetails(employeeCardDetails);
+		employeeMasterService.addEmployeeMaster(employeeMaster);
 		
 	}
 
