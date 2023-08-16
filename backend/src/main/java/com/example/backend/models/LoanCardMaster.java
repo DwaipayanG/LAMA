@@ -26,6 +26,14 @@ public class LoanCardMaster {
 	@OneToMany(mappedBy="loanCardMaster",cascade = CascadeType.ALL)
 	private List<EmployeeCardDetails> employeeCardDetails;
 	
+	public List<EmployeeCardDetails> getEmployeeCardDetails() {
+		return employeeCardDetails;
+	}
+
+	public void setEmployeeCardDetails(List<EmployeeCardDetails> employeeCardDetails) {
+		this.employeeCardDetails = employeeCardDetails;
+	}
+
 	public String getLoanId() {
 		return loanId;
 	}

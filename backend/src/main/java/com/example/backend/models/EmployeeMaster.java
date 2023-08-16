@@ -41,6 +41,14 @@ public class EmployeeMaster {
 	@OneToMany(mappedBy="employeeMaster")
 	private List<EmployeeCardDetails> employeeCardDetails;
 		
+	public List<EmployeeCardDetails> getEmployeeCardDetails() {
+		return employeeCardDetails;
+	}
+
+	public void setEmployeeCardDetails(List<EmployeeCardDetails> employeeCardDetails) {
+		this.employeeCardDetails = employeeCardDetails;
+	}
+
 	@OneToMany(mappedBy="employeeMaster")
 	private List<EmployeeIssueDetails> employeeIssueDetails;
 
