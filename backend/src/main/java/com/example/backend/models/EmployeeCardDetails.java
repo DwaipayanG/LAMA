@@ -5,6 +5,8 @@ import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
@@ -24,8 +26,10 @@ public class EmployeeCardDetails implements Serializable {
 	
 	@Id
 	@Column(name="card_id",nullable=false)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int cardId;
 	
+
 	@Column(name="card_issue_date")
 	private Date cardIssueDate;
 	
@@ -35,7 +39,7 @@ public class EmployeeCardDetails implements Serializable {
 	private LoanCardMaster loanCardMaster;
 	
 	@ManyToOne
-	@JoinColumn(name = "employee_id",nullable=false)
+	@JoinColumn(name = "employee_id")
 	private EmployeeMaster employeeMaster;
 	
 	public EmployeeMaster getEmployeeMaster() {
@@ -65,7 +69,13 @@ public class EmployeeCardDetails implements Serializable {
 	}
 	
 	
-	
+	public int getCardId() {
+		return cardId;
+	}
+
+	public void setCardId(int cardId) {
+		this.cardId = cardId;
+	}
 	
 
 }
