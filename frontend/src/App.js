@@ -8,6 +8,7 @@ import Home from './components/Home';
 import About from './components/About';
 import AddEmployee from './components/AddEmployee';
 import EmployeeDashboard from './components/EmployeeDasboard';
+import AdminDashboard from './components/AdminDashboard';
 import ApplyLoans from './components/ApplyLoan';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route exact path="/loginAdmin" element={ <LoginAdmin/> }/>
           <Route exact path="/loginEmployee"element= { <LoginEmployee/> }/>
           <Route exact path="/about" element={ <About/> }/>
+          <Route exact path="/adminDashboard" element={ <AdminDashboard /> }/>
           <Route exact path="/addEmployee" element={ <AddEmployee/> }/> 
           <Route exact path="/employeeDashboard" element={ <EmployeeDashboard/> }/> 
           <Route exact path="/applyLoan" element={ <ApplyLoans/> }/> 

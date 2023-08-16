@@ -3,45 +3,55 @@ import { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import '../style/LoginAdmin.css';
+import { useNavigate } from "react-router-dom";
 
 function LoginAdmin() {
     const baseURL = "http://localhost:8080/loginAdmin";
+    const navigate = useNavigate();
 
-    const [adminId, setAdminId] = useState('');
+    const [adminUsername, setAdminUsername] = useState('');
     const [password, setPassword] = useState("");
 
-    const adminIdChangeHandler = (event) => {
-        setAdminId(event.target.value)
+    const adminUsernameChangeHandler = (event) => {
+        setAdminUsername(event.target.value)
     }
     const passwordChangeHandler = (event) => {
         setPassword(event.target.value)
     }
 
+
     const submitActionHandler = (event) => {
+        event.preventDefault();
         axios
         .post(baseURL, {
-            "adminId": adminId,
+            "adminUsername": adminUsername,
             "password": password
         })
         .then((response) => {
-            alert(response.data);
+            if(response.data==="Invalid admin ID"){
+              alert(response.data)
+            }else if(response.data ==="Wrong password"){
+              alert(response.data)
+            }else{
+              sessionStorage.setItem("adminUsername", response.data);
+              navigate("/adminDashboard");
+            }
         })
         .catch((error) => {
             alert(error);
         })
     }
 
+
     return (
         <div id="loginAdminForm">
             <h1>Admin Login Page</h1>
         <Form onSubmit={submitActionHandler}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-            {/* <Form.Label className="textField">Admin ID</Form.Label> */}
-            <Form.Control type="text" value={adminId} onChange={adminIdChangeHandler} placeholder="Admin ID" className="textInput" />
+            <Form.Control type="text" value={adminUsername} onChange={adminUsernameChangeHandler} placeholder="Admin ID" className="textInput" />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
-            {/* <Form.Label className="textField">Password</Form.Label> */}
             <Form.Control type="password" value={password} onChange={passwordChangeHandler} placeholder="Password" className="textInput" />
         </Form.Group>
         <Button variant="primary" type="submit">

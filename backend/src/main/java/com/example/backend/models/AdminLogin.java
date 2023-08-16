@@ -1,14 +1,14 @@
 package com.example.backend.models;
 
 public class AdminLogin {
-	private String adminId;
+	private String adminUsername;
 	private String password;
 	
-	public String getAdminId() {
-		return adminId;
+	public String getAdminUsername() {
+		return adminUsername;
 	}
-	public void setAdminId(String adminId) {
-		this.adminId = adminId;
+	public void setAdminUsername(String adminId) {
+		this.adminUsername = adminId;
 	}
 	public String getPassword() {
 		return password;
