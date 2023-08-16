@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Card from 'react-bootstrap/Card';
+import Header from "./Header";
 
 export default function AdminDashboard(){
 
     const [user,setUser]=useState(null);
     
     return (
+        <div>
+            <Header></Header>
+        
         <div style={{width:"70%",margin:"auto"}} className="d-flex justify-content-center my-2">
             Welcome <b>{sessionStorage.getItem("adminUsername")}</b>
             <br/>
@@ -40,6 +44,7 @@ export default function AdminDashboard(){
                 <Card.Link href="#">Items master</Card.Link>
             </Card.Body>
             </Card>
+        </div>
         </div>
     );
 }

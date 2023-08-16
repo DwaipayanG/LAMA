@@ -3,6 +3,7 @@ import { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from "react-router-dom";
+import Header from "./Header";
 
 function LoginEmployee() {
     const baseURL = "http://localhost:8080/loginEmployee";
@@ -44,6 +45,8 @@ function LoginEmployee() {
 
 
     return (
+        <div>
+            <Header></Header>
         <div style={{width:"70%",margin:"auto"}}>
         <Form onSubmit={submitActionHandler}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -62,6 +65,7 @@ function LoginEmployee() {
             Submit
         </Button>
         </Form>
+        </div>
         </div>
     );
 }

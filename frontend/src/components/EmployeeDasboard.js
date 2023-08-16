@@ -20,6 +20,8 @@ export default function EmployeeDasboard(){
     });
 
     return (
+        <div>
+            <Headers></Headers>
         <div style={{width:"70%",margin:"auto"}} className="d-flex justify-content-center my-2">
             Welcome <b>{sessionStorage.getItem("employeeName")}</b>
             <br/>
@@ -53,6 +55,7 @@ export default function EmployeeDasboard(){
                 <Card.Link href="#">Card Link</Card.Link>
             </Card.Body>
             </Card>
+        </div>
         </div>
     );
 }

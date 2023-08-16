@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import '../style/LoginAdmin.css';
 import { useNavigate } from "react-router-dom";
+import Header from "./Header";
 
 function LoginAdmin() {
     const baseURL = "http://localhost:8080/loginAdmin";
@@ -44,6 +45,8 @@ function LoginAdmin() {
 
 
     return (
+        <div>
+            <Header></Header>
         <div id="loginAdminForm">
             <h1>Admin Login Page</h1>
         <Form onSubmit={submitActionHandler}>
@@ -59,6 +62,7 @@ function LoginAdmin() {
         </Button>
         </Form>
 
+        </div>
         </div>
     );
 }
