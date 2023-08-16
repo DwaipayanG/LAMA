@@ -1,0 +1,26 @@
+.addEmployeeBox{
+    width:70%;
+    max-width: 600px;
+    border: solid 2px rgba(107, 92, 92, 0.377);
+    border-radius: 30px;
+    margin: 25px auto;
+    padding: 15px;
+}
+
+.addEmployeeColumn{
+    display: inline-block;
+    width: 40%;
+    text-align: right;
+    padding: 10px 30px;
+
+}
+
+.addEmployeeValue{
+    display: inline-block;
+    width: 40%;
+    text-align: left;
+    padding: 10px 30px;
+
+}
+
+

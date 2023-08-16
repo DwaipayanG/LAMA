@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import "../style/AddEmployee.css"
 
 export default function AddEmployee(){
     const baseURL = "http://localhost:8080/addEmployee";
@@ -67,40 +68,40 @@ export default function AddEmployee(){
     }
 
     return (
-        <div style={{width:"70%",margin:"auto"}}>
+        <div className="addEmployeeBox">
             <h3> Add Employee </h3>             
             <Form onSubmit={submitActionHandler}>
                 <Form.Group className="mb-3">
-                    <Form.Label>Employee Id</Form.Label>
-                    <Form.Control type="text" value={employeeId} onChange={employeeIdChangeHandler} id="employeeId" />
+                    <Form.Label className="addEmployeeColumn">Employee Id</Form.Label>
+                    <Form.Control className="addEmployeeValue" type="text" value={employeeId} onChange={employeeIdChangeHandler} id="employeeId" />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" value={password} onChange={passwordChangeHandler} id="password" />
+                    <Form.Label className="addEmployeeColumn">Password</Form.Label>
+                    <Form.Control className="addEmployeeValue" type="password" value={password} onChange={passwordChangeHandler} id="password" />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label>Employee Name</Form.Label>
-                    <Form.Control type="text" value={employeeName} onChange={employeeNameChangeHandler} id="employeeName" />
+                    <Form.Label className="addEmployeeColumn">Employee Name</Form.Label>
+                    <Form.Control className="addEmployeeValue" type="text" value={employeeName} onChange={employeeNameChangeHandler} id="employeeName" />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label>Department</Form.Label>
-                    <Form.Control type="text" value={department} onChange={departmentChangeHandler} id="department" />
+                    <Form.Label className="addEmployeeColumn"> Department</Form.Label>
+                    <Form.Control className="addEmployeeValue" type="text" value={department} onChange={departmentChangeHandler} id="department" />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label>Designation</Form.Label>
-                    <Form.Control type="text" value={designation} onChange={designationChangeHandler} id="designation" />
+                    <Form.Label className="addEmployeeColumn">Designation</Form.Label>
+                    <Form.Control className="addEmployeeValue" type="text" value={designation} onChange={designationChangeHandler} id="designation" />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label>Gender</Form.Label>
-                    <Form.Control type="text" value={gender} onChange={genderChangeHandler} id="gender" />
+                    <Form.Label className="addEmployeeColumn">Gender</Form.Label>
+                    <Form.Control className="addEmployeeValue" type="text" value={gender} onChange={genderChangeHandler} id="gender" />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label>Date of Joining</Form.Label>
-                    <Form.Control type="date" value={dateOfJoining} onChange={dateOfJoiningChangeHandler} id="dateOfJoining" />
+                    <Form.Label className="addEmployeeColumn">Date of Joining</Form.Label>
+                    <Form.Control className="addEmployeeValue" type="date" value={dateOfJoining} onChange={dateOfJoiningChangeHandler} id="dateOfJoining" />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label>Date of Birth</Form.Label>
-                    <Form.Control type="date" value={dateOfBirth} onChange={dateOfBirthChangeHandler} id="dateOfJoining" />
+                    <Form.Label className="addEmployeeColumn">Date of Birth</Form.Label>
+                    <Form.Control className="addEmployeeValue" type="date" value={dateOfBirth} onChange={dateOfBirthChangeHandler} id="dateOfJoining" />
                 </Form.Group>
                 <Button variant="primary" type="submit">
                     Submit
