@@ -30,7 +30,7 @@ public class ItemsMaster {
 	@Column(name="item_valuation")
 	private int itemValuation;
 	
-	@OneToMany(mappedBy="items_master")
+	@OneToMany(mappedBy="itemsMaster")
 	private List<EmployeeIssueDetails> employeeIssueDetails;
 
 	public String getItemId() {

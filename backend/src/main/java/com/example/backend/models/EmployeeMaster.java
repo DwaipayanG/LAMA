@@ -38,10 +38,10 @@ public class EmployeeMaster {
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date dateOfJoining;
 	
-	@OneToMany(mappedBy="employee_master")
+	@OneToMany(mappedBy="employeeMaster")
 	private List<EmployeeCardDetails> employeeCardDetails;
 		
-	@OneToMany(mappedBy="employee_master")
+	@OneToMany(mappedBy="employeeMaster")
 	private List<EmployeeIssueDetails> employeeIssueDetails;
 
 	@Column
