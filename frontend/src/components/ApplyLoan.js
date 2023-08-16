@@ -104,41 +104,45 @@ export default function ApplyLoans(){
             <br></br>
             <Form onSubmit={submitActionHandler}>
             <div className="field"> 
-                <span className="column"> Employee ID :</span>
-                <span className="value">{employeeId}</span>
+                <div className="column"> Employee ID :</div>
+                <div className="value">{employeeId}</div>
             </div>
             <div className="field">
-            <span className="column"> Item Category :</span>
-                <select id="dropdown-basic-button" title="Dropdown button" onChange={categoryChangeHandler}>
-                    <option selected="selected">--Select--</option>
-                    {
-                        category.map((val)=>{
-                            return (<option value={val}>{val}</option>);
-                        })
-                    }
-                </select>
+            <div className="column"> Item Category :</div>
+                <div className="value">
+                    <select id="dropdown-basic-button" title="Dropdown button" onChange={categoryChangeHandler}>
+                        <option selected="selected">--Select--</option>
+                        {
+                            category.map((val)=>{
+                                return (<option value={val}>{val}</option>);
+                            })
+                        }
+                    </select>
+                </div>
             </div>
             
             <div className="field">
-            <span className="column"> Item Make :</span>
-                <select id="dropdown-basic-button" title="Dropdown button" onChange={makeChangeHandler}>
-                <option selected="selected">--Select--</option>
-                    {
-                        makeList.map((val)=>{
-                            return (<option value={val}>{val}</option>);
-                        })
-                    }
-                </select>
+                <div className="column"> Item Make :</div>
+                <div className="value">
+                    <select id="dropdown-basic-button" title="Dropdown button" onChange={makeChangeHandler}>
+                    <option selected="selected">--Select--</option>
+                        {
+                            makeList.map((val)=>{
+                                return (<option value={val}>{val}</option>);
+                            })
+                        }
+                    </select>
+                </div>
             </div>
 
             <div className="field">
-                <span className="column"> Value :</span>
-                <span className="value">{value}</span>
+                <div className="column"> Value :</div>
+                <div className="value">{value}</div>
             </div>
 
             <div className="field">
-                <span className="column"> Description :</span>
-                <span className="value" >{description}</span>
+                <div className="column"> Description :</div>
+                <div className="value" >{description}</div>
             </div>
 
             <Button variant="primary" type="submit">
