@@ -1,0 +1,30 @@
+
+.header{
+    color: #FFF;
+    background-color: #0093E9;
+    background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+    padding: 20px 10px;
+    position:sticky;
+    top: 0px;
+
+}
+
+#logo{
+    border-radius: 50%;
+    background-color: #FF9A8B;
+    background-image: linear-gradient(90deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%);
+    font-size: 15px;
+    height: 50px;
+    width: 50px;
+    display: inline-block;
+    line-height: 50px;
+    position:absolute;
+    top : 5vh;
+    left: 5vw;
+
+}
+
+#logo a{
+    text-decoration: none;
+    color: #FFF;
+}

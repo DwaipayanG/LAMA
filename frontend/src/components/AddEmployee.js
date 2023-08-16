@@ -2,7 +2,8 @@ import axios from "axios";
 import { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import "../style/AddEmployee.css"
+import "../style/AddEmployee.css";
+import Header from "./Header";
 
 export default function AddEmployee(){
     const baseURL = "http://localhost:8080/addEmployee";
@@ -68,6 +69,9 @@ export default function AddEmployee(){
     }
 
     return (
+        <div>
+            <Header></Header>
+        
         <div className="addEmployeeBox">
             <h3> Add Employee </h3>             
             <Form onSubmit={submitActionHandler}>
@@ -107,6 +111,7 @@ export default function AddEmployee(){
                     Submit
                 </Button>
             </Form>
+        </div>
         </div>
     );
 };
