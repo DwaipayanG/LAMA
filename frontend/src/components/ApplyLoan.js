@@ -105,6 +105,7 @@ export default function ApplyLoans(){
             <div>
                 Item Category:
                 <select id="dropdown-basic-button" title="Dropdown button" onChange={categoryChangeHandler}>
+                    <option selected="selected">--Select--</option>
                     {
                         category.map((val)=>{
                             return (<option value={val}>{val}</option>);
@@ -116,6 +117,7 @@ export default function ApplyLoans(){
             <div>
                 Item Make:
                 <select id="dropdown-basic-button" title="Dropdown button" onChange={makeChangeHandler}>
+                <option selected="selected">--Select--</option>
                     {
                         makeList.map((val)=>{
                             return (<option value={val}>{val}</option>);
