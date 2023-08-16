@@ -11,7 +11,6 @@ export default function ApplyLoans(){
 
     const [user,setUser]=useState(null);
 
-    const [id,setId] = useState("");
     const [employeeId, setEmployeeId] = useState("");
     const [category, setCategory] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("");
@@ -21,9 +20,7 @@ export default function ApplyLoans(){
     const [description, setDescription] = useState("");
 
     useEffect(()=>{
-        const id=sessionStorage.getItem("id");
-        console.log(id);
-        setId(id);
+        setEmployeeId(sessionStorage.getItem("employeeId"));
     },[]);
 
     useEffect(()=>{
@@ -103,7 +100,7 @@ export default function ApplyLoans(){
 
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Employee ID</Form.Label>
-                <Form.Control type="text" value={id} onChange={employeeIdChangeHandler} placeholder="Enter employee ID" disabled/>
+                <Form.Control type="text" value={employeeId} onChange={employeeIdChangeHandler} placeholder="Enter employee ID" disabled/>
             </Form.Group>
             <div>
                 Item Category:

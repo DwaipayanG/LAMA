@@ -32,9 +32,9 @@ function LoginEmployee() {
             }else if(response.data ==="Wrong password"){
               alert(response.data)
             }else{
-              sessionStorage.setItem("empId", response.data.employeeId);
-              sessionStorage.setItem("empName",response.data.employeeName);
-               navigate("/dashboard");
+              sessionStorage.setItem("employeeId", response.data.employeeId);
+              sessionStorage.setItem("employeeName",response.data.employeeName);
+              navigate("/employeeDashboard");
             }
         })
         .catch((error) => {

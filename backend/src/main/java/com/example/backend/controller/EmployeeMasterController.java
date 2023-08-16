@@ -30,12 +30,10 @@ public class EmployeeMasterController {
 	@PostMapping("/loginEmployee")
 	@ResponseBody
 	public Object loginEmployeeMaster(@RequestBody EmployeeMasterLogin empLogin) {
-		//String response = "";
 		Object response;
 		Optional<EmployeeMaster> existingEmployee = employeeMasterService.getEmployeeMasterById(empLogin.getEmployeeId());
 		if(existingEmployee.isPresent()) {
 			if(existingEmployee.get().getPassword().equals(empLogin.getPassword())) {
-				//response = "Login successful";
 				response = existingEmployee.get();
 			}else {
 				response = new String("Wrong password");
