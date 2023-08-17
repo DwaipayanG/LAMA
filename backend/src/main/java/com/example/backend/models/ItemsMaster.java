@@ -53,8 +53,8 @@ public class ItemsMaster {
 		return itemStatus;
 	}
 
-	public void setItemStatus(char itemStatus) {
-		this.itemStatus = itemStatus;
+	public void setItemStatus(char string) {
+		this.itemStatus = string;
 	}
 
 	public String getItemMake() {
