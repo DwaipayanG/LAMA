@@ -1,7 +1,5 @@
 package com.example.backend.controller;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -10,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.backend.models.AdminLogin;
-import com.example.backend.models.EmployeeMaster;
 
 @RestController
 @CrossOrigin("http://localhost:3000")

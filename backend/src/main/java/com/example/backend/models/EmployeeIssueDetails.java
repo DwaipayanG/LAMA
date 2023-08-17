@@ -4,6 +4,8 @@ import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -13,8 +15,9 @@ import jakarta.persistence.Table;
 @Table(name="employee_issue_details")
 public class EmployeeIssueDetails {
 	@Id
-	@Column(name="issue_id", nullable=false, length=6)
-	private String issueId;
+	@Column(name="issue_id", nullable=false)
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int issueId;
 	
 	
 	@Column(name="issue_date")
@@ -31,11 +34,11 @@ public class EmployeeIssueDetails {
 	@JoinColumn(name="employee_id")
 	private EmployeeMaster employeeMaster;
 	
-	public String getIssueId() {
+	public int getIssueId() {
 		return issueId;
 	}
 
-	public void setIssueId(String issueId) {
+	public void setIssueId(int issueId) {
 		this.issueId = issueId;
 	}
 
@@ -54,6 +57,22 @@ public class EmployeeIssueDetails {
 
 	public void setReturnDate(Date returnDate) {
 		this.returnDate = returnDate;
+	}
+
+	public ItemsMaster getItemsMaster() {
+		return itemsMaster;
+	}
+
+	public void setItemsMaster(ItemsMaster itemsMaster) {
+		this.itemsMaster = itemsMaster;
+	}
+
+	public EmployeeMaster getEmployeeMaster() {
+		return employeeMaster;
+	}
+
+	public void setEmployeeMaster(EmployeeMaster employeeMaster) {
+		this.employeeMaster = employeeMaster;
 	}
 	
 	

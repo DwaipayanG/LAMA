@@ -1,8 +1,6 @@
 package com.example.backend.services;
 
 import java.util.List;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +12,10 @@ public class ItemsMasterService {
 
 	@Autowired
 	private ItemsMasterRepository itemsMasterRepo;
+	
+	public ItemsMaster getItemById(String itemId){
+		return itemsMasterRepo.findById(itemId).get();
+	}
 	
 	public List<String> getAllCategory(){
 		return itemsMasterRepo.getAllCategory();	

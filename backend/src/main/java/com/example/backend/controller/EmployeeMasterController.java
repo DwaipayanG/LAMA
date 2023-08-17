@@ -1,8 +1,6 @@
 package com.example.backend.controller;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,34 +11,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.backend.dao.EmployeeCardDetailsRepository;
-import com.example.backend.dao.LoanCardMasterRepository;
-import com.example.backend.models.EmployeeCardDetails;
+import com.example.backend.models.ApplyLoanData;
+import com.example.backend.models.EmployeeIssueDetails;
 import com.example.backend.models.EmployeeMaster;
 import com.example.backend.models.EmployeeMasterLogin;
-import com.example.backend.models.LoanCardMaster;
 import com.example.backend.services.EmployeeCardDetailsService;
+import com.example.backend.services.EmployeeIssueDetailsService;
 import com.example.backend.services.EmployeeMasterService;
-import com.example.backend.services.LoanCardMasterService;
-
-
-class ApplyLoanData{
-	public String loanId;
-	public String employeeId;
-};
 
 @RestController
 @CrossOrigin("http://localhost:3000")
 public class EmployeeMasterController {
 	@Autowired 
 	private EmployeeMasterService employeeMasterService;
-	
-
-	@Autowired
-	private LoanCardMasterService loanCardMasterService;
-	
+		
 	@Autowired
 	private EmployeeCardDetailsService employeeCardDetailsService;
+	
+	@Autowired
+	private EmployeeIssueDetailsService employeeIssueDetailsService;
 	
 	@GetMapping("/getEmployee")
 	public Optional<EmployeeMaster> getEmployeeMaster(@RequestBody EmployeeMaster employee) {
@@ -72,34 +61,17 @@ public class EmployeeMasterController {
 	}
 	
 	@PostMapping("/applyLoan")
-	public void applyLoan(@RequestBody ApplyLoanData loanData) {
-//		String loanId = employeeCardDetails.get
-		LoanCardMaster loanCardMaster = loanCardMasterService.getLoanCardById(loanData.loanId);
-//		System.out.print(loanCardMaster.getLoanType());
-		EmployeeMaster employeeMaster = employeeMasterService.getEmployeeMasterById(loanData.employeeId).get(); 
+	public Object applyLoan(@RequestBody ApplyLoanData loanData) {
+
+		EmployeeMaster employeeMaster = employeeMasterService.getEmployeeMasterById(loanData.getEmployeeId()).get(); 
+				
+		Date loanReturnDate = employeeCardDetailsService.addEmployeeCardDetailsToGetLoanReturnDate(loanData.getLoanId(), loanData.getLoanIssueDate(), employeeMaster);
 		
-		//LoanCardMaster loanCardMaster=new LoanCardMaster();
-		//loanCardMaster.setLoanId("123456");
-		//loanCardMaster.setLoanType("0123456789abcde");
-		//loanCardMaster.setDurationInYears(1);
+		EmployeeIssueDetails employeeIssueDetails = employeeIssueDetailsService.addEmployeeIssueDetails(loanData.getItemId(), loanData.getLoanIssueDate(), loanReturnDate, employeeMaster);
 		
-		EmployeeCardDetails employeeCardDetails = new EmployeeCardDetails();
-		employeeCardDetails.setEmployeeMaster(employeeMaster);
-		employeeCardDetails.setLoanCardMaster(loanCardMaster);
-		employeeCardDetails.setCardIssueDate(new Date());
+		Object response = new String("Loan applied");
 		
-		//List<EmployeeCardDetails> l = new ArrayList<EmployeeCardDetails>();
-		//l.add(employeeCardDetails);
-		
-	//	loanCardMaster.setEmployeeCardDetails(l);
-		//employeeMaster.setEmployeeCardDetails(l);
-		//employeeCardDetails.setLoanCardMaster(loanCardMaster);
-		//employeeCardDetails.setEmployeeMaster(employeeMaster);
-		
-		//loanCardMasterService.addLoanCard(loanCardMaster);
-		//employeeMasterService.addEmployeeMaster(employeeMaster);
-		employeeCardDetailsService.addEmployeeCardDetails(employeeCardDetails);
-		
+		return response;
 		
 	}
 
