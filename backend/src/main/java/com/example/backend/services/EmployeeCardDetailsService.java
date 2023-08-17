@@ -12,6 +12,7 @@ import com.example.backend.dao.EmployeeCardDetailsRepository;
 import com.example.backend.models.EmployeeCardDetails;
 import com.example.backend.models.EmployeeMaster;
 import com.example.backend.models.LoanCardMaster;
+import com.example.backend.models.ViewItems;
 import com.example.backend.models.ViewLoans;
 
 @Service
@@ -69,4 +70,5 @@ public class EmployeeCardDetailsService {
 		
 		return response;
 	}
+	
 }
