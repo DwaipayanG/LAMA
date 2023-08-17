@@ -2,11 +2,12 @@ package com.example.backend.models;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -24,8 +25,17 @@ public class LoanCardMaster {
 	private int durationInYears;
 	
 	@OneToMany(mappedBy="loanCardMaster",cascade = CascadeType.ALL)
+	@JsonBackReference
 	private List<EmployeeCardDetails> employeeCardDetails;
 	
+	public List<EmployeeCardDetails> getEmployeeCardDetails() {
+		return employeeCardDetails;
+	}
+
+	public void setEmployeeCardDetails(List<EmployeeCardDetails> employeeCardDetails) {
+		this.employeeCardDetails = employeeCardDetails;
+	}
+
 	public String getLoanId() {
 		return loanId;
 	}

@@ -21,4 +21,5 @@ public class EmployeeCardDetailsController {
 		public EmployeeCardDetails addEmployeeCardDetails(EmployeeCardDetails employeeCardDetails) {
 			return employeeCardDetailsService.addEmployeeCardDetails(employeeCardDetails);
 		}
+		
 }

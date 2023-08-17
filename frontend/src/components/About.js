@@ -1,5 +1,10 @@
+import Header from "./Header";
 export default function About(){
     return (
-        <h3> About </h3>
+        <div>
+            <Header></Header>
+            <h3> About </h3>
+        </div>
+        
     );
 };
