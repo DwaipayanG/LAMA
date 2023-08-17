@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.backend.models.EmployeeIssueDetails;
 
-public interface EmployeeIssueDetailsRepository extends JpaRepository <EmployeeIssueDetails, String>  {
+public interface EmployeeIssueDetailsRepository extends JpaRepository <EmployeeIssueDetails, Integer>  {
 	
 	
 }
