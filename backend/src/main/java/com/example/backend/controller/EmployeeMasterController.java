@@ -1,8 +1,6 @@
 package com.example.backend.controller;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,29 +11,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.backend.dao.EmployeeCardDetailsRepository;
-import com.example.backend.dao.LoanCardMasterRepository;
 import com.example.backend.models.ApplyLoanData;
-import com.example.backend.models.EmployeeCardDetails;
 import com.example.backend.models.EmployeeIssueDetails;
 import com.example.backend.models.EmployeeMaster;
 import com.example.backend.models.EmployeeMasterLogin;
-import com.example.backend.models.LoanCardMaster;
 import com.example.backend.services.EmployeeCardDetailsService;
 import com.example.backend.services.EmployeeIssueDetailsService;
 import com.example.backend.services.EmployeeMasterService;
-import com.example.backend.services.LoanCardMasterService;
 
 @RestController
 @CrossOrigin("http://localhost:3000")
 public class EmployeeMasterController {
 	@Autowired 
 	private EmployeeMasterService employeeMasterService;
-	
-
-	@Autowired
-	private LoanCardMasterService loanCardMasterService;
-	
+		
 	@Autowired
 	private EmployeeCardDetailsService employeeCardDetailsService;
 	

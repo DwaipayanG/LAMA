@@ -1,7 +1,5 @@
 package com.example.backend.controller;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,7 +7,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.backend.models.EmployeeCardDetails;
-import com.example.backend.models.LoanCardMaster;
 import com.example.backend.services.EmployeeCardDetailsService;
 
 @RestController
