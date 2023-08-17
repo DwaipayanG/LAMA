@@ -75,25 +75,31 @@ public class EmployeeMasterController {
 	public void applyLoan(@RequestBody ApplyLoanData loanData) {
 //		String loanId = employeeCardDetails.get
 		LoanCardMaster loanCardMaster = loanCardMasterService.getLoanCardById(loanData.loanId);
+//		System.out.print(loanCardMaster.getLoanType());
 		EmployeeMaster employeeMaster = employeeMasterService.getEmployeeMasterById(loanData.employeeId).get(); 
 		
-//		LoanCardMaster loanCard=new LoanCardMaster();
-//		loanCard.setLoanId("123456");
-//		loanCard.setLoanType("0123456789abcde");
-//		loanCard.setDurationInYears(1);
+		//LoanCardMaster loanCardMaster=new LoanCardMaster();
+		//loanCardMaster.setLoanId("123456");
+		//loanCardMaster.setLoanType("0123456789abcde");
+		//loanCardMaster.setDurationInYears(1);
 		
-		EmployeeCardDetails employeeCardDetails = new EmployeeCardDetails(); 
-		List<EmployeeCardDetails> l = new ArrayList<EmployeeCardDetails>();
-		l.add(employeeCardDetails);
-		
-		loanCardMaster.setEmployeeCardDetails(l);
-		employeeMaster.setEmployeeCardDetails(l);
-		employeeCardDetails.setLoanCardMaster(loanCardMaster);
+		EmployeeCardDetails employeeCardDetails = new EmployeeCardDetails();
 		employeeCardDetails.setEmployeeMaster(employeeMaster);
+		employeeCardDetails.setLoanCardMaster(loanCardMaster);
+		employeeCardDetails.setCardIssueDate(new Date());
 		
-		loanCardMasterService.addLoanCard(loanCardMaster);
+		//List<EmployeeCardDetails> l = new ArrayList<EmployeeCardDetails>();
+		//l.add(employeeCardDetails);
+		
+	//	loanCardMaster.setEmployeeCardDetails(l);
+		//employeeMaster.setEmployeeCardDetails(l);
+		//employeeCardDetails.setLoanCardMaster(loanCardMaster);
+		//employeeCardDetails.setEmployeeMaster(employeeMaster);
+		
+		//loanCardMasterService.addLoanCard(loanCardMaster);
+		//employeeMasterService.addEmployeeMaster(employeeMaster);
 		employeeCardDetailsService.addEmployeeCardDetails(employeeCardDetails);
-		employeeMasterService.addEmployeeMaster(employeeMaster);
+		
 		
 	}
 

@@ -20,6 +20,7 @@ export default function ApplyLoans(){
     const [make, setMake] = useState("");
     const [value, setValue] = useState("");
     const [description, setDescription] = useState("");
+    const [loanId, setLoanId] = useState("");
 
     useEffect(()=>{
         setEmployeeId(sessionStorage.getItem("employeeId"));
@@ -51,6 +52,7 @@ export default function ApplyLoans(){
         .catch((error) => {
             console.log(error);
         });
+        
     },[selectedCategory]);
 
     useEffect(()=>{
@@ -93,7 +95,36 @@ export default function ApplyLoans(){
     }
 
     const submitActionHandler = () => {
+        const getLoanCardUrl = "http://localhost:8080/getLoanCardByLoanType"
+        const loanApplyUrl = "http://localhost:8080/applyLoan"
+        axios
+            .post(getLoanCardUrl, {
+                "loanType": selectedCategory
+            })
+            .then((response)=> {
+                setLoanId(response.data.loanId);
+                console.log(response.data.loanId)
+            })
+            .catch((error)=>{
+                alert(error)
+            });
 
+        axios
+        .post(loanApplyUrl, {
+            "loanId": loanId,
+            "employeeId": employeeId,
+            // "cardIssueDate": Date(),
+            // "cardId": 1
+        })
+        .then((response)=>{
+            alert(response.data)
+            console.log(response.data)
+        })
+        .catch((error)=> {
+            alert(error)
+        })
+
+      
     }
 
     return (
