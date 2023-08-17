@@ -61,15 +61,17 @@ public class EmployeeMasterController {
 	}
 	
 	@PostMapping("/applyLoan")
-	public EmployeeIssueDetails applyLoan(@RequestBody ApplyLoanData loanData) {
+	public Object applyLoan(@RequestBody ApplyLoanData loanData) {
 
 		EmployeeMaster employeeMaster = employeeMasterService.getEmployeeMasterById(loanData.getEmployeeId()).get(); 
-		
+				
 		Date loanReturnDate = employeeCardDetailsService.addEmployeeCardDetailsToGetLoanReturnDate(loanData.getLoanId(), loanData.getLoanIssueDate(), employeeMaster);
 		
 		EmployeeIssueDetails employeeIssueDetails = employeeIssueDetailsService.addEmployeeIssueDetails(loanData.getItemId(), loanData.getLoanIssueDate(), loanReturnDate, employeeMaster);
 		
-		return employeeIssueDetails;
+		Object response = new String("Loan applied");
+		
+		return response;
 		
 	}
 
