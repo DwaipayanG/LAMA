@@ -1,5 +1,6 @@
 package com.example.backend.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,10 @@ public class EmployeeMasterService {
 	
 	@Autowired
 	private EmployeeMasterRepository employeeRepo;
+	
+	public List<EmployeeMaster> getAllEmployees(){
+		return employeeRepo.findAll();
+	}
 	
 	public EmployeeMaster addEmployeeMaster (EmployeeMaster employeeInstance) {
 		

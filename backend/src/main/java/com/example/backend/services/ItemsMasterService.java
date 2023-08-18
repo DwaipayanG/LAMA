@@ -13,6 +13,10 @@ public class ItemsMasterService {
 	@Autowired
 	private ItemsMasterRepository itemsMasterRepo;
 	
+	public List<ItemsMaster> getAllItems(){
+		return itemsMasterRepo.findAll();
+	}
+	
 	public ItemsMaster getItemById(String itemId){
 		return itemsMasterRepo.findById(itemId).get();
 	}

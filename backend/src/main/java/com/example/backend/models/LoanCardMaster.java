@@ -24,7 +24,7 @@ public class LoanCardMaster {
 	@Column(name="duration_in_years")
 	private int durationInYears;
 	
-	@OneToMany(mappedBy="loanCardMaster",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="loanCardMaster",cascade = CascadeType.ALL,orphanRemoval = true)
 	@JsonBackReference
 	private List<EmployeeCardDetails> employeeCardDetails;
 	

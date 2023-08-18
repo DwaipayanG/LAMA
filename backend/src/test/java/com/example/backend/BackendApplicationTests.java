@@ -6,7 +6,8 @@ import org.springframework.context.annotation.ComponentScan;
 
 
 @ComponentScan(basePackages="com")
-@SpringBootTest(classes= {com.example.backend.LoanCardMasterTest.class,com.example.backend.AdminControllerTest.class})
+@SpringBootTest(classes= {com.example.backend.LoanCardMasterTest.class,com.example.backend.AdminControllerTest.class,
+		com.example.backend.ItemsMasterTest.class})
 
 class BackendApplicationTests {
 

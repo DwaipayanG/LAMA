@@ -9,12 +9,13 @@ function ViewLoans() {
 
     useEffect(()=>{
         setEmployeeId(sessionStorage.getItem("employeeId"));
+        console.log(sessionStorage.getItem("employeeId"));
     },[]);
 
     useEffect(()=>{
         const url= "http://localhost:8080/getAllLoans";
         axios
-        .get(url, {params: {employeeId:empId}})
+        .get(url, {params: {employeeId:sessionStorage.getItem("employeeId")}})
         .then((response) => {
             console.log(response.data);
             setLoan(response.data);
@@ -22,7 +23,11 @@ function ViewLoans() {
         .catch((err) =>{
           console.log(err);
         });
-    },[]);
+    },[empId]);
+
+    useEffect(()=>{
+      console.log(loans);
+    },[loans]);
 
 
   return (
@@ -40,9 +45,9 @@ function ViewLoans() {
     {loans.map(loan =>(
          <tr>
          <td>{loan.loanId}</td>
-         <td>{loan.loanTYpe}</td>
-         <td>{loan.duration}</td>
-         <td>{loan.cardIssueDetails}</td>
+         <td>{loan.loanType}</td>
+         <td>{loan.durationInYears}</td>
+         <td>{loan.cardIssueDate.substr(0,10)}</td>
        </tr>
     ))}
       </tbody>

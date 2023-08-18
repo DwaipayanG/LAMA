@@ -1,6 +1,7 @@
 package com.example.backend.controller;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,11 @@ public class EmployeeMasterController {
 	
 	@Autowired
 	private EmployeeIssueDetailsService employeeIssueDetailsService;
+	
+	@GetMapping("/getAllEmployees")
+	public List<EmployeeMaster> getAllEmployees(){
+		return employeeMasterService.getAllEmployees();
+	}
 	
 	@GetMapping("/getEmployee")
 	public Optional<EmployeeMaster> getEmployeeMaster(@RequestBody EmployeeMaster employee) {

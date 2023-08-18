@@ -2,6 +2,7 @@ package com.example.backend.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,11 @@ public class ItemsMasterController {
 	@Autowired
 	private ItemsMasterService itemsMasterService;
 	
+	@GetMapping("/getAllItem")
+	public List<ItemsMaster> getAllItems(){
+		return itemsMasterService.getAllItems();
+	}
+	
 	@PostMapping("/getDistinctMakesByCategory")
 	@ResponseBody
 	public List<String> getDistinctMakesByCategory(@RequestBody ItemsMaster itemsMaster){
@@ -35,9 +41,10 @@ public class ItemsMasterController {
 	public ItemsMaster getItemByMakeAndCategory(@RequestBody ItemsMaster itemsMaster) {
 		return itemsMasterService.getItemByMakeAndCategory(itemsMaster.getItemCategory(), itemsMaster.getItemMake());
 	}
-	
+
 	@PostMapping("/addItem")
 	public ItemsMaster addItem(@RequestBody ItemsMaster itemsMaster) {
 		return itemsMasterService.saveItemsMaster(itemsMaster);
 	}
+
 }

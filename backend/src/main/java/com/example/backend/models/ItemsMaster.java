@@ -2,6 +2,7 @@ package com.example.backend.models;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -30,7 +31,7 @@ public class ItemsMaster {
 	@Column(name="item_valuation")
 	private int itemValuation;
 	
-	@OneToMany(mappedBy="itemsMaster")
+	@OneToMany(mappedBy="itemsMaster",cascade=CascadeType.ALL,orphanRemoval = true)
 	private List<EmployeeIssueDetails> employeeIssueDetails;
 
 	public String getItemId() {

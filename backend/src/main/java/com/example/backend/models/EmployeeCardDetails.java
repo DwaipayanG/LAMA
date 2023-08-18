@@ -2,6 +2,8 @@ package com.example.backend.models;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,6 +33,7 @@ public class EmployeeCardDetails{
 	
 	@ManyToOne
 	@JoinColumn(name = "employee_id")
+	@JsonBackReference
 	private EmployeeMaster employeeMaster;
 	
 	public EmployeeMaster getEmployeeMaster() {
