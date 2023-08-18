@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import Table from 'react-bootstrap/Table';
 
 
-function ViewLoans() {
-    const [loans, setLoan] = useState([]);
+function ViewItems() {
+    const [items, setItem] = useState([]);
     const [empId, setEmployeeId]= useState("");
 
     useEffect(()=>{
@@ -12,12 +12,12 @@ function ViewLoans() {
     },[]);
 
     useEffect(()=>{
-        const url= "http://localhost:8080/getAllLoans";
+        const url= "http://localhost:8080/getAllItems";
         axios
         .get(url, {params: {employeeId:empId}})
         .then((response) => {
             console.log(response.data);
-            setLoan(response.data);
+            setItem(response.data);
         })
         .catch((err) =>{
           console.log(err);
@@ -29,20 +29,22 @@ function ViewLoans() {
     <Table striped bordered hover>
       <thead>
         <tr>
-          <th>Loan ID</th>
-          <th>Loan Type</th>
-          <th>Duration</th>
-          <th>Card Issue Date</th>
+          <th>Issue ID</th>
+          <th>Item Description</th>
+          <th>Item Make</th>
+          <th>Item Category</th>
+          <th>Item valuations</th>
         </tr>
       </thead>
 
       <tbody>
-    {loans.map(loan =>(
+    {items.map(item =>(
          <tr>
-         <td>{loan.loanId}</td>
-         <td>{loan.loanTYpe}</td>
-         <td>{loan.duration}</td>
-         <td>{loan.cardIssueDetails}</td>
+         <td>{item.issueId}</td>
+         <td>{item.itemDescription}</td>
+         <td>{item.itemMake}</td>
+         <td>{item.itemCategory}</td>
+         <td>{item.itemValuation}</td>
        </tr>
     ))}
       </tbody>
@@ -50,4 +52,4 @@ function ViewLoans() {
   );
 }
 
-export default ViewLoans;
+export default ViewItems;
