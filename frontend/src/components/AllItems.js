@@ -38,8 +38,8 @@ function AllItems() {
     {items.map(item =>(
          <tr>
          <td>{item.itemId}</td>
-         <td>{item.description}</td>
-         <td>{item.issueStatus}</td>
+         <td>{item.itemDescription}</td>
+         <td>{item.itemStatus}</td>
          <td>{item.itemMake}</td>
          <td>{item.itemCategory}</td>
          <td>{item.itemValuation}</td>
