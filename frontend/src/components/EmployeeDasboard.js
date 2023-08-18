@@ -10,14 +10,14 @@ export default function EmployeeDasboard(){
     useEffect(()=>{
         const url="http://localhost:8080/getUser"
         const id=sessionStorage.getItem("employeeId");
-        axios
-        .get(url)
-        .then((response) => {
-            alert(response.data);
-        })
-        .catch((error) => {
-            alert(error);
-        });
+        // axios
+        // .get(url)
+        // .then((response) => {
+        //     alert(response.data);
+        // })
+        // .catch((error) => {
+        //     alert(error);
+        // });
     });
 
     return (
@@ -33,7 +33,7 @@ export default function EmployeeDasboard(){
                 Some quick example text to build on the card title and make up the
                 bulk of the card's content.
                 </Card.Text>
-                <Card.Link href="#">Card Link</Card.Link>
+                <Card.Link href="/viewLoans">Card Link</Card.Link>
             </Card.Body>
             </Card>
             <Card style={{ width: '18rem' }}>

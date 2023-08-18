@@ -63,4 +63,20 @@ public class LoanCardMasterTest {
 		System.out.print(result);
 		assertEquals(result,result);
 	}
+	
+	
+	@Test
+	public void testGetLoanCardByLoanType() throws Exception{
+		LoanCardMaster loanCardMaster= new LoanCardMaster();
+		loanCardMaster.setLoanId("123456");
+		loanCardMaster.setLoanType("furniture");
+		loanCardMaster.setDurationInYears(15);
+		Mockito.when(loanCardMasterService.addLoanCard(ArgumentMatchers.any())).thenReturn(loanCardMaster);
+		String json=mapper.writeValueAsString(loanCardMaster);
+		MvcResult requestResult= mvc.perform(post("/addLoanCard").contentType(MediaType.APPLICATION_JSON).characterEncoding("utf-8").content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
+		String result= requestResult.getResponse().getContentAsString();
+		System.out.print(result);
+		assertEquals(result,result);
+		
+	}
 }

@@ -10,6 +10,8 @@ import AddEmployee from './components/AddEmployee';
 import EmployeeDashboard from './components/EmployeeDasboard';
 import AdminDashboard from './components/AdminDashboard';
 import ApplyLoans from './components/ApplyLoan';
+import ViewLoans from './components/ViewLoans';
+import ViewItems from './components/ViewItem';
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
           <Route exact path="/addEmployee" element={ <AddEmployee/> }/> 
           <Route exact path="/employeeDashboard" element={ <EmployeeDashboard/> }/> 
           <Route exact path="/applyLoan" element={ <ApplyLoans/> }/> 
+          <Route exact path= "/viewLoans" element= {<ViewLoans/>} />
+          <Route exact path= "/viewItems" element= {<ViewItems/>} />
         </Routes>
       </BrowserRouter>
       <></>
