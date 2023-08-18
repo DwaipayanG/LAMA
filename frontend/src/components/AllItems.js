@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import Table from 'react-bootstrap/Table';
 
 
+
+
 function AllItems() {
     const [items, setItems] = useState([]);
     useEffect(()=>{
@@ -18,6 +20,23 @@ function AllItems() {
         });
     },[]);
 
+
+    const handleDelete = async(id)=>{
+
+      try{
+        const response= await axios.get("/deleteItem",{params: {itemId:id}});
+        if(response.data ==="Failue"){
+          setError("User Id Not Found");
+        }
+        else{
+          const itemData=items.filter(item => item.itemId!==id);
+          setItems(itemData);
+          setError(null);
+        }
+      } catch(err){
+        setError("could not delete the item");
+      }
+    }
 
   return (
     <Table striped bordered hover>
@@ -44,7 +63,7 @@ function AllItems() {
          <td>{item.itemCategory}</td>
          <td>{item.itemValuation}</td>
          <td>Edit</td>
-         <td>Delete</td>
+         <td><button onClick={handleDelete(item.itemId)}>Delete</button></td>
        </tr>
     ))}
       </tbody>
