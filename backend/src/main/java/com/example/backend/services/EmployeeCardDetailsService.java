@@ -1,7 +1,9 @@
 package com.example.backend.services;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +12,8 @@ import com.example.backend.dao.EmployeeCardDetailsRepository;
 import com.example.backend.models.EmployeeCardDetails;
 import com.example.backend.models.EmployeeMaster;
 import com.example.backend.models.LoanCardMaster;
+import com.example.backend.models.ViewItems;
+import com.example.backend.models.ViewLoans;
 
 @Service
 public class EmployeeCardDetailsService {
@@ -48,4 +52,23 @@ public class EmployeeCardDetailsService {
 		
 		return getLoanReturnDate(employeeCardDetails.getCardIssueDate(), loanCardMaster.getDurationInYears());
 	}
+	
+	public List<ViewLoans> getAllLoans(String employeeId){
+		List<Object[]> loans =  employeeCardDetailsRepo.getLoansByEmployeeId(employeeId);
+		List<ViewLoans> response = new ArrayList<ViewLoans>();
+		
+		for (Object[] loan: loans) {
+			ViewLoans currLoan = new ViewLoans();
+			
+			currLoan.setLoanId((String)loan[0]);
+			currLoan.setLoanType((String)loan[1]);
+			currLoan.setDurationInYears((int)loan[2]);
+			currLoan.setCardIssueDate((Date)loan[3]);
+			
+			response.add(currLoan);
+		}
+		
+		return response;
+	}
+	
 }
