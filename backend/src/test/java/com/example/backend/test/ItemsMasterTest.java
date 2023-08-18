@@ -52,7 +52,7 @@ public class ItemsMasterTest {
 		List<ItemsMaster> itemList = new ArrayList<>();
 		itemList.add(itemsMaster);
 		
-		Mockito.when(itemsMasterService.getAllCategory()).thenReturn(itemList);
+		Mockito.when(itemsMasterService.getAllCategory()).andReturn();
 		
 		System.out.println("test method for saving all ");
 		mvc.perform(get("/"))
