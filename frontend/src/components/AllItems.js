@@ -21,20 +21,21 @@ function AllItems() {
     },[]);
 
 
-    const handleDelete = async(id)=>{
+    const handleDelete = async (id)=>{
 
       try{
-        const response= await axios.get("/deleteItem",{params: {itemId:id}});
+        const response= await axios.get("http://localhost:8080/deleteItem",{params: {itemId:id}});
+        console.log(response.data)
         if(response.data ==="Failue"){
-          setError("User Id Not Found");
+          console.error("User Id Not Found");
         }
         else{
           const itemData=items.filter(item => item.itemId!==id);
           setItems(itemData);
-          setError(null);
+          
         }
       } catch(err){
-        setError("could not delete the item");
+        console.error("could not delete the item");
       }
     }
 
@@ -63,7 +64,7 @@ function AllItems() {
          <td>{item.itemCategory}</td>
          <td>{item.itemValuation}</td>
          <td>Edit</td>
-         <td><button onClick={handleDelete(item.itemId)}>Delete</button></td>
+         <td><button onClick={() => handleDelete(item.itemId)}>Delete</button></td>
        </tr>
     ))}
       </tbody>
