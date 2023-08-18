@@ -14,6 +14,7 @@ import ViewLoans from './components/ViewLoans';
 import ViewItems from './components/ViewItem';
 import AddItem from './components/AddItem';
 import AddLoanCard from './components/AddLoanCard';
+import AllEmployees from './components/EmployeesData';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route exact path= "/viewItems" element= {<ViewItems/>} />
           <Route exact path="/addLoanCard" element= {<AddLoanCard />} />
           <Route exact path="/addItem" element= {<AddItem />} />
+          <Route exact path ="/viewAllEmployees" element ={<AllEmployees />} />
         </Routes>
       </BrowserRouter>
       <></>
