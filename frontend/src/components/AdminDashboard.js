@@ -31,7 +31,7 @@ export default function AdminDashboard(){
                 Some quick example text to build on the card title and make up the
                 bulk of the card's content.
                 </Card.Text>
-                <Card.Link href="#">Loan cards</Card.Link>
+                <Card.Link href="/addLoanCard">Loan cards</Card.Link>
             </Card.Body>
             </Card>
             <Card style={{ width: '18rem' }}>
@@ -41,7 +41,7 @@ export default function AdminDashboard(){
                 Some quick example text to build on the card title and make up the
                 bulk of the card's content.
                 </Card.Text>
-                <Card.Link href="#">Items master</Card.Link>
+                <Card.Link href="/addItem">Items master</Card.Link>
             </Card.Body>
             </Card>
         </div>

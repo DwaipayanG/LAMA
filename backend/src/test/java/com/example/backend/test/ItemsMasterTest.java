@@ -52,10 +52,10 @@
 //		List<ItemsMaster> itemList = new ArrayList<>();
 //		itemList.add(itemsMaster);
 //		
-//		Mockito.when(itemsMasterService.getAllCategory()).andReturn();
+//		Mockito.when(itemsMasterService.getAllCategory()).thenReturn(itemList);
 //		
 //		System.out.println("test method for saving all ");
-//		mvc.perform(get("/"))
+//		mvc.perform.get("/");
 //		
 //		
 //		

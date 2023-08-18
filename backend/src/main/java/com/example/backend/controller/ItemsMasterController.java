@@ -41,9 +41,9 @@ public class ItemsMasterController {
 	public ItemsMaster getItemByMakeAndCategory(@RequestBody ItemsMaster itemsMaster) {
 		return itemsMasterService.getItemByMakeAndCategory(itemsMaster.getItemCategory(), itemsMaster.getItemMake());
 	}
-	
-	@PostMapping("/saveItemsMaster")
-	public ItemsMaster saveItemsMaster(@RequestBody ItemsMaster itemsMaster) {
+
+	@PostMapping("/addItem")
+	public ItemsMaster addItem(@RequestBody ItemsMaster itemsMaster) {
 		return itemsMasterService.saveItemsMaster(itemsMaster);
 	}
 
