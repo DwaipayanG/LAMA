@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -40,6 +41,7 @@ public class EmployeeMaster {
 	private Date dateOfJoining;
 	
 	@OneToMany(mappedBy="employeeMaster")
+	@JsonManagedReference
 	private List<EmployeeCardDetails> employeeCardDetails;
 		
 	public List<EmployeeCardDetails> getEmployeeCardDetails() {
@@ -51,6 +53,7 @@ public class EmployeeMaster {
 	}
 
 	@OneToMany(mappedBy="employeeMaster")
+	@JsonManagedReference
 	private List<EmployeeIssueDetails> employeeIssueDetails;
 
 	@Column

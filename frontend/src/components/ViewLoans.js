@@ -10,12 +10,12 @@ function ViewLoans() {
     useEffect(()=>{
         setEmployeeId(sessionStorage.getItem("employeeId"));
         console.log(sessionStorage.getItem("employeeId"));
-    });
+    },[]);
 
     useEffect(()=>{
         const url= "http://localhost:8080/getAllLoans";
         axios
-        .get(url, {params: {employeeId:empId}})
+        .get(url, {params: {employeeId:sessionStorage.getItem("employeeId")}})
         .then((response) => {
             console.log(response.data);
             setLoan(response.data);
@@ -24,6 +24,10 @@ function ViewLoans() {
           console.log(err);
         });
     },[empId]);
+
+    useEffect(()=>{
+      console.log(loans);
+    },[loans]);
 
 
   return (

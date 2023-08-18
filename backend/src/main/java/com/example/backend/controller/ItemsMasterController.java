@@ -21,6 +21,11 @@ public class ItemsMasterController {
 	@Autowired
 	private ItemsMasterService itemsMasterService;
 	
+	@GetMapping("/getAllItem")
+	public List<ItemsMaster> getAllItems(){
+		return itemsMasterService.getAllItems();
+	}
+	
 	@PostMapping("/getDistinctMakesByCategory")
 	@ResponseBody
 	public List<String> getDistinctMakesByCategory(@RequestBody ItemsMaster itemsMaster){
