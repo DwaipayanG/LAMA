@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Table from 'react-bootstrap/Table';
+import Header from "./Header";
 
 
 function ViewItems() {
@@ -9,7 +10,8 @@ function ViewItems() {
 
     useEffect(()=>{
         setEmployeeId(sessionStorage.getItem("employeeId"));
-    },[]);
+        console.log("yo");
+    });
 
     useEffect(()=>{
         const url= "http://localhost:8080/getAllItems";
@@ -22,10 +24,12 @@ function ViewItems() {
         .catch((err) =>{
           console.log(err);
         });
-    },[]);
+    },[empId]);
 
 
   return (
+    <>
+    <Header></Header>
     <Table striped bordered hover>
       <thead>
         <tr>
@@ -49,6 +53,7 @@ function ViewItems() {
     ))}
       </tbody>
     </Table>
+    </>
   );
 }
 

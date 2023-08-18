@@ -10,7 +10,7 @@ function ViewLoans() {
     useEffect(()=>{
         setEmployeeId(sessionStorage.getItem("employeeId"));
         console.log(sessionStorage.getItem("employeeId"));
-    },[]);
+    });
 
     useEffect(()=>{
         const url= "http://localhost:8080/getAllLoans";
