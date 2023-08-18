@@ -67,10 +67,14 @@ export default function AddItem(){
                     <Form.Label className="addItemColumn">Item ID</Form.Label>
                     <Form.Control className="addItemValue" type="text" value={itemId} onChange={itemIdChangeHandler} id="itemId" />
                 </Form.Group>
-                <Form.Group className="mb-3">
-                    <Form.Label className="addItemColumn">Item Status</Form.Label>
-                    <Form.Control className="addItemValue" type="itemStatus" value={itemStatus} onChange={itemStatusChangeHandler} id="itemStatus" />
-                </Form.Group>
+                <div className="addItemColumn"> Item Status </div>
+                    <div className="addItemValue">
+                        <select id="dropdown-basic-button" title="Dropdown button" onChange={itemStatusChangeHandler}>
+                                <option selected="selected">--Select--</option>
+                                <option value="N">No</option>
+                                <option value="Y">Yes</option>
+                        </select>
+                    </div>
                 <Form.Group className="mb-3">
                     <Form.Label className="addItemColumn">Item Category</Form.Label>
                     <Form.Control className="addItemValue" type="text" value={itemCategory} onChange={itemCategoryChangeHandler} id="itemCategory" />
