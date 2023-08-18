@@ -45,7 +45,7 @@ public class ItemsMasterController {
 
 	@PostMapping("/addItem")
 	public ItemsMaster addItem(@RequestBody ItemsMaster itemsMaster) {
-		return itemsMasterService.saveItemsMaster(itemsMaster);
+		return itemsMasterService.addItem(itemsMaster);
 	}
 
 	

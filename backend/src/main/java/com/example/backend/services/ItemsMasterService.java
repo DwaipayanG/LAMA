@@ -38,7 +38,7 @@ public class ItemsMasterService {
 		return itemsMasterRepo.findDistinctMakesByCategory(category);
 	}
 	
-	public ItemsMaster saveItemsMaster (ItemsMaster item){
+	public ItemsMaster addItem (ItemsMaster item){
 		return itemsMasterRepo.save(item);
 	
 	}
