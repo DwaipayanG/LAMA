@@ -10,14 +10,14 @@ export default function EmployeeDasboard(){
     useEffect(()=>{
         const url="http://localhost:8080/getUser"
         const id=sessionStorage.getItem("employeeId");
-        axios
-        .get(url)
-        .then((response) => {
-            alert(response.data);
-        })
-        .catch((error) => {
-            alert(error);
-        });
+        // axios
+        // .get(url)
+        // .then((response) => {
+        //     alert(response.data);
+        // })
+        // .catch((error) => {
+        //     alert(error);
+        // });
     });
 
     return (

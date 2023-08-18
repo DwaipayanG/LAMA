@@ -9,6 +9,7 @@ function ViewLoans() {
 
     useEffect(()=>{
         setEmployeeId(sessionStorage.getItem("employeeId"));
+        console.log(sessionStorage.getItem("employeeId"));
     },[]);
 
     useEffect(()=>{
@@ -22,7 +23,7 @@ function ViewLoans() {
         .catch((err) =>{
           console.log(err);
         });
-    },[]);
+    },[empId]);
 
 
   return (
@@ -40,9 +41,9 @@ function ViewLoans() {
     {loans.map(loan =>(
          <tr>
          <td>{loan.loanId}</td>
-         <td>{loan.loanTYpe}</td>
-         <td>{loan.duration}</td>
-         <td>{loan.cardIssueDetails}</td>
+         <td>{loan.loanType}</td>
+         <td>{loan.durationInYears}</td>
+         <td>{loan.cardIssueDate.substr(0,10)}</td>
        </tr>
     ))}
       </tbody>
