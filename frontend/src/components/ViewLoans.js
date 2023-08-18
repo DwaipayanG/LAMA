@@ -16,7 +16,7 @@ function ViewLoans() {
         axios
         .get(url, {params: {employeeId:empId}})
         .then((response) => {
-            console.loge(response.data);
+            console.log(response.data);
             setLoan(response.data);
         })
         .catch((err) =>{
