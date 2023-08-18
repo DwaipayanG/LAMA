@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+
 
 
 function AllEmployees() {
@@ -43,7 +45,7 @@ function AllEmployees() {
          <td>{employee.employeeId}</td>
          <td>{employee.employeeName}</td>
          <td>{employee.designation}</td>
-         <td>{employee.deprtment}</td>
+         <td>{employee.department}</td>
          <td>{employee.gender}</td>
          <td>{employee.dateOfBirth}</td>
          <td>{employee.dateOfJoining}</td>

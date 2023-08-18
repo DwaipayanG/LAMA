@@ -3,10 +3,14 @@ package com.example.backend.models;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -40,7 +44,8 @@ public class EmployeeMaster {
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date dateOfJoining;
 	
-	@OneToMany(mappedBy="employeeMaster")
+	@OnDelete(action=OnDeleteAction.CASCADE)
+	@OneToMany(mappedBy="employeeMaster",cascade = CascadeType.ALL,orphanRemoval = true)
 	@JsonManagedReference
 	private List<EmployeeCardDetails> employeeCardDetails;
 		
@@ -52,7 +57,8 @@ public class EmployeeMaster {
 		this.employeeCardDetails = employeeCardDetails;
 	}
 
-	@OneToMany(mappedBy="employeeMaster")
+	@OnDelete(action=OnDeleteAction.CASCADE)
+	@OneToMany(mappedBy="employeeMaster",cascade = CascadeType.ALL,orphanRemoval = true)
 	@JsonManagedReference
 	private List<EmployeeIssueDetails> employeeIssueDetails;
 

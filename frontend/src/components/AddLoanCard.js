@@ -30,7 +30,7 @@ export default function AddLoanCard(){
             .post(baseURL, {
                 "loanId": loanId,
                 "loanType": loanType,
-                "duration": duration
+                "durationInYears": duration
             })
             .then((response) => {
                 console.log(response.data)

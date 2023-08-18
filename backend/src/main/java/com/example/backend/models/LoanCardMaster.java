@@ -2,6 +2,9 @@ package com.example.backend.models;
 
 import java.util.List;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.CascadeType;
@@ -24,6 +27,7 @@ public class LoanCardMaster {
 	@Column(name="duration_in_years")
 	private int durationInYears;
 	
+	@OnDelete(action=OnDeleteAction.CASCADE)
 	@OneToMany(mappedBy="loanCardMaster",cascade = CascadeType.ALL,orphanRemoval = true)
 	@JsonBackReference
 	private List<EmployeeCardDetails> employeeCardDetails;

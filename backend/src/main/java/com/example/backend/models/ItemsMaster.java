@@ -2,6 +2,9 @@ package com.example.backend.models;
 
 import java.util.List;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -31,6 +34,7 @@ public class ItemsMaster {
 	@Column(name="item_valuation")
 	private int itemValuation;
 	
+	@OnDelete(action=OnDeleteAction.CASCADE)
 	@OneToMany(mappedBy="itemsMaster",cascade=CascadeType.ALL,orphanRemoval = true)
 	private List<EmployeeIssueDetails> employeeIssueDetails;
 

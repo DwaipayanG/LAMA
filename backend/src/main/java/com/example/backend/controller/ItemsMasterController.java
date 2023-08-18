@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -47,4 +48,12 @@ public class ItemsMasterController {
 		return itemsMasterService.saveItemsMaster(itemsMaster);
 	}
 
+	
+	@GetMapping("/deleteItem")
+	public String deleteItemById(@RequestParam String itemId) {
+		itemsMasterService.deleteItemById(itemId);
+		return "deleted";
+	}
+	
+	
 }

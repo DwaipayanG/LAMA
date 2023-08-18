@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,6 +41,12 @@ public class EmployeeMasterController {
 	@GetMapping("/getEmployee")
 	public Optional<EmployeeMaster> getEmployeeMaster(@RequestBody EmployeeMaster employee) {
 		return employeeMasterService.getEmployeeMasterById(employee.getEmployeeId());
+	}
+	
+	@GetMapping("/deleteEmployee")
+	public String deleteEmployeeById(@RequestParam String employeeId) {
+		employeeMasterService.deleteEmployeeMasterById(employeeId);
+		return "deleted";
 	}
 	
 	@PostMapping("/addEmployee")

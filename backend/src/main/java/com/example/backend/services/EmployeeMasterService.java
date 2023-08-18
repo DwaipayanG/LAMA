@@ -44,6 +44,10 @@ public class EmployeeMasterService {
 		return existingEmployeeInstance;
 	}
 	
+	public void deleteEmployeeMasterById(String employeeId) {
+		employeeRepo.deleteById(employeeId);
+	}
+	
 	public boolean deleteEmployeeMaster(String employeeId) {
 		
 		Optional<EmployeeMaster> existingEmployeeInstance = employeeRepo.findById(employeeId);

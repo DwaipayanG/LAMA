@@ -21,6 +21,10 @@ public class ItemsMasterService {
 		return itemsMasterRepo.findById(itemId).get();
 	}
 	
+	public void deleteItemById(String itemId) {
+		itemsMasterRepo.deleteById(itemId);
+	}
+	
 	public List<String> getAllCategory(){
 		return itemsMasterRepo.getAllCategory();	
 	}
