@@ -14,11 +14,12 @@ import ViewLoans from './components/ViewLoans';
 import ViewItems from './components/ViewItem';
 import AddItem from './components/AddItem';
 import AddLoanCard from './components/AddLoanCard';
-import AllEmployees from './components/EmployeesData';
+import AllEmployees from './components/AllEmployees';
 import AllItems from './components/AllItems';
-import EditItem from './components/EditItem';
 import AllLoanCards from './components/AllLoanCards';
+import EditItem from './components/EditItem';
 import EditLoanCard from './components/EditLoanCard';
+import EditEmployee from './components/EditEmployee';
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
           <Route exact path="/viewAllLoanCards" element={<AllLoanCards />} />
           <Route exact path ="/editItem" element ={<EditItem/>} />
           <Route exact path="/editLoanCard" element={<EditLoanCard />} />
+          <Route excat path="/editEmployee" element={<EditEmployee/>} />
         </Routes>
       </BrowserRouter>
       <></>

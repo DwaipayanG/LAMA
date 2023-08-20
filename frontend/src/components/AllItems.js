@@ -24,7 +24,7 @@ function AllItems() {
     const handleDelete = async (id)=>{
 
       try{
-        const response= await axios.get("http://localhost:8080/editItem",{params: {itemId:id}});
+        const response= await axios.get("http://localhost:8080/deleteItem",{params: {itemId:id}});
         console.log(response.data)
         if(response.data ==="Failue"){
           console.error("User Id Not Found");

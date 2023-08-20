@@ -2,17 +2,20 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
+import { useNavigate } from "react-router-dom";
 
 
 
 function AllEmployees() {
+    const getURL= "http://localhost:8080/getAllEmployees";
+
     const [employees, setEmployees] = useState([]);
+    const navigate = useNavigate();
+
     useEffect(()=>{
-        const url= "http://localhost:8080/getAllEmployees";
-        //getAllLoans
-        //getAllItem
+       
         axios
-        .get(url)
+        .get(getURL)
         .then((response) => {
             console.log(response.data);
             setEmployees(response.data);
@@ -21,6 +24,29 @@ function AllEmployees() {
           console.log(err);
         });
     },[]);
+
+    const handleDelete = async (id)=>{
+
+      try{
+        const response= await axios.get("http://localhost:8080/deleteEmployee",{params: {employeeId:id}});
+        console.log(response.data)
+        if(response.data ==="Failue"){
+          console.error("User Id Not Found");
+        }
+        else{
+          const employeeData=employees.filter(employee => employee.employeeId!==id);
+          setEmployees(employeeData);
+          
+        }
+      } catch(err){
+        console.error("could not delete the employee");
+      }
+    }
+
+    const handleEdit = (id) => {
+      navigate('/editEmployee', { state: {employeeId: id} });
+     
+    }
 
 
   return (
@@ -49,8 +75,8 @@ function AllEmployees() {
          <td>{employee.gender}</td>
          <td>{employee.dateOfBirth}</td>
          <td>{employee.dateOfJoining}</td>
-         <td>Edit</td>
-         <td>Delete</td>
+         <td><button onClick={() => handleEdit(employee.employeeId)}>Edit</button></td>
+         <td><button onClick={() => handleDelete(employee.employeeId)}>Delete</button></td>
        </tr>
     ))}
       </tbody>

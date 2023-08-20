@@ -38,9 +38,9 @@ public class EmployeeMasterController {
 		return employeeMasterService.getAllEmployees();
 	}
 	
-	@GetMapping("/getEmployee")
-	public Optional<EmployeeMaster> getEmployeeMaster(@RequestBody EmployeeMaster employee) {
-		return employeeMasterService.getEmployeeMasterById(employee.getEmployeeId());
+	@GetMapping("/getEmployeeById")
+	public EmployeeMaster getEmployeeMaster(@RequestParam("employeeId") String employeeId) {
+		return employeeMasterService.getEmployeeMasterById(employeeId).get();
 	}
 	
 	@GetMapping("/deleteEmployee")
