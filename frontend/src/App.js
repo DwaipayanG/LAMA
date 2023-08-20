@@ -17,6 +17,8 @@ import AddLoanCard from './components/AddLoanCard';
 import AllEmployees from './components/EmployeesData';
 import AllItems from './components/AllItems';
 import EditItem from './components/EditItem';
+import AllLoanCards from './components/AllLoanCards';
+import EditLoanCard from './components/EditLoanCard';
 
 function App() {
   return (
@@ -37,7 +39,9 @@ function App() {
           <Route exact path="/addItem" element= {<AddItem />} />
           <Route exact path ="/viewAllEmployees" element ={<AllEmployees />} />
           <Route exact path ="/viewAllItems" element ={<AllItems/>} />
+          <Route exact path="/viewAllLoanCards" element={<AllLoanCards />} />
           <Route exact path ="/editItem" element ={<EditItem/>} />
+          <Route exact path="/editLoanCard" element={<EditLoanCard />} />
         </Routes>
       </BrowserRouter>
       <></>
