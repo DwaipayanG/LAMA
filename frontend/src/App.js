@@ -16,6 +16,7 @@ import AddItem from './components/AddItem';
 import AddLoanCard from './components/AddLoanCard';
 import AllEmployees from './components/EmployeesData';
 import AllItems from './components/AllItems';
+import EditItem from './components/EditItem';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route exact path="/addItem" element= {<AddItem />} />
           <Route exact path ="/viewAllEmployees" element ={<AllEmployees />} />
           <Route exact path ="/viewAllItems" element ={<AllItems/>} />
+          <Route exact path ="/editItem" element ={<EditItem/>} />
         </Routes>
       </BrowserRouter>
       <></>

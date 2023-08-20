@@ -57,7 +57,7 @@ export default function ApplyLoans(){
     },[selectedCategory]);
 
     useEffect(()=>{
-        const url="http://localhost:8080/getItem";
+        const url="http://localhost:8080/getItemByMakeAndCategory";
         axios
         .post(url,{
             itemCategory:selectedCategory,

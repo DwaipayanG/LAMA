@@ -14,7 +14,7 @@ export default function AdminDashboard(){
         <div style={{width:"70%",margin:"auto"}} className="d-flex justify-content-center my-2">
             Welcome <b>{sessionStorage.getItem("adminUsername")}</b>
             <br/>
-            <Card style={{ width: '18rem' }}>
+            <Card style={{ width: '10rem' }}>
             <Card.Body>
                 <Card.Title>Customer Data Management</Card.Title>
                 <Card.Text>
@@ -24,7 +24,7 @@ export default function AdminDashboard(){
                 <Card.Link href="/addEmployee">Add employee</Card.Link>
             </Card.Body>
             </Card>
-            <Card style={{ width: '18rem' }}>
+            <Card style={{ width: '10rem' }}>
             <Card.Body>
                 <Card.Title>Loan Card Management</Card.Title>
                 <Card.Text>
@@ -34,7 +34,7 @@ export default function AdminDashboard(){
                 <Card.Link href="/addLoanCard">Loan cards</Card.Link>
             </Card.Body>
             </Card>
-            <Card style={{ width: '18rem' }}>
+            <Card style={{ width: '10rem' }}>
             <Card.Body>
                 <Card.Title>Items Master Data</Card.Title>
                 <Card.Text>
@@ -42,6 +42,16 @@ export default function AdminDashboard(){
                 bulk of the card's content.
                 </Card.Text>
                 <Card.Link href="/addItem">Items master</Card.Link>
+            </Card.Body>
+            </Card>
+            <Card style={{ width: '10rem' }}>
+            <Card.Body>
+                <Card.Title>All items</Card.Title>
+                <Card.Text>
+                Some quick example text to build on the card title and make up the
+                bulk of the card's content.
+                </Card.Text>
+                <Card.Link href="/viewAllItems">All item</Card.Link>
             </Card.Body>
             </Card>
         </div>

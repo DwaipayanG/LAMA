@@ -1,12 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Table from 'react-bootstrap/Table';
-
-
-
+import { useNavigate } from "react-router-dom";
 
 function AllItems() {
     const [items, setItems] = useState([]);
+    const navigate = useNavigate();
+
     useEffect(()=>{
         const url= "http://localhost:8080/getAllItem";
         axios
@@ -24,7 +24,7 @@ function AllItems() {
     const handleDelete = async (id)=>{
 
       try{
-        const response= await axios.get("http://localhost:8080/deleteItem",{params: {itemId:id}});
+        const response= await axios.get("http://localhost:8080/editItem",{params: {itemId:id}});
         console.log(response.data)
         if(response.data ==="Failue"){
           console.error("User Id Not Found");
@@ -37,6 +37,11 @@ function AllItems() {
       } catch(err){
         console.error("could not delete the item");
       }
+    }
+
+    const handleEdit = (id) => {
+      navigate('/editItem', { state: {itemId: id} });
+     
     }
 
   return (
@@ -63,7 +68,7 @@ function AllItems() {
          <td>{item.itemMake}</td>
          <td>{item.itemCategory}</td>
          <td>{item.itemValuation}</td>
-         <td>Edit</td>
+         <td><button onClick={() => handleEdit(item.itemId)}>Edit</button></td>
          <td><button onClick={() => handleDelete(item.itemId)}>Delete</button></td>
        </tr>
     ))}

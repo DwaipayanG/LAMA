@@ -38,9 +38,14 @@ public class ItemsMasterController {
 		return itemsMasterService.getAllCategory();
 	}
 	
-	@PostMapping("/getItem")
-	public ItemsMaster getItemByMakeAndCategory(@RequestBody ItemsMaster itemsMaster) {
-		return itemsMasterService.getItemByMakeAndCategory(itemsMaster.getItemCategory(), itemsMaster.getItemMake());
+	@GetMapping("/getItemByMakeAndCategory")
+	public ItemsMaster getItemByMakeAndCategory(@RequestParam("itemCategory") String itemCategory, @RequestParam("itemMake") String itemMake) {
+		return itemsMasterService.getItemByMakeAndCategory(itemCategory, itemMake);
+	}
+	
+	@GetMapping("/getItemById")
+	public ItemsMaster getItemById(@RequestParam("itemId") String itemId) {
+		return itemsMasterService.getItemById(itemId);
 	}
 
 	@PostMapping("/addItem")
