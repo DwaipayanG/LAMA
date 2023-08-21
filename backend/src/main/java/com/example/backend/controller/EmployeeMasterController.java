@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.backend.exception.ResourceNotFoundException;
 import com.example.backend.models.ApplyLoanData;
 import com.example.backend.models.EmployeeIssueDetails;
 import com.example.backend.models.EmployeeMaster;
@@ -40,8 +41,12 @@ public class EmployeeMasterController {
 	}
 	
 	@GetMapping("/getEmployeeById")
-	public EmployeeMaster getEmployeeMaster(@RequestParam("employeeId") String employeeId) {
-		return employeeMasterService.getEmployeeMasterById(employeeId).get();
+	public EmployeeMaster getEmployeeMaster(@RequestParam("employeeId") String employeeId) throws ResourceNotFoundException {
+		EmployeeMaster employeeMaster = employeeMasterService.getEmployeeMasterById(employeeId).orElse(null);
+		if(employeeMaster == null)
+			throw new ResourceNotFoundException("Employee Id not found");
+		else 
+			return employeeMaster;
 	}
 	
 	@PutMapping("/updateEmployee")

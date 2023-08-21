@@ -32,7 +32,6 @@ function AllLoanCards() {
         else{
           const loanData=loans.filter(loan => loan.loanId!==id);
           setLoans(loanData);
-          
         }
       } catch(err){
         console.error("could not delete the loan");
