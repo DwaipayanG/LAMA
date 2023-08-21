@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.backend.exception.ResourceNotFoundException;
 import com.example.backend.models.ItemsMaster;
 import com.example.backend.services.ItemsMasterService;
 
@@ -45,7 +46,7 @@ public class ItemsMasterController {
 	}
 	
 	@GetMapping("/getItemById")
-	public ItemsMaster getItemById(@RequestParam("itemId") String itemId) {
+	public ItemsMaster getItemById(@RequestParam("itemId") String itemId) throws ResourceNotFoundException {
 		return itemsMasterService.getItemById(itemId);
 	}
 
@@ -55,7 +56,7 @@ public class ItemsMasterController {
 	}
 	
 	@PutMapping("/updateItem")
-	public ItemsMaster updateItem(@RequestParam String itemId,@RequestBody ItemsMaster newItemsMaster) {
+	public ItemsMaster updateItem(@RequestParam String itemId,@RequestBody ItemsMaster newItemsMaster) throws ResourceNotFoundException {
 		ItemsMaster itemsMaster = itemsMasterService.getItemById(itemId);
 		itemsMaster = itemsMasterService.updateItem(itemsMaster, newItemsMaster);
 		itemsMasterService.addItem(itemsMaster);

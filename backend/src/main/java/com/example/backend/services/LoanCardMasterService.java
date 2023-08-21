@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.backend.dao.LoanCardMasterRepository;
+import com.example.backend.exception.ResourceNotFoundException;
 import com.example.backend.models.LoanCardMaster;
 
 @Service
@@ -14,16 +15,26 @@ public class LoanCardMasterService {
 	@Autowired
 	private LoanCardMasterRepository loanCardMasterRepo;
 	
-	public LoanCardMaster getLoanCardByLoanType(String loanType) {
-		return loanCardMasterRepo.findLoanCardByLoanType(loanType);
+	public LoanCardMaster getLoanCardByLoanType(String loanType) throws ResourceNotFoundException{
+		LoanCardMaster loanCard = loanCardMasterRepo.findLoanCardByLoanType(loanType);
+		if(loanCard == null) {
+			throw new ResourceNotFoundException("No loan card exists of tthis loan type");
+		}else {
+			return loanCard;
+		}
 	}
 	
 	public LoanCardMaster addLoanCard(LoanCardMaster loanCard) {
 		return loanCardMasterRepo.save(loanCard);
 	}
 	
-	public LoanCardMaster getLoanCardById(String id) {
-		return loanCardMasterRepo.findById(id).get();
+	public LoanCardMaster getLoanCardById(String id) throws ResourceNotFoundException{
+		LoanCardMaster loanCard = loanCardMasterRepo.findById(id).orElse(null);
+		if(loanCard == null) {
+			throw new ResourceNotFoundException("Loan card not found");
+		}else {
+			return loanCard;
+		}
 	}
 	
 	public LoanCardMaster updateLoanCard(LoanCardMaster loanCardMaster, LoanCardMaster newLoanCardMaster) {

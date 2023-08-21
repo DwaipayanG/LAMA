@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.backend.dao.EmployeeIssueDetailsRepository;
+import com.example.backend.exception.ResourceNotFoundException;
 import com.example.backend.models.EmployeeIssueDetails;
 import com.example.backend.models.EmployeeMaster;
 import com.example.backend.models.ItemsMaster;
@@ -26,7 +27,7 @@ public class EmployeeIssueDetailsService {
 			return employeeIssueDetailsRepo.save(employeeIssueDetails);
 		}
 		
-		public EmployeeIssueDetails addEmployeeIssueDetails(String itemId, Date loanIssueDate, Date loanReturnDate, EmployeeMaster employeeMaster) {
+		public EmployeeIssueDetails addEmployeeIssueDetails(String itemId, Date loanIssueDate, Date loanReturnDate, EmployeeMaster employeeMaster) throws ResourceNotFoundException {
 			ItemsMaster itemMaster = itemsMasterService.getItemById(itemId);
 			
 			EmployeeIssueDetails employeeIssueDetails = new EmployeeIssueDetails();

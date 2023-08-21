@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.backend.dao.EmployeeCardDetailsRepository;
+import com.example.backend.exception.ResourceNotFoundException;
 import com.example.backend.models.EmployeeCardDetails;
 import com.example.backend.models.EmployeeMaster;
 import com.example.backend.models.LoanCardMaster;
@@ -39,7 +40,7 @@ public class EmployeeCardDetailsService {
 		return loanReturnDate;
 	}
 	
-	public Date addEmployeeCardDetailsToGetLoanReturnDate(String loanId, Date loanIssueDate, EmployeeMaster employeeMaster) {
+	public Date addEmployeeCardDetailsToGetLoanReturnDate(String loanId, Date loanIssueDate, EmployeeMaster employeeMaster) throws ResourceNotFoundException {
 		LoanCardMaster loanCardMaster = loanCardMasterService.getLoanCardById(loanId);
 		
 		EmployeeCardDetails employeeCardDetails = new EmployeeCardDetails();
