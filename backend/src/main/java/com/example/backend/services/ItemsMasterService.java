@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.backend.dao.ItemsMasterRepository;
+import com.example.backend.exception.ResourceNotFoundException;
 import com.example.backend.models.ItemsMaster;
 
 @Service
@@ -17,8 +18,13 @@ public class ItemsMasterService {
 		return itemsMasterRepo.findAll();
 	}
 	
-	public ItemsMaster getItemById(String itemId){
-		return itemsMasterRepo.findById(itemId).get();
+	public ItemsMaster getItemById(String itemId) throws ResourceNotFoundException{
+		ItemsMaster item =  itemsMasterRepo.findById(itemId).orElse(null);
+		if(item == null) {
+			throw new ResourceNotFoundException("Item not found");
+		}else {
+			return item;
+		}
 	}
 	
 	public void deleteItemById(String itemId) {
