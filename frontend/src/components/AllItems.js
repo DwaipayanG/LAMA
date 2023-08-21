@@ -2,6 +2,10 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Table from 'react-bootstrap/Table';
 import { useNavigate } from "react-router-dom";
+import Header from "./Header"
+import "../style/TabularViewAll.css";
+import {CiEdit} from "react-icons/ci";
+import { FcEmptyTrash } from "react-icons/fc";
 
 function AllItems() {
     const [items, setItems] = useState([]);
@@ -27,7 +31,7 @@ function AllItems() {
         const response= await axios.get("http://localhost:8080/deleteItem",{params: {itemId:id}});
         console.log(response.data)
         if(response.data ==="Failue"){
-          console.error("User Id Not Found");
+          console.error("Item Id Not Found");
         }
         else{
           const itemData=items.filter(item => item.itemId!==id);
@@ -45,6 +49,10 @@ function AllItems() {
     }
 
   return (
+    <div>
+
+    <Header></Header>
+    <h3>View All Items</h3>
     <Table striped bordered hover>
       <thead>
         <tr>
@@ -54,8 +62,8 @@ function AllItems() {
           <th>Item Make</th>
           <th> Item Category </th>
           <th> Item Valuation</th>
-          <th></th>
-          <th></th>
+          <th className="noBorder" ></th> 
+          <th className="noBorder"></th>
         </tr>
       </thead>
 
@@ -68,12 +76,14 @@ function AllItems() {
          <td>{item.itemMake}</td>
          <td>{item.itemCategory}</td>
          <td>{item.itemValuation}</td>
-         <td><button onClick={() => handleEdit(item.itemId)}>Edit</button></td>
-         <td><button onClick={() => handleDelete(item.itemId)}>Delete</button></td>
+         <td className="noBorder"><button className="noBorder" onClick={() => handleEdit(item.itemId)}><CiEdit/></button></td>
+         <td className="noBorder"><button className="noBorder" onClick={() => handleDelete(item.itemId)}><FcEmptyTrash/></button></td>
        </tr>
+       
     ))}
       </tbody>
     </Table>
+    </div>
   );
 }
 

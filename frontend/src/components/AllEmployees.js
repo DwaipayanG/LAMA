@@ -4,7 +4,7 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
-import "../style/AllEmployees.css";
+import "../style/TabularViewAll.css";
 import {CiEdit} from "react-icons/ci";
 import { FcEmptyTrash } from "react-icons/fc";
 
