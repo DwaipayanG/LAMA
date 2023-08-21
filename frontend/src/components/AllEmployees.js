@@ -48,7 +48,6 @@ function AllEmployees() {
      
     }
 
-
   return (
     <Table striped bordered hover>
       <thead>
@@ -82,6 +81,7 @@ function AllEmployees() {
       </tbody>
     </Table>
   );
+
 }
 
 export default AllEmployees;

@@ -16,7 +16,7 @@ export default function EditItem(){
     const [itemStatus, setItemStatus] = useState("");
 
     const getURL="http://localhost:8080/getItemById";
-    const editURL="http://localhost:8080/editItem";
+    const editURL="http://localhost:8080/updateItem";
 
      useEffect(()=>{
         setItemId(location.state.itemId);
@@ -60,14 +60,19 @@ export default function EditItem(){
     }
 
     const submitActionHandler = (event) => {
+        event.preventDefault();
         axios
-            .post(editURL, {
+            .put(editURL, {
                 "itemId": itemId,
                 "itemCategory": itemCategory,
                 "itemDescription": itemDescription,
                 "itemValuation": itemValue,
                 "itemMake": itemMake,
                 "itemStatus":itemStatus,
+            },{
+                params:{
+                    "itemId": itemId
+                }
             })
             .then((response) => {
                 alert(response.data);

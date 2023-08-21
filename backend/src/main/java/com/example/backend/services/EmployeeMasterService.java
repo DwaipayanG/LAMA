@@ -48,6 +48,16 @@ public class EmployeeMasterService {
 		employeeRepo.deleteById(employeeId);
 	}
 	
+	public EmployeeMaster updateEmployee(EmployeeMaster employeeMaster,EmployeeMaster newEmployeeMaster) {
+		employeeMaster.setEmployeeName(newEmployeeMaster.getEmployeeName());
+		employeeMaster.setDepartment(newEmployeeMaster.getDepartment());
+		employeeMaster.setDesignation(newEmployeeMaster.getDesignation());
+		employeeMaster.setGender(newEmployeeMaster.getGender());
+		employeeMaster.setDateOfBirth(newEmployeeMaster.getDateOfBirth());
+		employeeMaster.setDateOfJoining(newEmployeeMaster.getDateOfJoining());
+		return employeeMaster;
+	}
+	
 	public boolean deleteEmployeeMaster(String employeeId) {
 		
 		Optional<EmployeeMaster> existingEmployeeInstance = employeeRepo.findById(employeeId);

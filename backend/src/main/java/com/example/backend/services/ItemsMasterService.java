@@ -25,6 +25,15 @@ public class ItemsMasterService {
 		itemsMasterRepo.deleteById(itemId);
 	}
 	
+	public ItemsMaster updateItem(ItemsMaster itemsMaster, ItemsMaster newItemsMaster) {
+		itemsMaster.setItemDescription(newItemsMaster.getItemDescription());
+		itemsMaster.setItemMake(newItemsMaster.getItemMake());
+		itemsMaster.setItemStatus(newItemsMaster.getItemStatus());
+		itemsMaster.setItemValuation(newItemsMaster.getItemValuation());
+		return itemsMaster;
+		
+	}
+	
 	public List<String> getAllCategory(){
 		return itemsMasterRepo.getAllCategory();	
 	}

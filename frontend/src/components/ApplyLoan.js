@@ -59,10 +59,10 @@ export default function ApplyLoans(){
     useEffect(()=>{
         const url="http://localhost:8080/getItemByMakeAndCategory";
         axios
-        .post(url,{
+        .get(url,{params:{
             itemCategory:selectedCategory,
             itemMake:make
-        })
+        }})
         .then((response) => {
             console.log(response.data);
             setValue(response.data.itemValuation);

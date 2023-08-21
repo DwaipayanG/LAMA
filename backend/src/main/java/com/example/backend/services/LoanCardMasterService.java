@@ -26,6 +26,16 @@ public class LoanCardMasterService {
 		return loanCardMasterRepo.findById(id).get();
 	}
 	
+	public LoanCardMaster updateLoanCard(LoanCardMaster loanCardMaster, LoanCardMaster newLoanCardMaster) {
+		loanCardMaster.setDurationInYears(newLoanCardMaster.getDurationInYears());
+		loanCardMasterRepo.save(loanCardMaster);
+		return loanCardMaster;
+	}
+	
+	public void deleteLoanCard(String id) {
+		loanCardMasterRepo.deleteById(id);
+	}
+	
 	public List<LoanCardMaster> getAllLoanCards(){
 		return loanCardMasterRepo.findAll();
 	}
