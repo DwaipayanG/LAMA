@@ -9,16 +9,16 @@ function Home() {
   return (
     <div>
       <Header></Header>
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="lg" className="bg-body-tertiary justify-content-center m-auto">
       <Container>
-        <Navbar.Brand href="#home">Loan Admin Management Application</Navbar.Brand>
+        {/* <Navbar.Brand href="#home">Loan Admin Management Application</Navbar.Brand> */}
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
+          <Nav className="m-auto">
             <Nav.Link href="/loginAdmin">Admin Login</Nav.Link>
             <Nav.Link href="/loginEmployee">Employee Login</Nav.Link>
             <Nav.Link href="/about">About</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+            {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
                 Another action
@@ -28,7 +28,7 @@ function Home() {
               <NavDropdown.Item href="#action/3.4">
                 Separated link
               </NavDropdown.Item>
-            </NavDropdown>
+            </NavDropdown> */}
           </Nav>
         </Navbar.Collapse>
       </Container>
