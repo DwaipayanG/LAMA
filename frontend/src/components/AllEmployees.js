@@ -3,6 +3,11 @@ import React, { useEffect, useState } from "react";
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
+import Header from "./Header";
+import "../style/AllEmployees.css";
+import {CiEdit} from "react-icons/ci";
+import { FcEmptyTrash } from "react-icons/fc";
+
 
 
 
@@ -49,6 +54,10 @@ function AllEmployees() {
     }
 
   return (
+    <div>
+
+    <Header></Header>
+    <h3>View All Employees</h3>
     <Table striped bordered hover>
       <thead>
         <tr>
@@ -59,8 +68,8 @@ function AllEmployees() {
           <th> Gender </th>
           <th> Date of Birth</th>
           <th>Date of Joining</th>
-          <th></th>
-          <th></th>
+          <th className="noBorder" ></th> 
+          <th className="noBorder"></th>
         </tr>
       </thead>
 
@@ -74,12 +83,13 @@ function AllEmployees() {
          <td>{employee.gender}</td>
          <td>{employee.dateOfBirth}</td>
          <td>{employee.dateOfJoining}</td>
-         <td><button onClick={() => handleEdit(employee.employeeId)}>Edit</button></td>
-         <td><button onClick={() => handleDelete(employee.employeeId)}>Delete</button></td>
+         <td className="noBorder"><button className="noBorder smallIcons"onClick={() => handleEdit(employee.employeeId)}><CiEdit/></button></td>
+         <td className="noBorder"><button className="noBorder smallIcons" onClick={() => handleDelete(employee.employeeId)}><FcEmptyTrash/></button></td>
        </tr>
     ))}
       </tbody>
     </Table>
+    </div>
   );
 
 }
