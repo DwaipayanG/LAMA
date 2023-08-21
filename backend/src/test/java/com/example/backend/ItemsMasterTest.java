@@ -151,12 +151,11 @@ public class ItemsMasterTest {
 		itemsMaster.setItemMake("car");
 		itemsMaster.setItemCategory("personal");
 		itemsMaster.setItemValuation(22000);
+		
 		Mockito.when(itemsMasterService.getItemByMakeAndCategory(itemsMaster.getItemMake(), itemsMaster.getItemCategory())).thenReturn(itemsMaster);
-		String json = mapper.writeValueAsString(itemsMaster);	
-		MvcResult requestResult = mvc.perform(post("/getItem").contentType(MediaType.APPLICATION_JSON).characterEncoding("utf-8").content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
-		String result = requestResult.getResponse().getContentAsString();
-		System.out.print(result);
-		assertEquals(result,result);	
+		System.out.println("testing getting all items");
+		
+		mvc.perform(get("/getItemByMakeAndCategory").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());	
 	} 
 
  

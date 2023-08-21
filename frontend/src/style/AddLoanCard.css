@@ -1,0 +1,26 @@
+.addLoanCardBox{
+    width:70%;
+    max-width: 600px;
+    border: solid 2px rgba(107, 92, 92, 0.377);
+    border-radius: 30px;
+    margin: 25px auto;
+    padding: 15px;
+}
+
+.addLoanCardColumn, .addLoanCardValue{
+    padding: 10px 30px;
+    /* margin :25px; */
+    text-align: center;
+    display: inline-block;
+    width: 40%;
+    font-size: 1.25em;
+}
+
+.addLoanCardColumn{
+    font-weight: bold;
+    text-align: right;
+}
+
+.addLoanCardValue{
+    text-align: left;
+}
