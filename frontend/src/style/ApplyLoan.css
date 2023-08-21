@@ -3,7 +3,9 @@
     max-width: 600px;
     border: solid 2px rgba(107, 92, 92, 0.377);
     border-radius: 30px;
-    margin: 25px auto;
+    margin: 0 auto;
+    margin-top: 2vh;
+
     padding: 15px;
     height: 90vh;;
     vertical-align: middle;

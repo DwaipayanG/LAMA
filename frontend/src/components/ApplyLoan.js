@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form';
 import { Link } from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
+import Header from "./Header";
 
 import "../style/ApplyLoan.css"
 
@@ -124,11 +125,11 @@ export default function ApplyLoans(){
     }
 
     return (
-        <div  className="borderBox"style={{width:"70%",margin:"auto"}}>
+        <div>
+            <Header></Header>
+        <div  className="borderBox" >
             <h1> Apply Loan </h1>
-            <br></br>
-            <hr></hr>
-            <br></br>
+           <hr/>
             <Form onSubmit={submitActionHandler}>
             <div className="field"> 
                 <div className="column"> Employee ID :</div>
@@ -176,6 +177,7 @@ export default function ApplyLoans(){
                 Submit
             </Button>
             </Form>
+        </div>
         </div>
     );
 }

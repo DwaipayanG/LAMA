@@ -2,6 +2,10 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Table from 'react-bootstrap/Table';
 import { useNavigate } from "react-router-dom";
+import Header from "./Header"
+import "../style/TabularViewAll.css";
+import {CiEdit} from "react-icons/ci";
+import { FcEmptyTrash } from "react-icons/fc";
 
 function AllLoanCards() {
     const [loans, setLoans] = useState([]);
@@ -44,14 +48,17 @@ function AllLoanCards() {
     }
 
   return (
+    <div>
+      <Header></Header>
+      <h3>View All Loan</h3>
     <Table striped bordered hover>
       <thead>
         <tr>
           <th>Loan ID</th>
           <th>Loan Type</th>
           <th>Loan Duration</th>
-          <th></th>
-          <th></th>
+          <th className="noBorder"></th>
+          <th className="noBorder"></th>
         </tr>
       </thead>
 
@@ -61,12 +68,13 @@ function AllLoanCards() {
          <td>{loan.loanId}</td>
          <td>{loan.loanType}</td>
          <td>{loan.durationInYears}</td>
-         <td><button onClick={() => handleEdit(loan.loanId)}>Edit</button></td>
-         <td><button onClick={() => handleDelete(loan.loanId)}>Delete</button></td>
+         <td className="noBorder"><button className="noBorder smallIcons" onClick={() => handleEdit(loan.loanId)}><CiEdit /></button></td>
+         <td className="noBorder"><button className="noBorder smallIcons" onClick={() => handleDelete(loan.loanId)}><FcEmptyTrash/></button></td>
        </tr>
     ))}
       </tbody>
     </Table>
+    </div>
   );
 }
 

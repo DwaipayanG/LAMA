@@ -76,8 +76,8 @@ function AllItems() {
          <td>{item.itemMake}</td>
          <td>{item.itemCategory}</td>
          <td>{item.itemValuation}</td>
-         <td className="noBorder"><button className="noBorder" onClick={() => handleEdit(item.itemId)}><CiEdit/></button></td>
-         <td className="noBorder"><button className="noBorder" onClick={() => handleDelete(item.itemId)}><FcEmptyTrash/></button></td>
+         <td className="noBorder"><button className="noBorder smallIcons" onClick={() => handleEdit(item.itemId)}><CiEdit/></button></td>
+         <td className="noBorder"><button className="noBorder smallIcons" onClick={() => handleDelete(item.itemId)}><FcEmptyTrash/></button></td>
        </tr>
        
     ))}
