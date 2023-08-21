@@ -30,6 +30,17 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler{
 	
 	@ExceptionHandler(value=ResourceNotFoundException.class)
 	public @ResponseBody ErrorResponse handleResourceNotFoundException(ResourceNotFoundException ex) {
-		return new ErrorResponse(HttpStatus.NOT_FOUND.value(),ex.getMessage());
+		return new ErrorResponse(404,ex.getMessage());
+	}
+	
+	@ExceptionHandler(value=AuthenticationException.class)
+	public @ResponseBody ErrorResponse handleAuthenticationException(AuthenticationException ex) {
+		return new ErrorResponse(400,ex.getMessage());
+	}
+	
+	
+	@ExceptionHandler(value=DuplicateEntryException.class)
+	public @ResponseBody ErrorResponse handleDuplicateEntryException(DuplicateEntryException ex) {
+		return new ErrorResponse(400,ex.getMessage());
 	}
 }

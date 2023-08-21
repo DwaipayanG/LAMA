@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.backend.exception.DuplicateEntryException;
 import com.example.backend.exception.ResourceNotFoundException;
 import com.example.backend.models.ItemsMaster;
 import com.example.backend.services.ItemsMasterService;
@@ -51,8 +53,13 @@ public class ItemsMasterController {
 	}
 
 	@PostMapping("/addItem")
-	public ItemsMaster addItem(@RequestBody ItemsMaster itemsMaster) {
-		return itemsMasterService.addItem(itemsMaster);
+	public ItemsMaster addItem(@RequestBody ItemsMaster itemsMaster) throws DuplicateEntryException {
+		try {
+			return itemsMasterService.addItem(itemsMaster);
+		}catch (DuplicateKeyException e) {
+			throw new DuplicateEntryException("Item Id already exists!");
+			// TODO: handle exception
+		}
 	}
 	
 	@PutMapping("/updateItem")

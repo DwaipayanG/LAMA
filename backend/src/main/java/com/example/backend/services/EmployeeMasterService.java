@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.backend.dao.EmployeeMasterRepository;
+import com.example.backend.exception.AuthenticationException;
+import com.example.backend.exception.ResourceNotFoundException;
 import com.example.backend.models.EmployeeMaster;
 
 @Service
@@ -37,15 +39,21 @@ public class EmployeeMasterService {
 		return existingEmployeeInstance;
 	}
 	
-	public Optional<EmployeeMaster> getEmployeeMasterById (String employeeId){
+	public EmployeeMaster getEmployeeMasterById (String employeeId) throws ResourceNotFoundException{
 		
-		Optional<EmployeeMaster> existingEmployeeInstance = employeeRepo.findById(employeeId);
-				
-		return existingEmployeeInstance;
+		EmployeeMaster existingEmployeeInstance = employeeRepo.findById(employeeId).orElse(null);
+		if(existingEmployeeInstance == null)
+			throw new ResourceNotFoundException("Employee not found!");
+		else 
+			return existingEmployeeInstance;
 	}
 	
-	public void deleteEmployeeMasterById(String employeeId) {
-		employeeRepo.deleteById(employeeId);
+	public void deleteEmployeeMasterById(String employeeId) throws ResourceNotFoundException {
+		try {
+			employeeRepo.deleteById(employeeId);
+		} catch (Exception e) {
+			throw new ResourceNotFoundException("Employee does not exist!");
+		}
 	}
 	
 	public EmployeeMaster updateEmployee(EmployeeMaster employeeMaster,EmployeeMaster newEmployeeMaster) {
@@ -58,7 +66,7 @@ public class EmployeeMasterService {
 		return employeeMaster;
 	}
 	
-	public boolean deleteEmployeeMaster(String employeeId) {
+	public boolean deleteEmployeeMaster(String employeeId) throws ResourceNotFoundException {
 		
 		Optional<EmployeeMaster> existingEmployeeInstance = employeeRepo.findById(employeeId);
 		
@@ -66,7 +74,7 @@ public class EmployeeMasterService {
 			employeeRepo.delete(existingEmployeeInstance.get());
 			return true;
 		}else {
-			return false;
+			throw new ResourceNotFoundException("Employee doest not exist!");
 		}
 	}
 }

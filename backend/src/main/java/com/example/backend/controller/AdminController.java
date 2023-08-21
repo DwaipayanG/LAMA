@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.backend.exception.AuthenticationException;
+import com.example.backend.exception.ResourceNotFoundException;
 import com.example.backend.models.AdminLogin;
 
 @RestController
@@ -17,16 +19,16 @@ public class AdminController {
 	private Environment environment;
 	
 	@PostMapping("/loginAdmin")
-	public String loginAdmin(@RequestBody AdminLogin adminLogin) {
+	public String loginAdmin(@RequestBody AdminLogin adminLogin) throws AuthenticationException, ResourceNotFoundException {
 		String response = "";
 		if(adminLogin.getAdminUsername().equals(environment.getProperty("ADMIN_USERNAME"))) {
 			if(adminLogin.getPassword().equals(environment.getProperty("ADMIN_PASSWORD"))) {
 				response = environment.getProperty("ADMIN_USERNAME");
 			}else {
-				response = "Wrong password";
+				throw new AuthenticationException("Authentication Error!");
 			}
 		}else {
-			response = "Invalid admin ID";
+			throw new ResourceNotFoundException("Admin not found!");
 		}
 		return response;
 	}
