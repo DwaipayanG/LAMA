@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import "../style/AddEmployee.css";
+import "../style/AddLoanCard.css";
 import Header from "./Header";
 
 export default function AddLoanCard(){
