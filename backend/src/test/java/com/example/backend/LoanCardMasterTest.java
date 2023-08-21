@@ -1,10 +1,15 @@
 package com.example.backend;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentMatchers;
@@ -80,4 +85,22 @@ public class LoanCardMasterTest {
 		assertEquals(result,result);
 		
 	}
+	
+	@Test
+	public void testgetAllLoanCards() throws Exception{
+		LoanCardMaster loanCardMaster= new LoanCardMaster();
+		loanCardMaster.setLoanId("123456");
+		loanCardMaster.setLoanType("furniture");
+		loanCardMaster.setDurationInYears(15);
+		List<LoanCardMaster> getAllLoanCards = new ArrayList<>();
+		getAllLoanCards.add(loanCardMaster);
+		
+		Mockito.when(loanCardMasterService.getAllLoanCards()).thenReturn(getAllLoanCards);
+		System.out.println("testing getting all loan cards.");
+		
+		mvc.perform(get("/getAllLoanCards").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+		.andExpect(jsonPath("$", Matchers.hasSize(1))).andExpect(jsonPath("$[0]", Matchers.equalTo(loanCardMaster)));
+	}	
+		
+	
 }
