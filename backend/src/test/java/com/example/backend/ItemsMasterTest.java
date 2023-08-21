@@ -116,7 +116,7 @@ public class ItemsMasterTest {
 		List<String> getDistinctMakesByCategory = new ArrayList<>();
 		getDistinctMakesByCategory.add(itemsMaster.getItemMake());
 		
-		Mockito.when(itemsMasterService.getDistinctMakesByCategory(itemsMaster.getItemCategory())).thenReturn(getDistinctMakesByCategory);
+		Mockito.when(itemsMasterService.getDistinctMakesByCategory(ArgumentMatchers.any())).thenReturn(getDistinctMakesByCategory);
 		System.out.println("testing getting distict make by categories.");
 		
 		mvc.perform(post("/getDistinctMakesByCategory").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
