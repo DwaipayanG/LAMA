@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,6 +30,19 @@ public class LoanCardMasterController {
 	@PostMapping("/addLoanCard")
 	public LoanCardMaster addLoanCard(@RequestBody LoanCardMaster loanCard) {
 		return loanCardMasterService.addLoanCard(loanCard);
+	}
+	
+	@GetMapping("/deleteLoanCard")
+	public String deleteLoanCard(@RequestParam String loanId) {
+		loanCardMasterService.deleteLoanCard(loanId);
+		return "deleted";
+	}
+	
+	@PutMapping("/updateLoanCard")
+	public LoanCardMaster updateLoanCard(@RequestParam String loanId, @RequestBody LoanCardMaster newLoanCardMaster) {
+		LoanCardMaster loanCardMaster = loanCardMasterService.getLoanCardById(loanId);
+		loanCardMasterService.updateLoanCard(loanCardMaster, newLoanCardMaster);
+		return loanCardMaster;
 	}
 	
 	@PostMapping("/getLoanCardByLoanType")

@@ -48,7 +48,6 @@ function AllEmployees() {
      
     }
 
-
   return (
     <Table striped bordered hover>
       <thead>
@@ -76,12 +75,14 @@ function AllEmployees() {
          <td>{employee.dateOfBirth}</td>
          <td>{employee.dateOfJoining}</td>
          <td><button onClick={() => handleEdit(employee.employeeId)}>Edit</button></td>
+         <td>Edit</td>
          <td><button onClick={() => handleDelete(employee.employeeId)}>Delete</button></td>
        </tr>
     ))}
       </tbody>
     </Table>
   );
+
 }
 
 export default AllEmployees;

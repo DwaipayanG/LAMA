@@ -20,8 +20,9 @@ export default function AdminDashboard(){
                 {/* <Card.Text>
                 Some quick example text to build on the card title and make up the
                 bulk of the card's content.
-                </Card.Text> */}
-                <Card.Link href="/addEmployee">Add employee</Card.Link>
+                </Card.Text>
+                <Card.Link href="/addEmployee">Add</Card.Link>
+                <Card.Link href="/viewAllEmployees">Edit</Card.Link>
             </Card.Body>
             </Card>
             <Card style={{ width: '10rem' }}>
@@ -31,7 +32,8 @@ export default function AdminDashboard(){
                 Some quick example text to build on the card title and make up the
                 bulk of the card's content.
                 </Card.Text> */}
-                <Card.Link href="/addLoanCard">Loan cards</Card.Link>
+                <Card.Link href="/addEmployee">Add</Card.Link>
+                <Card.Link href="/viewAllEmployees">Edit</Card.Link>
             </Card.Body>
             </Card>
             <Card style={{ width: '10rem' }}>
@@ -40,8 +42,9 @@ export default function AdminDashboard(){
                 {/* <Card.Text>
                 Some quick example text to build on the card title and make up the
                 bulk of the card's content.
-                </Card.Text> */}
-                <Card.Link href="/addItem">Items master</Card.Link>
+                </Card.Text>
+                <Card.Link href="/addItem">Add</Card.Link>
+                <Card.Link href="/viewAllItems">Edit</Card.Link>
             </Card.Body>
             </Card>
             <Card style={{ width: '10rem' }}>
@@ -51,7 +54,30 @@ export default function AdminDashboard(){
                 Some quick example text to build on the card title and make up the
                 bulk of the card's content.
                 </Card.Text> */}
-                <Card.Link href="/viewAllItems">All item</Card.Link>
+                <Card.Link href="/addItem">Add</Card.Link>
+                <Card.Link href="/viewAllItems">Edit</Card.Link>
+            </Card.Body>
+            </Card>
+            <Card style={{ width: '10rem' }}>
+            <Card.Body>
+                <Card.Title>Loan Card Data</Card.Title>
+                {/* <Card.Text>
+                Some quick example text to build on the card title and make up the
+                bulk of the card's content.
+                </Card.Text>
+                <Card.Link href="/addItem">Add</Card.Link>
+                <Card.Link href="/viewAllItems">Edit</Card.Link>
+            </Card.Body>
+            </Card>
+            <Card style={{ width: '10rem' }}>
+            <Card.Body>
+                <Card.Title>All items</Card.Title>
+                {/* <Card.Text>
+                Some quick example text to build on the card title and make up the
+                bulk of the card's content.
+                </Card.Text> */}
+                <Card.Link href="/addLoanCard">Add</Card.Link>
+                <Card.Link href="/viewAllLoanCards">Edit</Card.Link>
             </Card.Body>
             </Card>
         </div>
