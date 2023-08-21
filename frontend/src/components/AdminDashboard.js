@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Card from 'react-bootstrap/Card';
 import Header from "./Header";
+import "../style/Card.css"
 
 export default function AdminDashboard(){
 
@@ -14,7 +15,8 @@ export default function AdminDashboard(){
             <p className="welcomeText"> Welcome <b>{sessionStorage.getItem("adminUsername")}</b> </p>
             <div style={{width:"70%",margin:"auto"}} className="d-flex justify-content-center m-2">
         
-            <Card style={{ width: '10rem' }}>
+            <Card className="bgCard bg1 col-sm-6 col-lg-3">
+
             <Card.Body>
                 <Card.Title>Customer Data Management</Card.Title>
                 {/* <Card.Text>
@@ -24,7 +26,8 @@ export default function AdminDashboard(){
                 <Card.Link href="/addEmployee">Add employee</Card.Link>
             </Card.Body>
             </Card>
-            <Card style={{ width: '10rem' }}>
+           <Card className="bgCard bg2 col-sm-6 col-lg-3">
+
             <Card.Body>
                 <Card.Title>Loan Card Management</Card.Title>
                 {/* <Card.Text>
@@ -34,7 +37,8 @@ export default function AdminDashboard(){
                 <Card.Link href="/addLoanCard">Loan cards</Card.Link>
             </Card.Body>
             </Card>
-            <Card style={{ width: '10rem' }}>
+            <Card className="bgCard bg3 col-sm-6 col-lg-3">
+
             <Card.Body>
                 <Card.Title>Items Master Data</Card.Title>
                 {/* <Card.Text>
@@ -44,7 +48,7 @@ export default function AdminDashboard(){
                 <Card.Link href="/addItem">Items master</Card.Link>
             </Card.Body>
             </Card>
-            <Card style={{ width: '10rem' }}>
+            <Card className="bgCard bg4 col-sm-6 col-lg-3">
             <Card.Body>
                 <Card.Title>All items</Card.Title>
                 {/* <Card.Text>
