@@ -13,7 +13,7 @@ export default function EditLoanCard(){
     const [duration, setDuration] = useState("");
 
     const getURL="http://localhost:8080/getLoanCardById";
-    const editURL="http://localhost:8080/editLoanCard";
+    const editURL="http://localhost:8080/updateLoanCard";
 
      useEffect(()=>{
        
@@ -43,12 +43,15 @@ export default function EditLoanCard(){
     }
 
     const submitActionHandler = (event) => {
-        
+        event.preventDefault();
         axios
-            .post(editURL, {
+            .put(editURL, {
                 "loanId": loanId,
                 "loanType": loanType,
                 "durationInYears": duration
+            },
+            {
+                params:{"loanId": loanId}
             })
             .then((response) => {
                 console.log(response.data)

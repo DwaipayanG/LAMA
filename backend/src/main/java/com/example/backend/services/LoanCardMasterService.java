@@ -28,6 +28,7 @@ public class LoanCardMasterService {
 	
 	public LoanCardMaster updateLoanCard(LoanCardMaster loanCardMaster, LoanCardMaster newLoanCardMaster) {
 		loanCardMaster.setDurationInYears(newLoanCardMaster.getDurationInYears());
+		loanCardMasterRepo.save(loanCardMaster);
 		return loanCardMaster;
 	}
 	

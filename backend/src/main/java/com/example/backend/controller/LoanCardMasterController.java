@@ -41,7 +41,7 @@ public class LoanCardMasterController {
 	@PutMapping("/updateLoanCard")
 	public LoanCardMaster updateLoanCard(@RequestParam String loanId, @RequestBody LoanCardMaster newLoanCardMaster) {
 		LoanCardMaster loanCardMaster = loanCardMasterService.getLoanCardById(loanId);
-		loanCardMasterService.updateLoanCard(loanCardMaster, newLoanCardMaster);
+		loanCardMaster = loanCardMasterService.updateLoanCard(loanCardMaster, newLoanCardMaster);
 		return loanCardMaster;
 	}
 	

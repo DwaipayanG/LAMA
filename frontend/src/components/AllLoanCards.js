@@ -30,7 +30,7 @@ function AllLoanCards() {
           console.error("Loan Id Not Found");
         }
         else{
-          const loanData=loans.filter(loan => loan.itemId!==id);
+          const loanData=loans.filter(loan => loan.loanId!==id);
           setLoans(loanData);
           
         }

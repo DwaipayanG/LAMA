@@ -19,7 +19,7 @@ export default function EditEmployee(){
     const [dateOfJoining, setDateOfJoining] = useState(null);
 
     const getURL="http://localhost:8080/getEmployeeById";
-    const editURL="http://localhost:8080/editEmployee";
+    const editURL="http://localhost:8080/updateEmployee";
 
      useEffect(()=>{
        
@@ -73,17 +73,21 @@ export default function EditEmployee(){
     }
 
     const submitActionHandler = (event) => {
+        event.preventDefault();
         axios
-            .post(editURL, {
-                "employeeId": employeeId,
-                "employeeName": employeeName,
-                "department": department,
-                "designation": designation,
-                "gender": gender,
-                "dateOfBirth": dateOfBirth,
-                "dateOfJoining": dateOfJoining,
-                "password": password
-            })
+            .put(editURL, {
+                    "employeeId": employeeId,
+                    "employeeName": employeeName,
+                    "department": department,
+                    "designation": designation,
+                    "gender": gender,
+                    "dateOfBirth": dateOfBirth,
+                    "dateOfJoining": dateOfJoining,
+                    "password": password
+                }
+            ,{params:{
+                "employeeId": employeeId
+            }})
             .then((response) => {
                 alert(response.data);
             })
