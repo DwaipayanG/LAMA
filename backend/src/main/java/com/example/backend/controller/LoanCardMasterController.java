@@ -46,10 +46,10 @@ public class LoanCardMasterController {
 		return loanCardMaster;
 	}
 	
-	@PostMapping("/getLoanCardByLoanType")
+	@GetMapping("/getLoanCardByLoanType")
 	@ResponseBody
-	public LoanCardMaster getLoanCardByLoanType(@RequestBody LoanCardMaster loanCard) throws ResourceNotFoundException {
-		return loanCardMasterService.getLoanCardByLoanType(loanCard.getLoanType());
+	public LoanCardMaster getLoanCardByLoanType(@RequestParam("loanType") String loanType) throws ResourceNotFoundException {
+		return loanCardMasterService.getLoanCardByLoanType(loanType);
 	}
 	
 	@GetMapping("/getLoanCardById")

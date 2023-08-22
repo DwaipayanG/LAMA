@@ -28,12 +28,16 @@ public class EmployeeIssueDetailsService {
 		}
 		
 		public EmployeeIssueDetails addEmployeeIssueDetails(String itemId, Date loanIssueDate, Date loanReturnDate, EmployeeMaster employeeMaster) throws ResourceNotFoundException {
+				
 			ItemsMaster itemMaster = itemsMasterService.getItemById(itemId);
+			ItemsMaster newItemMaster = new ItemsMaster(itemMaster);
+			itemMaster.setItemStatus('Y');
+			itemsMasterService.updateItem(itemMaster, newItemMaster);
 			
 			EmployeeIssueDetails employeeIssueDetails = new EmployeeIssueDetails();
 			employeeIssueDetails.setIssueDate(loanIssueDate);
 			employeeIssueDetails.setReturnDate(loanReturnDate);
-			employeeIssueDetails.setItemsMaster(itemMaster);
+			employeeIssueDetails.setItemsMaster(newItemMaster);
 			employeeIssueDetails.setEmployeeMaster(employeeMaster);
 			
 			return this.addEmployeeIssueDetails(employeeIssueDetails);

@@ -87,6 +87,26 @@ public class ItemsMaster {
 	public void setItemValuation(int itemValuation) {
 		this.itemValuation = itemValuation;
 	}
+
+	public List<EmployeeIssueDetails> getEmployeeIssueDetails() {
+		return employeeIssueDetails;
+	}
+
+	public void setEmployeeIssueDetails(List<EmployeeIssueDetails> employeeIssueDetails) {
+		this.employeeIssueDetails = employeeIssueDetails;
+	}
+
+	public ItemsMaster(ItemsMaster item) {
+		this.itemId = item.getItemId();
+		this.itemDescription = item.getItemDescription();
+		this.itemStatus = item.getItemStatus();
+		this.itemMake = item.getItemMake();
+		this.itemCategory = item.getItemCategory();
+		this.itemValuation = item.getItemValuation();
+		this.employeeIssueDetails = item.getEmployeeIssueDetails();
+	}
+	
+	
 	
 	
 
