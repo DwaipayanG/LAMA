@@ -46,21 +46,23 @@ public class ItemsMasterServiceImpl implements ItemsMasterService {
 	
 	public ItemsMaster getItemByMakeAndCategory(String category, String make) throws ResourceNotFoundException {
 		ItemsMaster item = itemsMasterRepo.getItemByMakeAndCategory(category, make);
-		if(item == null) {
-			throw new ResourceNotFoundException("No item of this category and make");
-		}else {
-			return item;
-		}
+//		if(item == null) {
+//			throw new ResourceNotFoundException("No item of this category and make");
+//		}else {
+//			return item;
+//		}
+		return item;
 	}
 
 	
 	public List<String> getDistinctMakesByCategory (String category) throws ResourceNotFoundException{
 		List<String> makes =  itemsMasterRepo.findDistinctMakesByCategory(category);
-		if(makes.isEmpty()) {
-			throw new ResourceNotFoundException("No makes of this item category");
-		}else {
-			return makes;
-		}
+//		if(makes.isEmpty()) {
+//			throw new ResourceNotFoundException("No makes of this item category");
+//		}else {
+//			return makes;
+//		}
+		return makes;
 	}
 	
 	public ItemsMaster addItem (ItemsMaster item){

@@ -38,6 +38,7 @@ public class ItemsMaster {
 	
 	@OnDelete(action=OnDeleteAction.CASCADE)
 	@OneToMany(mappedBy="itemsMaster",cascade=CascadeType.ALL,orphanRemoval = true)
+	@JsonManagedReference(value="itemIssue")
 	private List<EmployeeIssueDetails> employeeIssueDetails;
 
 	public String getItemId() {

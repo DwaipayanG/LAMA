@@ -20,6 +20,7 @@ public interface ItemsMasterService {
 	public ItemsMaster getItemByMakeAndCategory(String category, String make) throws ResourceNotFoundException;
 	
 	public List<String> getDistinctMakesByCategory (String category) throws ResourceNotFoundException;
+
 	
 	public ItemsMaster addItem (ItemsMaster item);
 }
