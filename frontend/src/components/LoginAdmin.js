@@ -12,6 +12,7 @@ function LoginAdmin() {
 
     const [adminUsername, setAdminUsername] = useState('');
     const [password, setPassword] = useState("");
+    const [error, setError] = useState(null);
 
     const adminUsernameChangeHandler = (event) => {
         setAdminUsername(event.target.value)
@@ -29,10 +30,9 @@ function LoginAdmin() {
             "password": password
         })
         .then((response) => {
-            if(response.data==="Invalid admin ID"){
-              alert(response.data)
-            }else if(response.data ==="Wrong password"){
-              alert(response.data)
+            const data=response.data;
+            if(data["statusCode"]&&(data["statusCode"]==400||data["statusCode"]==404)){
+                setError(data["message"]);
             }else{
               sessionStorage.setItem("adminUsername", response.data);
               navigate("/adminDashboard");
@@ -61,7 +61,9 @@ function LoginAdmin() {
             Submit
         </Button>
         </Form>
-
+            {error && 
+                <div style={{color:"red"}}><b>{error}</b></div>
+            }
         </div>
         </div>
     );

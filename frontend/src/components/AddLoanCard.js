@@ -35,6 +35,11 @@ export default function AddLoanCard(){
             })
             .then((response) => {
                 console.log(response.data)
+                const data=response.data;
+                if(data["statusCode"]&&data["statusCode"]==400)
+                    alert(data["message"]);
+                else
+                    alert("Loan Card created!");
             })
             .catch((error) => {
                 alert(error);

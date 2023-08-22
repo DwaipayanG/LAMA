@@ -18,7 +18,11 @@ function AllLoanCards() {
         .get(url)
         .then((response) => {
             console.log(response.data);
-            setLoans(response.data);
+            const data=response.data;
+            if(data['statusCode']&&data['statusCode']==400)
+              alert("No data to display");
+            else
+              setLoans(response.data);
         })
         .catch((err) =>{
           console.log(err);
