@@ -15,7 +15,7 @@ function ViewLoans() {
     },[]);
 
     useEffect(()=>{
-        const url= "http://localhost:8080/getAllLoans";
+        const url= "http://localhost:8080/api/employee-card/all-loans-by-employee-id";
         axios
         .get(url, {params: {employeeId:sessionStorage.getItem("employeeId")}})
         .then((response) => {

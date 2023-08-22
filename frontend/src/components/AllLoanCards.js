@@ -13,7 +13,7 @@ function AllLoanCards() {
     const navigate = useNavigate();
 
     useEffect(()=>{
-        const url= "http://localhost:8080/getAllLoanCards";
+        const url= "http://localhost:8080/api/loan-card/all-loans";
         axios
         .get(url)
         .then((response) => {

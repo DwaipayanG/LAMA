@@ -27,7 +27,7 @@ public class LoanCardMasterController {
 	@Autowired
 	private LoanCardMasterServiceImpl loanCardMasterService;
 	
-	@GetMapping("/getAllLoanCards")
+	@GetMapping("/api/loan-card/all-loans")
 	public List<LoanCardMaster> getAllLoanCard() throws DataUnavailableException{
 		
 		List<LoanCardMaster> loanCards =  loanCardMasterService.getAllLoanCards();
@@ -37,13 +37,12 @@ public class LoanCardMasterController {
 			return loanCards;
 	}
 	
-	@GetMapping("/getAllLoanTypes")
+	@GetMapping("/api/loan-card/all-loan-types")
 	public List<String> getAllLoanTypes(){
 		return loanCardMasterService.getAllLoanTypes();
 	}
 	
-	@PostMapping("/addLoanCard")
-
+	@PostMapping("/api/loan-card")
 	public LoanCardMaster addLoanCard(@RequestBody LoanCardMaster loanCard) throws DuplicateEntryException {
 		try {
 			LoanCardMaster loanCardMaster = this.getLoanCardById(loanCard.getLoanId());
@@ -60,8 +59,7 @@ public class LoanCardMasterController {
 		return "deleted";
 	}
 	
-	@PutMapping("/updateLoanCard")
-
+	@PutMapping("/api/loan-card")
 	public LoanCardMaster updateLoanCard(@RequestParam String loanId, @RequestBody LoanCardMaster newLoanCardMaster) throws ResourceNotFoundException {
 
 		LoanCardMaster loanCardMaster = loanCardMasterService.getLoanCardById(loanId);
@@ -69,14 +67,13 @@ public class LoanCardMasterController {
 		return loanCardMaster;
 	}
 	
-	@GetMapping("/getLoanCardByLoanType")
+	@GetMapping("/api/loan-card/by-loan-type")
 	@ResponseBody
-
 	public LoanCardMaster getLoanCardByLoanType(@RequestParam("loanType") String loanType) throws ResourceNotFoundException {
 		return loanCardMasterService.getLoanCardByLoanType(loanType);
 	}
 	
-	@GetMapping("/getLoanCardById")
+	@GetMapping("/api/loan-card/by-loan-id")
 	public LoanCardMaster getLoanCardById(@RequestParam("loanId") String loanId) throws ResourceNotFoundException {
 		return loanCardMasterService.getLoanCardById(loanId);
 	}

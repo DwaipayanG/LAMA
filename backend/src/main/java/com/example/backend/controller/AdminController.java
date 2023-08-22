@@ -18,7 +18,7 @@ public class AdminController {
 	@Autowired
 	private Environment environment;
 	
-	@PostMapping("/loginAdmin")
+	@PostMapping("/api/admin/login")
 	public String loginAdmin(@RequestBody AdminLogin adminLogin) throws AuthenticationException, ResourceNotFoundException {
 		String response = "";
 		if(adminLogin.getAdminUsername().equals(environment.getProperty("ADMIN_USERNAME"))) {

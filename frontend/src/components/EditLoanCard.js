@@ -13,8 +13,8 @@ export default function EditLoanCard(){
     const [loanType, setLoanType] = useState("");
     const [duration, setDuration] = useState("");
 
-    const getURL="http://localhost:8080/getLoanCardById";
-    const editURL="http://localhost:8080/updateLoanCard";
+    const getURL="http://localhost:8080/api/loan-card/by-loan-id";
+    const editURL="http://localhost:8080/api/loan-card";
 
      useEffect(()=>{
        
