@@ -6,6 +6,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Button from 'react-bootstrap/Button';
 import "../style/Header.css";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 
 
@@ -18,6 +19,13 @@ function AdminNavigation() {
     sessionStorage.clear();
     navigate("/");
   }
+
+  useEffect(() => {
+    const loggedInUser = sessionStorage.getItem("adminUsername");
+    if (loggedInUser !=="admin") {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <div>

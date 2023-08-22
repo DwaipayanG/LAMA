@@ -5,6 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import "../style/Header.css"
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import { useEffect } from "react";
 
 function EmployeeNavigation (){
 
@@ -14,6 +15,14 @@ function EmployeeNavigation (){
     sessionStorage.clear();
     navigate("/");
   }
+
+  useEffect(() => {
+    const loggedInUser = sessionStorage.getItem("adminUsername");
+    if (loggedInUser === null) {
+      navigate("/");
+    }
+  }, []);
+
     return (
 <div>
     <Navbar expand="lg" className="bg-body-tertiary justify-content-center m-auto navigationBar">
