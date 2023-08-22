@@ -2,7 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Table from 'react-bootstrap/Table';
 import { useNavigate } from "react-router-dom";
-import Header from "./Header"
+import Header from "./Header";
+import AdminNavigation from "./AdminNavigation";
 import "../style/TabularViewAll.css";
 import {CiEdit} from "react-icons/ci";
 import { FcEmptyTrash } from "react-icons/fc";
@@ -50,6 +51,7 @@ function AllLoanCards() {
   return (
     <div>
       <Header></Header>
+      <AdminNavigation/>
       <h3>View All Loan</h3>
     <Table striped bordered hover>
       <thead>

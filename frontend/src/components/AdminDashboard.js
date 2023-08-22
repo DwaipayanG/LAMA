@@ -3,6 +3,7 @@ import axios from "axios";
 import Card from 'react-bootstrap/Card';
 import {Row,Col} from 'react-bootstrap';
 import Header from "./Header";
+import AdminNavigation from "./AdminNavigation";
 import "../style/Card.css"
 
 export default function AdminDashboard(){
@@ -12,6 +13,7 @@ export default function AdminDashboard(){
     return (
         <div>
             <Header></Header>
+            <AdminNavigation/>
         
             <p className="welcomeText" style={{fontSize: "2em"}}> Welcome <b>{sessionStorage.getItem("adminUsername")}</b> </p>
             {/* <div style={{width:"70%",margin:"auto"}} className="d-flex justify-content-center m-2"> */}

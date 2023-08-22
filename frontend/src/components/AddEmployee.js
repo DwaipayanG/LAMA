@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import "../style/AddEmployee.css";
 import Header from "./Header";
+import AdminNavigation from "./AdminNavigation";
 
 export default function AddEmployee(){
     const baseURL = "http://localhost:8080/addEmployee";
@@ -71,6 +72,7 @@ export default function AddEmployee(){
     return (
         <div>
             <Header></Header>
+            <AdminNavigation/>
         
         <div className="addEmployeeBox">
             <h3> Add Employee </h3>             

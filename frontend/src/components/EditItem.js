@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Header from "./Header";
+import AdminNavigation from "./AdminNavigation";
 
 export default function EditItem(){
     const location = useLocation();
@@ -85,6 +86,7 @@ export default function EditItem(){
     return (
         <div>
             <Header></Header>
+            <AdminNavigation/>
         
         <div className="addEmployeeBox">
             <h3> Edit Item </h3>             

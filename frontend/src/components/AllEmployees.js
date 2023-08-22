@@ -4,6 +4,7 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
+import AdminNavigation from "./AdminNavigation";
 import "../style/TabularViewAll.css";
 import {CiEdit} from "react-icons/ci";
 import { FcEmptyTrash } from "react-icons/fc";
@@ -57,6 +58,7 @@ function AllEmployees() {
     <div>
 
     <Header></Header>
+    <AdminNavigation/>
     <h3>View All Employees</h3>
     <Table striped bordered hover>
       <thead>

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Header from "./Header";
+import AdminNavigation from "./AdminNavigation";
 import { useLocation } from "react-router-dom";
 
 export default function EditLoanCard(){
@@ -64,6 +65,7 @@ export default function EditLoanCard(){
     return (
         <div>
             <Header></Header>
+            <AdminNavigation/>
         
         <div className="addLoanCardBox">
             <h3> Edit loan Card </h3>             

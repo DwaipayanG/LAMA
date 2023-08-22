@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import "../style/AddLoanCard.css";
 import Header from "./Header";
+import AdminNavigation from "./AdminNavigation";
 
 export default function AddLoanCard(){
     const baseURL = "http://localhost:8080/addLoanCard";
@@ -43,6 +44,7 @@ export default function AddLoanCard(){
     return (
         <div>
             <Header></Header>
+            <AdminNavigation></AdminNavigation>
         
         <div className="addLoanCardBox">
             <h3> Add loan Card </h3>             

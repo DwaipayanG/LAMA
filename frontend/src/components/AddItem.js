@@ -2,8 +2,9 @@ import axios from "axios";
 import { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import "../style/AddEmployee.css";
+import "../style/AddItem.css";
 import Header from "./Header";
+import AdminNavigation from "./AdminNavigation";
 
 export default function AddItem(){
     const baseURL = "http://localhost:8080/addItem";
@@ -59,8 +60,9 @@ export default function AddItem(){
     return (
         <div>
             <Header></Header>
+            <AdminNavigation></AdminNavigation>
         
-        <div className="addEmployeeBox">
+        <div className="addItemBox">
             <h3> Add Item </h3>             
             <Form onSubmit={submitActionHandler}>
                 <Form.Group className="mb-3">
