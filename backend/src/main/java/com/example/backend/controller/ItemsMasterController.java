@@ -20,6 +20,8 @@ import com.example.backend.exception.ResourceNotFoundException;
 import com.example.backend.models.ItemsMaster;
 import com.example.backend.services.ItemsMasterServiceImpl;
 
+import jakarta.validation.Valid;
+
 @RestController
 @CrossOrigin("http://localhost:3000")
 public class ItemsMasterController {
@@ -38,6 +40,7 @@ public class ItemsMasterController {
 	
 	@GetMapping("/getDistinctMakesByCategory")
 	@ResponseBody
+
 	public List<String> getDistinctMakesByCategory(@RequestParam("itemCategory") String itemCategory) throws ResourceNotFoundException{
 		return itemsMasterService.getDistinctMakesByCategory(itemCategory);
 	}
@@ -58,6 +61,7 @@ public class ItemsMasterController {
 	}
 
 	@PostMapping("/addItem")
+
 	public ItemsMaster addItem(@RequestBody ItemsMaster itemsMaster) throws DuplicateEntryException {
 		try {
 			this.getItemById(itemsMaster.getItemId());
@@ -70,6 +74,7 @@ public class ItemsMasterController {
 	
 	@PutMapping("/updateItem")
 	public ItemsMaster updateItem(@RequestParam String itemId,@RequestBody ItemsMaster newItemsMaster) throws ResourceNotFoundException {
+
 		ItemsMaster itemsMaster = itemsMasterService.getItemById(itemId);
 		itemsMaster = itemsMasterService.updateItem(itemsMaster, newItemsMaster);
 		itemsMasterService.addItem(itemsMaster);

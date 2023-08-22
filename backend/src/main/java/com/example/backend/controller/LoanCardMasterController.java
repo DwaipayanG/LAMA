@@ -18,6 +18,8 @@ import com.example.backend.exception.ResourceNotFoundException;
 import com.example.backend.models.LoanCardMaster;
 import com.example.backend.services.LoanCardMasterServiceImpl;
 
+import jakarta.validation.Valid;
+
 @RestController
 @CrossOrigin("http://localhost:3000")
 public class LoanCardMasterController {
@@ -36,6 +38,7 @@ public class LoanCardMasterController {
 	}
 	
 	@PostMapping("/addLoanCard")
+
 	public LoanCardMaster addLoanCard(@RequestBody LoanCardMaster loanCard) throws DuplicateEntryException {
 		try {
 			LoanCardMaster loanCardMaster = this.getLoanCardById(loanCard.getLoanId());
@@ -47,13 +50,15 @@ public class LoanCardMasterController {
 	}
 	
 	@GetMapping("/deleteLoanCard")
-	public String deleteLoanCard(@RequestParam String loanId) {
+	public String deleteLoanCard( @RequestParam String loanId) {
 		loanCardMasterService.deleteLoanCard(loanId);
 		return "deleted";
 	}
 	
 	@PutMapping("/updateLoanCard")
+
 	public LoanCardMaster updateLoanCard(@RequestParam String loanId, @RequestBody LoanCardMaster newLoanCardMaster) throws ResourceNotFoundException {
+
 		LoanCardMaster loanCardMaster = loanCardMasterService.getLoanCardById(loanId);
 		loanCardMaster = loanCardMasterService.updateLoanCard(loanCardMaster, newLoanCardMaster);
 		return loanCardMaster;
@@ -61,6 +66,7 @@ public class LoanCardMasterController {
 	
 	@GetMapping("/getLoanCardByLoanType")
 	@ResponseBody
+
 	public LoanCardMaster getLoanCardByLoanType(@RequestParam("loanType") String loanType) throws ResourceNotFoundException {
 		return loanCardMasterService.getLoanCardByLoanType(loanType);
 	}

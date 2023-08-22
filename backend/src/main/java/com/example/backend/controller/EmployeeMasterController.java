@@ -2,10 +2,12 @@ package com.example.backend.controller;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.dao.DuplicateKeyException;
+
+import org.springframework.validation.annotation.Validated;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +29,10 @@ import com.example.backend.services.EmployeeCardDetailsServiceImpl;
 import com.example.backend.services.EmployeeIssueDetailsServiceImpl;
 import com.example.backend.services.EmployeeMasterServiceImpl;
 
+import jakarta.validation.Valid;
+
 @RestController
+@Validated
 @CrossOrigin("http://localhost:3000")
 public class EmployeeMasterController {
 	@Autowired 
@@ -58,22 +63,28 @@ public class EmployeeMasterController {
 	}
 	
 	@PutMapping("/updateEmployee")
+
 	public EmployeeMaster updateEmployeeMaster(@RequestParam String employeeId,@RequestBody EmployeeMaster newEmployeeMaster) throws ResourceNotFoundException {
 		EmployeeMaster employeeMaster = employeeMasterService.getEmployeeMasterById(employeeId);
+
 		employeeMaster = employeeMasterService.updateEmployee(employeeMaster, newEmployeeMaster);
 		employeeMasterService.addEmployeeMaster(employeeMaster);
 		return employeeMaster;
 	}
 	
 	@GetMapping("/deleteEmployee")
+
 	public String deleteEmployeeById(@RequestParam String employeeId) throws ResourceNotFoundException {
 		EmployeeMaster employeeMaster = this.getEmployeeMaster(employeeId);
+
 		employeeMasterService.deleteEmployeeMasterById(employeeId);
 		return "deleted";
 	}
 	
 	@PostMapping("/addEmployee")
+
 	public EmployeeMaster addEmployeeMaster(@RequestBody EmployeeMaster newEmployee) throws DuplicateEntryException 
+
 	{
 		try {
 			EmployeeMaster employeeMaster = this.getEmployeeMaster(newEmployee.getEmployeeId());
@@ -88,7 +99,9 @@ public class EmployeeMasterController {
 	
 	@PostMapping("/loginEmployee")
 	@ResponseBody
+
 	public Object loginEmployeeMaster(@RequestBody EmployeeMasterLogin empLogin) throws ResourceNotFoundException, AuthenticationException{
+
 		Object response;
 		EmployeeMaster existingEmployee = employeeMasterService.getEmployeeMasterById(empLogin.getEmployeeId());
 		if(existingEmployee.getPassword().equals(empLogin.getPassword())) {
@@ -100,7 +113,9 @@ public class EmployeeMasterController {
 	}
 	
 	@PostMapping("/applyLoan")
+
 	public Object applyLoan(@RequestBody ApplyLoanData loanData) throws ResourceNotFoundException {
+
 
 		EmployeeMaster employeeMaster = employeeMasterService.getEmployeeMasterById(loanData.getEmployeeId()); 
 				
