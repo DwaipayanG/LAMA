@@ -16,14 +16,14 @@ import com.example.backend.exception.DataUnavailableException;
 import com.example.backend.exception.DuplicateEntryException;
 import com.example.backend.exception.ResourceNotFoundException;
 import com.example.backend.models.LoanCardMaster;
-import com.example.backend.services.LoanCardMasterService;
+import com.example.backend.services.LoanCardMasterServiceImpl;
 
 @RestController
 @CrossOrigin("http://localhost:3000")
 public class LoanCardMasterController {
 	
 	@Autowired
-	private LoanCardMasterService loanCardMasterService;
+	private LoanCardMasterServiceImpl loanCardMasterService;
 	
 	@GetMapping("/getAllLoanCards")
 	public List<LoanCardMaster> getAllLoanCard() throws DataUnavailableException{

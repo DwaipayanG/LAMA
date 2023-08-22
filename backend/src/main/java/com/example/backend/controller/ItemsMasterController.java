@@ -18,14 +18,14 @@ import com.example.backend.exception.DataUnavailableException;
 import com.example.backend.exception.DuplicateEntryException;
 import com.example.backend.exception.ResourceNotFoundException;
 import com.example.backend.models.ItemsMaster;
-import com.example.backend.services.ItemsMasterService;
+import com.example.backend.services.ItemsMasterServiceImpl;
 
 @RestController
 @CrossOrigin("http://localhost:3000")
 public class ItemsMasterController {
 	
 	@Autowired
-	private ItemsMasterService itemsMasterService;
+	private ItemsMasterServiceImpl itemsMasterService;
 	
 	@GetMapping("/getAllItem")
 	public List<ItemsMaster> getAllItems() throws DataUnavailableException{

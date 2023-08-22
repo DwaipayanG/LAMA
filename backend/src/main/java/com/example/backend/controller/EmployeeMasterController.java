@@ -23,21 +23,21 @@ import com.example.backend.models.ApplyLoanData;
 import com.example.backend.models.EmployeeIssueDetails;
 import com.example.backend.models.EmployeeMaster;
 import com.example.backend.models.EmployeeMasterLogin;
-import com.example.backend.services.EmployeeCardDetailsService;
-import com.example.backend.services.EmployeeIssueDetailsService;
-import com.example.backend.services.EmployeeMasterService;
+import com.example.backend.services.EmployeeCardDetailsServiceImpl;
+import com.example.backend.services.EmployeeIssueDetailsServiceImpl;
+import com.example.backend.services.EmployeeMasterServiceImpl;
 
 @RestController
 @CrossOrigin("http://localhost:3000")
 public class EmployeeMasterController {
 	@Autowired 
-	private EmployeeMasterService employeeMasterService;
+	private EmployeeMasterServiceImpl employeeMasterService;
 		
 	@Autowired
-	private EmployeeCardDetailsService employeeCardDetailsService;
+	private EmployeeCardDetailsServiceImpl employeeCardDetailsService;
 	
 	@Autowired
-	private EmployeeIssueDetailsService employeeIssueDetailsService;
+	private EmployeeIssueDetailsServiceImpl employeeIssueDetailsService;
 	
 	@GetMapping("/getAllEmployees")
 	public List<EmployeeMaster> getAllEmployees() throws DataUnavailableException{

@@ -23,11 +23,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import com.example.backend.models.LoanCardMaster;
-import com.example.backend.services.EmployeeCardDetailsService;
-import com.example.backend.services.EmployeeIssueDetailsService;
-import com.example.backend.services.EmployeeMasterService;
-import com.example.backend.services.ItemsMasterService;
-import com.example.backend.services.LoanCardMasterService;
+import com.example.backend.services.EmployeeCardDetailsServiceImpl;
+import com.example.backend.services.EmployeeIssueDetailsServiceImpl;
+import com.example.backend.services.EmployeeMasterServiceImpl;
+import com.example.backend.services.ItemsMasterServiceImpl;
+import com.example.backend.services.LoanCardMasterServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
@@ -39,19 +39,19 @@ public class LoanCardMasterTest {
 	private MockMvc mvc;
 	
 	@MockBean
-	private LoanCardMasterService loanCardMasterService;
+	private LoanCardMasterServiceImpl loanCardMasterService;
 	
 	@MockBean
-	private EmployeeCardDetailsService employeeCarddetailsService;
+	private EmployeeCardDetailsServiceImpl employeeCarddetailsService;
 	
 	@MockBean
-	private EmployeeIssueDetailsService employeeIssueDetailsService;
+	private EmployeeIssueDetailsServiceImpl employeeIssueDetailsService;
 	
 	@MockBean
-	private EmployeeMasterService employeeMasterService;
+	private EmployeeMasterServiceImpl employeeMasterService;
 	
 	@MockBean
-	private ItemsMasterService itemsMasterService;
+	private ItemsMasterServiceImpl itemsMasterService;
 	
 	
 	ObjectMapper mapper= new ObjectMapper().findAndRegisterModules().disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
