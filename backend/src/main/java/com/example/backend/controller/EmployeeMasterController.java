@@ -111,7 +111,7 @@ public class EmployeeMasterController {
 	
 	@Transactional
 	@PostMapping("/api/employee/apply-loan")
-	public Object applyLoan(@@Valid RequestBody ApplyLoanData loanData) throws ResourceNotFoundException {
+	public Object applyLoan(@Valid @RequestBody ApplyLoanData loanData) throws ResourceNotFoundException {
 
 
 		EmployeeMaster employeeMaster = employeeMasterService.getEmployeeMasterById(loanData.getEmployeeId()); 
