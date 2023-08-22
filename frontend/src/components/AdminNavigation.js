@@ -38,7 +38,7 @@ function AdminNavigation() {
             </NavDropdown>
             <NavDropdown  title="Loan" id="basic-nav-dropdown">
               <NavDropdown.Item href="/addLoanCard" >Add </NavDropdown.Item>
-              <NavDropdown.Item href="/viewLoans">View Loans</NavDropdown.Item>
+              <NavDropdown.Item href="/viewAllLoanCards">View Loans</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

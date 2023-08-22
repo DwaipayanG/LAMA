@@ -8,6 +8,8 @@ import AdminNavigation from "./AdminNavigation";
 
 export default function EditItem(){
     const location = useLocation();
+    
+    const [allCategory, setAllCategory] = useState([]);
 
     const [itemId, setItemId] = useState(location.state.itemId);
     const [itemCategory, setItemCategory] = useState('');
@@ -36,6 +38,41 @@ export default function EditItem(){
             console.log(error);
         });
     },[]);
+
+    useEffect(()=>{
+        const url="http://localhost:8080/getAllLoanTypes";
+        axios
+        .get(url)
+        .then((response) => {
+            console.log(response.data);
+            setAllCategory(response.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    },[]);
+
+    function SelectStatus(){
+        if(itemStatus==="N"){
+            return(
+            <select id="dropdown-basic-button" title="Dropdown button" onChange={itemStatusChangeHandler}>
+                <option selected="selected" value="N">No</option>
+                <option value="Y">Yes</option>
+            </select>
+            );
+        }
+
+        else {
+
+            return(
+                <select id="dropdown-basic-button" title="Dropdown button" onChange={itemStatusChangeHandler}>
+                    <option value="N">No</option>
+                    <option selected="selected" value="Y">Yes</option>
+                </select>
+                );
+
+        }
+    }
   
     const itemIdChangeHandler = (event) => {
         setItemId(event.target.value)
@@ -97,16 +134,21 @@ export default function EditItem(){
                 </Form.Group>
                 <div className="addItemColumn"> Item Status </div>
                     <div className="addItemValue">
-                        <select id="dropdown-basic-button" title="Dropdown button" onChange={itemStatusChangeHandler}>
-                                <option selected="selected">--Select--</option>
-                                <option value="N">No</option>
-                                <option value="Y">Yes</option>
-                        </select>
+                        <SelectStatus/>
                     </div>
-                <Form.Group className="mb-3">
-                    <Form.Label className="addItemColumn">Item Category</Form.Label>
-                    <Form.Control className="addItemValue" type="text" value={itemCategory} onChange={itemCategoryChangeHandler} id="itemCategory" />
-                </Form.Group>
+                <div className="addItemColumn"> Item Category :</div>
+                <div className="addItemValue">
+                    <select id="dropdown-basic-button" title="Dropdown button" onChange={itemCategoryChangeHandler}>
+                        {
+                            allCategory.map((val)=>{
+                                if (val=== itemCategory)
+                                return (<option selected="selected" val= {val}> {val}</option>);
+                                else
+                                return (<option val= {val}>{val}</option>)
+                            })
+                        }
+                    </select>
+                </div>
                 <Form.Group className="mb-3">
                     <Form.Label className="addItemColumn">Item Description</Form.Label>
                     <Form.Control className="addItemValue" type="text" value={itemDescription} onChange={itemDescriptionChangeHandler} id="itemDescription" />
