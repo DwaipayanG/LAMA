@@ -11,6 +11,7 @@ function LoginEmployee() {
 
     const [employeeId, setEmployeeId] = useState('');
     const [password, setPassword] = useState("");
+    const [error, setError] = useState(null);
 
     const employeeIdChangeHandler = (event) => {
         setEmployeeId(event.target.value)
@@ -28,10 +29,9 @@ function LoginEmployee() {
         })
         .then((response) => {
             //alert(response.data);
-            if(response.data==="Invalid employee ID"){
-              alert(response.data)
-            }else if(response.data ==="Wrong password"){
-              alert(response.data)
+            const data=response.data;
+            if(data["statusCode"]&&(data["statusCode"]==400||data["statusCode"]==404)){
+                alert(data["message"]);
             }else{
               sessionStorage.setItem("employeeId", response.data.employeeId);
               sessionStorage.setItem("employeeName",response.data.employeeName);
@@ -65,6 +65,9 @@ function LoginEmployee() {
             Submit
         </Button>
         </Form>
+        {
+            error && <div style={{color:"red"}}><b>{error}</b></div>
+        }
         </div>
         </div>
     );
