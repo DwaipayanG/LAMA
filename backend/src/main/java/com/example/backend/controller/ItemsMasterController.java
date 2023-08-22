@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.backend.exception.DataUnavailableException;
 import com.example.backend.exception.DuplicateEntryException;
 import com.example.backend.exception.ResourceNotFoundException;
 import com.example.backend.models.ItemsMaster;
@@ -27,8 +28,12 @@ public class ItemsMasterController {
 	private ItemsMasterService itemsMasterService;
 	
 	@GetMapping("/getAllItem")
-	public List<ItemsMaster> getAllItems(){
-		return itemsMasterService.getAllItems();
+	public List<ItemsMaster> getAllItems() throws DataUnavailableException{
+		List<ItemsMaster> allItems = itemsMasterService.getAllItems();
+		if(allItems.size()==0)
+			throw new DataUnavailableException("No Items present");
+		else
+			return allItems;
 	}
 	
 	@GetMapping("/getDistinctMakesByCategory")
@@ -55,10 +60,11 @@ public class ItemsMasterController {
 	@PostMapping("/addItem")
 	public ItemsMaster addItem(@RequestBody ItemsMaster itemsMaster) throws DuplicateEntryException {
 		try {
+			this.getItemById(itemsMaster.getItemId());
+			throw new DuplicateEntryException("Item already exists!");
+		} catch (ResourceNotFoundException e) {
+			// TODO Auto-generated catch block
 			return itemsMasterService.addItem(itemsMaster);
-		}catch (DuplicateKeyException e) {
-			throw new DuplicateEntryException("Item Id already exists!");
-			// TODO: handle exception
 		}
 	}
 	

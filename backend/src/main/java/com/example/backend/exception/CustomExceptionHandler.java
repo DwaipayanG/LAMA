@@ -43,4 +43,10 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler{
 	public @ResponseBody ErrorResponse handleDuplicateEntryException(DuplicateEntryException ex) {
 		return new ErrorResponse(400,ex.getMessage());
 	}
+	
+	@ExceptionHandler(value=DataUnavailableException.class)
+	public @ResponseBody ErrorResponse handleDataUnavailableException(DataUnavailableException ex)
+	{
+		return new ErrorResponse(400,ex.getMessage());
+	}
 }

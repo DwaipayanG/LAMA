@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.backend.exception.DataUnavailableException;
+import com.example.backend.exception.DuplicateEntryException;
 import com.example.backend.exception.ResourceNotFoundException;
 import com.example.backend.models.LoanCardMaster;
 import com.example.backend.services.LoanCardMasterService;
@@ -24,13 +26,24 @@ public class LoanCardMasterController {
 	private LoanCardMasterService loanCardMasterService;
 	
 	@GetMapping("/getAllLoanCards")
-	public List<LoanCardMaster> getAllLoanCard(){
-		return loanCardMasterService.getAllLoanCards();
+	public List<LoanCardMaster> getAllLoanCard() throws DataUnavailableException{
+		
+		List<LoanCardMaster> loanCards =  loanCardMasterService.getAllLoanCards();
+		if(loanCards.size()==0)
+			throw new DataUnavailableException("No Loan Cards present");
+		else
+			return loanCards;
 	}
 	
 	@PostMapping("/addLoanCard")
-	public LoanCardMaster addLoanCard(@RequestBody LoanCardMaster loanCard) {
-		return loanCardMasterService.addLoanCard(loanCard);
+	public LoanCardMaster addLoanCard(@RequestBody LoanCardMaster loanCard) throws DuplicateEntryException {
+		try {
+			LoanCardMaster loanCardMaster = this.getLoanCardById(loanCard.getLoanId());
+			throw new DuplicateEntryException("Loan card already exists!");
+		} catch (ResourceNotFoundException e) {
+			// TODO: handle exception
+			return loanCardMasterService.addLoanCard(loanCard);
+		}
 	}
 	
 	@GetMapping("/deleteLoanCard")

@@ -86,7 +86,8 @@ export default function ApplyLoans(){
         setValue("0");
     }
 
-    const submitActionHandler = async() => {
+    const submitActionHandler = async(event) => {
+        event.preventDefault();
         const getLoanCardUrl = "http://localhost:8080/getLoanCardByLoanType"
         const loanApplyUrl = "http://localhost:8080/applyLoan"
 

@@ -106,7 +106,7 @@ public class ItemsMaster {
 		this.employeeIssueDetails = item.getEmployeeIssueDetails();
 	}
 	
-	
+	public ItemsMaster() {}
 	
 	
 

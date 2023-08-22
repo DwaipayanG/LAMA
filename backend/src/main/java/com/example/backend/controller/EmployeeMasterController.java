@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.backend.exception.AuthenticationException;
+import com.example.backend.exception.DataUnavailableException;
 import com.example.backend.exception.DuplicateEntryException;
 import com.example.backend.exception.ResourceNotFoundException;
 import com.example.backend.models.ApplyLoanData;
@@ -39,8 +40,12 @@ public class EmployeeMasterController {
 	private EmployeeIssueDetailsService employeeIssueDetailsService;
 	
 	@GetMapping("/getAllEmployees")
-	public List<EmployeeMaster> getAllEmployees(){
-		return employeeMasterService.getAllEmployees();
+	public List<EmployeeMaster> getAllEmployees() throws DataUnavailableException{
+		List<EmployeeMaster> employees = employeeMasterService.getAllEmployees();
+		if(employees.size() == 0)
+			throw new DataUnavailableException("No Employees found.");
+		else
+			return employees;
 	}
 	
 	@GetMapping("/getEmployeeById")
