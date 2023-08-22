@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Table from 'react-bootstrap/Table';
 import Header from "./Header";
-import AdminNavigation from "./AdminNavigation";
+import EmployeeNavigation from "./EmployeeNavaigation";
 
 
 function ViewItems() {
@@ -31,7 +31,8 @@ function ViewItems() {
   return (
     <>
     <Header></Header>
-    <AdminNavigation></AdminNavigation>
+    <EmployeeNavigation/>
+    
     <Table striped bordered hover>
       <thead>
         <tr>

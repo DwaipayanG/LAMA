@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Table from 'react-bootstrap/Table';
 import Header from "./Header";
-import AdminNavigation from "./AdminNavigation";
+import EmployeeNavigation from "./EmployeeNavaigation";
 
 
 function ViewLoans() {
@@ -35,7 +35,8 @@ function ViewLoans() {
   return (
     <div>
       <Header/>
-      <AdminNavigation/>
+      <EmployeeNavigation/>
+     
     <Table striped bordered hover>
       <thead>
         <tr>

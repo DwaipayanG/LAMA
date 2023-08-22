@@ -8,6 +8,7 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import Header from "./Header";
 
 import "../style/ApplyLoan.css"
+import EmployeeNavigation from "./EmployeeNavaigation";
 
 export default function ApplyLoans(){
 
@@ -120,6 +121,7 @@ export default function ApplyLoans(){
     return (
         <div>
             <Header></Header>
+            <EmployeeNavigation/>
         <div  className="borderBox" >
             <h1> Apply Loan </h1>
            <hr/>
