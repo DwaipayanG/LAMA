@@ -3,6 +3,7 @@ import Card from 'react-bootstrap/Card';
 import Header from "./Header";
 import {Row,Col} from 'react-bootstrap';
 import "../style/Card.css"
+import EmployeeNavigation from "./EmployeeNavaigation";
 
 
 export default function EmployeeDasboard(){
@@ -12,7 +13,8 @@ export default function EmployeeDasboard(){
     return (
         <div>
             <Header></Header>
-        
+            <EmployeeNavigation/>
+                    
         <p className="welcomeText" style={{fontSize: "2em"}}> Welcome <b>{sessionStorage.getItem("employeeName")}</b> </p>
 
         <Row style={{width:"70%",margin:"auto"}} > 
