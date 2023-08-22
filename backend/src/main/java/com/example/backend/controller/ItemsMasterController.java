@@ -31,10 +31,10 @@ public class ItemsMasterController {
 		return itemsMasterService.getAllItems();
 	}
 	
-	@PostMapping("/getDistinctMakesByCategory")
+	@GetMapping("/getDistinctMakesByCategory")
 	@ResponseBody
-	public List<String> getDistinctMakesByCategory(@RequestBody ItemsMaster itemsMaster){
-		return itemsMasterService.getDistinctMakesByCategory(itemsMaster.getItemCategory());
+	public List<String> getDistinctMakesByCategory(@RequestParam("itemCategory") String itemCategory) throws ResourceNotFoundException{
+		return itemsMasterService.getDistinctMakesByCategory(itemCategory);
 	}
 	
 	@GetMapping("/getAllCategory")
@@ -43,7 +43,7 @@ public class ItemsMasterController {
 	}
 	
 	@GetMapping("/getItemByMakeAndCategory")
-	public ItemsMaster getItemByMakeAndCategory(@RequestParam("itemCategory") String itemCategory, @RequestParam("itemMake") String itemMake) {
+	public ItemsMaster getItemByMakeAndCategory(@RequestParam("itemCategory") String itemCategory, @RequestParam("itemMake") String itemMake) throws ResourceNotFoundException {
 		return itemsMasterService.getItemByMakeAndCategory(itemCategory, itemMake);
 	}
 	

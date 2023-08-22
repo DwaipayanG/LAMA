@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Link } from "react-router-dom";
@@ -11,8 +10,6 @@ import Header from "./Header";
 import "../style/ApplyLoan.css"
 
 export default function ApplyLoans(){
-
-    const [user,setUser]=useState(null);
 
     const [employeeId, setEmployeeId] = useState("");
     const [category, setCategory] = useState([]);
@@ -44,9 +41,7 @@ export default function ApplyLoans(){
     useEffect(()=>{
         const url="http://localhost:8080/getDistinctMakesByCategory";
         axios
-        .post(url,{
-            "itemCategory":selectedCategory
-        })
+        .get(url,{ params: {"itemCategory": selectedCategory }})
         .then((response) => {
             console.log(response.data);
             setMakeList(response.data);
@@ -98,9 +93,7 @@ export default function ApplyLoans(){
         const loanIssueDate = new Date();
 
         await axios
-            .post(getLoanCardUrl, {
-                "loanType": selectedCategory
-            })
+            .get(getLoanCardUrl, { params: {"loanType": selectedCategory } })
             .then((response)=> {
                 axios
                 .post(loanApplyUrl, {
