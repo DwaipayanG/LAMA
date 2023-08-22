@@ -1,62 +1,55 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Card from 'react-bootstrap/Card';
 import Header from "./Header";
+import {Row,Col} from 'react-bootstrap';
+import "../style/Card.css"
+
 
 export default function EmployeeDasboard(){
 
     const [user,setUser]=useState(null);
 
-    useEffect(()=>{
-        const url="http://localhost:8080/getUser"
-        const id=sessionStorage.getItem("employeeId");
-        // axios
-        // .get(url)
-        // .then((response) => {
-        //     alert(response.data);
-        // })
-        // .catch((error) => {
-        //     alert(error);
-        // });
-    });
-
     return (
         <div>
             <Header></Header>
-        <div style={{width:"70%",margin:"auto"}} className="d-flex justify-content-center my-2">
-            Welcome <b>{sessionStorage.getItem("employeeName")}</b>
-            <br/>
-            <Card style={{ width: '18rem' }}>
+        
+        <p className="welcomeText" style={{fontSize: "2em"}}> Welcome <b>{sessionStorage.getItem("employeeName")}</b> </p>
+
+        <Row style={{width:"70%",margin:"auto"}} > 
+             
+                <div>
+                  <div style={{ display: "flex", flexWrap: "wrap" }}>
+                    
+                      <Col lg="4" md="4" sm="6" xs="12">
+                <Card className="bgCard bg1">
             <Card.Body>
                 <Card.Title>Show Loans</Card.Title>
-                <Card.Text>
-                Some quick example text to build on the card title and make up the
-                bulk of the card's content.
-                </Card.Text>
                 <Card.Link href="/viewLoans">View Loans</Card.Link>
             </Card.Body>
             </Card>
-            <Card style={{ width: '18rem' }}>
+            </Col>
+
+            
+            <Col lg="4" md="4" sm="6" xs="12" >
+            <Card className="bgCard bg2 ">
             <Card.Body>
                 <Card.Title>Apply for loans</Card.Title>
-                <Card.Text>
-                Some quick example text to build on the card title and make up the
-                bulk of the card's content.
-                </Card.Text>
                 <Card.Link href="/applyLoan">Apply Loan</Card.Link>
             </Card.Body>
             </Card>
-            <Card style={{ width: '18rem' }}>
+            </Col>
+            <Col lg="4" md="4" sm="6" xs="12" >
+            <Card className="bgCard bg3 ">
             <Card.Body>
                 <Card.Title>Purchased Items</Card.Title>
-                <Card.Text>
-                Some quick example text to build on the card title and make up the
-                bulk of the card's content.
-                </Card.Text>
                 <Card.Link href="/viewitems">Items Purchased</Card.Link>
             </Card.Body>
             </Card>
-        </div>
+            </Col>
+            </div>
+            </div>
+            </Row>
+        
         </div>
     );
 }
