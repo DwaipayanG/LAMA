@@ -10,6 +10,7 @@ public interface LoanCardMasterService {
 	public LoanCardMaster getLoanCardByLoanType(String loanType) throws ResourceNotFoundException;
 	
 	public LoanCardMaster addLoanCard(LoanCardMaster loanCard);
+
 	
 	public LoanCardMaster getLoanCardById(String id) throws ResourceNotFoundException;
 	

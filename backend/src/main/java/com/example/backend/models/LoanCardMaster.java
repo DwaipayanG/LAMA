@@ -6,6 +6,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -29,7 +30,7 @@ public class LoanCardMaster {
 	
 	@OnDelete(action=OnDeleteAction.CASCADE)
 	@OneToMany(mappedBy="loanCardMaster",cascade = CascadeType.ALL,orphanRemoval = true)
-	@JsonBackReference
+	@JsonManagedReference(value="loanCard")
 	private List<EmployeeCardDetails> employeeCardDetails;
 	
 	public List<EmployeeCardDetails> getEmployeeCardDetails() {

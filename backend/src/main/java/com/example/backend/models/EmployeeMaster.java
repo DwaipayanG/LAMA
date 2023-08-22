@@ -62,7 +62,7 @@ public class EmployeeMaster {
 	
 	@OnDelete(action=OnDeleteAction.CASCADE)
 	@OneToMany(mappedBy="employeeMaster",cascade = CascadeType.ALL,orphanRemoval = true)
-	@JsonManagedReference
+	@JsonManagedReference(value="employeeCard")
 	private List<EmployeeCardDetails> employeeCardDetails;
 		
 	public List<EmployeeCardDetails> getEmployeeCardDetails() {
@@ -75,7 +75,7 @@ public class EmployeeMaster {
 
 	@OnDelete(action=OnDeleteAction.CASCADE)
 	@OneToMany(mappedBy="employeeMaster",cascade = CascadeType.ALL,orphanRemoval = true)
-	@JsonManagedReference
+	@JsonManagedReference(value="employeeIssue")
 	private List<EmployeeIssueDetails> employeeIssueDetails;
 
 	@Column

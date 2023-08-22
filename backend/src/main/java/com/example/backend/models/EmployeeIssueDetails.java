@@ -30,11 +30,12 @@ public class EmployeeIssueDetails {
 	
 	@ManyToOne
 	@JoinColumn(name="item_id")
+	@JsonBackReference(value="itemIssue")
 	private ItemsMaster itemsMaster;
 	
 	@ManyToOne
 	@JoinColumn(name="employee_id")
-	@JsonBackReference
+	@JsonBackReference(value="employeeIssue")
 	private EmployeeMaster employeeMaster;
 	
 	public int getIssueId() {
