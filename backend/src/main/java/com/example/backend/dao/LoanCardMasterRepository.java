@@ -1,5 +1,7 @@
 package com.example.backend.dao;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -9,4 +11,7 @@ public interface LoanCardMasterRepository extends JpaRepository <LoanCardMaster 
 
 	@Query(value="SELECT * FROM loan_card_master WHERE loan_type = :loanType LIMIT 1", nativeQuery=true)
 	public LoanCardMaster findLoanCardByLoanType(String loanType);
+	
+	@Query("SELECT DISTINCT loanType from LoanCardMaster")
+	public List<String> getAllLoanTypes();
 }

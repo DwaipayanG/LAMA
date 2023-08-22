@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import "../style/AddItem.css";
@@ -9,12 +9,27 @@ import AdminNavigation from "./AdminNavigation";
 export default function AddItem(){
     const baseURL = "http://localhost:8080/addItem";
 
+    const [allCategory, setAllCategory] = useState([]);
     const [itemId, setItemId] = useState('');
     const [itemCategory, setItemCategory] = useState('');
     const [itemDescription, setItemDescription] = useState('');
     const [itemValue, setItemValue] = useState('');
     const [itemMake, setItemMake] = useState('');
     const [itemStatus, setItemStatus] = useState("");
+  
+    useEffect(()=>{
+        const url="http://localhost:8080/getAllLoanTypes";
+        axios
+        .get(url)
+        .then((response) => {
+            console.log(response.data);
+            setAllCategory(response.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    },[]);
+
   
     const itemIdChangeHandler = (event) => {
         setItemId(event.target.value)
@@ -77,10 +92,17 @@ export default function AddItem(){
                                 <option value="Y">Yes</option>
                         </select>
                     </div>
-                <Form.Group className="mb-3">
-                    <Form.Label className="addItemColumn">Item Category</Form.Label>
-                    <Form.Control className="addItemValue" type="text" value={itemCategory} onChange={itemCategoryChangeHandler} id="itemCategory" />
-                </Form.Group>
+                <div className="addItemColumn"> Item Category :</div>
+                    <div className="addItemValue">
+                        <select id="dropdown-basic-button" title="Dropdown button" onChange={itemCategoryChangeHandler}>
+                            <option selected="selected">--Select--</option>
+                            {
+                                allCategory.map((val)=>{
+                                    return (<option value={val}>{val}</option>);
+                                })
+                            }
+                        </select>
+                    </div>
                 <Form.Group className="mb-3">
                     <Form.Label className="addItemColumn">Item Description</Form.Label>
                     <Form.Control className="addItemValue" type="text" value={itemDescription} onChange={itemDescriptionChangeHandler} id="itemDescription" />

@@ -37,6 +37,10 @@ public class LoanCardMasterServiceImpl implements LoanCardMasterService{
 		}
 	}
 	
+	public List<String> getAllLoanTypes(){
+		return loanCardMasterRepo.getAllLoanTypes();
+	}
+	
 	public LoanCardMaster updateLoanCard(LoanCardMaster loanCardMaster, LoanCardMaster newLoanCardMaster) {
 		loanCardMaster.setDurationInYears(newLoanCardMaster.getDurationInYears());
 		loanCardMasterRepo.save(loanCardMaster);

@@ -37,6 +37,11 @@ public class LoanCardMasterController {
 			return loanCards;
 	}
 	
+	@GetMapping("/getAllLoanTypes")
+	public List<String> getAllLoanTypes(){
+		return loanCardMasterService.getAllLoanTypes();
+	}
+	
 	@PostMapping("/addLoanCard")
 
 	public LoanCardMaster addLoanCard(@RequestBody LoanCardMaster loanCard) throws DuplicateEntryException {
