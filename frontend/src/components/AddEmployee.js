@@ -62,7 +62,11 @@ export default function AddEmployee(){
                 "password":password
             })
             .then((response) => {
-                alert(response.data);
+                const data=response.data;
+                if(data["statusCode"]&&data["statusCode"]==400)
+                    alert(data["message"]);
+                else
+                    alert("Employee created!");
             })
             .catch((error) => {
                 alert(error);

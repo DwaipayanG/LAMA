@@ -3,10 +3,22 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import "../style/Header.css"
+import Button from 'react-bootstrap/Button';
+import "../style/Header.css";
+import { useNavigate } from "react-router-dom";
+
+
 
 
 function AdminNavigation() {
+
+  const navigate = useNavigate();
+
+  function handleLogout (){
+    sessionStorage.clear();
+    navigate("/");
+  }
+
   return (
     <div>
     <Navbar expand="lg" className="bg-body-tertiary justify-content-center m-auto navigationBar">
@@ -30,7 +42,11 @@ function AdminNavigation() {
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
+        <Button variant="danger" onClick={() =>handleLogout()}>Logout</Button>
+
+        
       </Container>
+      
     </Navbar>
     </div>
   );

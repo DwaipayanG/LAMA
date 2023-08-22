@@ -30,33 +30,35 @@ public class EmployeeMaster {
 	private String employeeId;
 	
 	@Valid
-	
-	
-	@Column(name="employee_name", length=20)
-	@NotBlank(message = "cannot be blank")
+	@Column(name="employee_name", nullable = false, length=20)
+	@NotBlank(message = "employee name cannot be blank")
 	private String employeeName;
 	
-	@NotNull
+	
+	@Column(name="designation", nullable = false, length=25)
 	@NotBlank(message ="designation cannot be empty")
-	@Column(name="designation", length=25)
 	private String designation;
 	
 	
-	@Column(name="department", length=25)
+	@Column(name="department", nullable = false, length=25)
 	@NotBlank(message ="department cannot be empty")
 	private String department;
 	
 	
-	@Column
+	@Column(name = "gender")
 	private char gender;
 	
-	@NotNull
-	@Column(name="date_of_birth")
+	
+	@Column(name="date_of_birth", nullable = false)
+	//@NotBlank(message ="Enter your date of birth")
+	//notblank works only for string datatype
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date dateOfBirth;
 	
-	@NotNull
-	@Column(name="date_of_joining")
+	
+	@Column(name="date_of_joining", nullable = false)
+	//@NotBlank(message ="Enter your date of joining")
+	//notblank works only for string datatype
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date dateOfJoining;
 	

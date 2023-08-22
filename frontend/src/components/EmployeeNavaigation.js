@@ -3,8 +3,17 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import "../style/Header.css"
+import { useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
+
 function EmployeeNavigation (){
 
+  const navigate = useNavigate();
+
+  function handleLogout (){
+    sessionStorage.clear();
+    navigate("/");
+  }
     return (
 <div>
     <Navbar expand="lg" className="bg-body-tertiary justify-content-center m-auto navigationBar">
@@ -19,6 +28,8 @@ function EmployeeNavigation (){
             <Nav.Link href="/applyLoan" >Apply Loan</Nav.Link>
           </Nav>
         </Navbar.Collapse>
+        <Button variant="danger" onClick={() =>handleLogout()}>Logout</Button>
+
       </Container>
     </Navbar>
     </div>

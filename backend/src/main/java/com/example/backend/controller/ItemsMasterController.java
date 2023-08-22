@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +24,7 @@ import com.example.backend.services.ItemsMasterServiceImpl;
 import jakarta.validation.Valid;
 
 @RestController
+@Validated
 @CrossOrigin("http://localhost:3000")
 public class ItemsMasterController {
 	
@@ -40,7 +42,7 @@ public class ItemsMasterController {
 	
 	@GetMapping("/api/item/makes-by-category")
 	@ResponseBody
-	public List<String> getDistinctMakesByCategory(@RequestParam("itemCategory") String itemCategory) throws ResourceNotFoundException{
+	public List<String> getDistinctMakesByCategory(@Valid @RequestParam("itemCategory") String itemCategory) throws ResourceNotFoundException{
 		return itemsMasterService.getDistinctMakesByCategory(itemCategory);
 	}
 	
@@ -50,17 +52,17 @@ public class ItemsMasterController {
 	}
 	
 	@GetMapping("/api/item/by-make-and-category")
-	public ItemsMaster getItemByMakeAndCategory(@RequestParam("itemCategory") String itemCategory, @RequestParam("itemMake") String itemMake) throws ResourceNotFoundException {
+	public ItemsMaster getItemByMakeAndCategory(@Valid @RequestParam("itemCategory") String itemCategory,@Valid @RequestParam("itemMake") String itemMake) throws ResourceNotFoundException {
 		return itemsMasterService.getItemByMakeAndCategory(itemCategory, itemMake);
 	}
 	
 	@GetMapping("/api/item/by-item-id")
-	public ItemsMaster getItemById(@RequestParam("itemId") String itemId) throws ResourceNotFoundException {
+	public ItemsMaster getItemById(@Valid @RequestParam("itemId") String itemId) throws ResourceNotFoundException {
 		return itemsMasterService.getItemById(itemId);
 	}
 
 	@PostMapping("/api/item")
-	public ItemsMaster addItem(@RequestBody ItemsMaster itemsMaster) throws DuplicateEntryException {
+	public ItemsMaster addItem(@Valid @RequestBody ItemsMaster itemsMaster) throws DuplicateEntryException {
 		try {
 			this.getItemById(itemsMaster.getItemId());
 			throw new DuplicateEntryException("Item already exists!");
@@ -71,7 +73,7 @@ public class ItemsMasterController {
 	}
 	
 	@PutMapping("/api/item")
-	public ItemsMaster updateItem(@RequestParam String itemId,@RequestBody ItemsMaster newItemsMaster) throws ResourceNotFoundException {
+	public ItemsMaster updateItem(@Valid @RequestParam String itemId,@Valid @RequestBody ItemsMaster newItemsMaster) throws ResourceNotFoundException {
 
 		ItemsMaster itemsMaster = itemsMasterService.getItemById(itemId);
 		itemsMaster = itemsMasterService.updateItem(itemsMaster, newItemsMaster);
@@ -82,7 +84,7 @@ public class ItemsMasterController {
 
 	
 	@GetMapping("/deleteItem")
-	public String deleteItemById(@RequestParam String itemId) {
+	public String deleteItemById(@Valid @RequestParam String itemId) {
 		itemsMasterService.deleteItemById(itemId);
 		return "deleted";
 	}

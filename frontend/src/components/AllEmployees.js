@@ -24,7 +24,11 @@ function AllEmployees() {
         .get(getURL)
         .then((response) => {
             console.log(response.data);
-            setEmployees(response.data);
+            const data=response.data;
+            if(data['statusCode']&&data['statusCode']==400)
+              alert("No data to display");
+            else
+              setEmployees(response.data);
         })
         .catch((err) =>{
           console.log(err);
