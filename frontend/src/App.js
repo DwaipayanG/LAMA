@@ -20,12 +20,13 @@ import AllLoanCards from './components/AllLoanCards';
 import EditItem from './components/EditItem';
 import EditLoanCard from './components/EditLoanCard';
 import EditEmployee from './components/EditEmployee';
-
+import PageNotFound from './components/PageNotFound';
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
+          <Route exact path ="*" element={<PageNotFound/>}/>
           <Route exact path="/" element={ <Home/> }/> 
           <Route exact path="/loginAdmin" element={ <LoginAdmin/> }/>
           <Route exact path="/loginEmployee"element= { <LoginEmployee/> }/>
