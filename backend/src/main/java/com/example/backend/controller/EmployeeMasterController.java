@@ -57,7 +57,7 @@ public class EmployeeMasterController {
 	}
 	
 	@GetMapping("/getEmployeeById")
-	public EmployeeMaster getEmployeeMaster(@RequestParam("employeeId") String employeeId) throws ResourceNotFoundException {
+	public EmployeeMaster getEmployeeMaster(@Valid @RequestParam("employeeId") String employeeId) throws ResourceNotFoundException {
 		EmployeeMaster employeeMaster = employeeMasterService.getEmployeeMasterById(employeeId);
 		if(employeeMaster == null)
 			throw new ResourceNotFoundException("Employee Id not found");
@@ -67,7 +67,7 @@ public class EmployeeMasterController {
 	
 	@PutMapping("/updateEmployee")
 
-	public EmployeeMaster updateEmployeeMaster(@RequestParam String employeeId,@RequestBody EmployeeMaster newEmployeeMaster) throws ResourceNotFoundException {
+	public EmployeeMaster updateEmployeeMaster(@Valid @RequestParam String employeeId,@Valid @RequestBody EmployeeMaster newEmployeeMaster) throws ResourceNotFoundException {
 		EmployeeMaster employeeMaster = employeeMasterService.getEmployeeMasterById(employeeId);
 
 		employeeMaster = employeeMasterService.updateEmployee(employeeMaster, newEmployeeMaster);
@@ -77,7 +77,7 @@ public class EmployeeMasterController {
 	
 	@GetMapping("/deleteEmployee")
 
-	public String deleteEmployeeById(@RequestParam String employeeId) throws ResourceNotFoundException {
+	public String deleteEmployeeById(@Valid @RequestParam String employeeId) throws ResourceNotFoundException {
 		EmployeeMaster employeeMaster = this.getEmployeeMaster(employeeId);
 
 		employeeMasterService.deleteEmployeeMasterById(employeeId);
@@ -86,7 +86,7 @@ public class EmployeeMasterController {
 	
 	@PostMapping("/addEmployee")
 
-	public EmployeeMaster addEmployeeMaster(@RequestBody EmployeeMaster newEmployee) throws DuplicateEntryException 
+	public EmployeeMaster addEmployeeMaster(@Valid @RequestBody EmployeeMaster newEmployee) throws DuplicateEntryException 
 
 	{
 		try {
@@ -103,7 +103,7 @@ public class EmployeeMasterController {
 	@PostMapping("/loginEmployee")
 	@ResponseBody
 
-	public Object loginEmployeeMaster(@RequestBody EmployeeMasterLogin empLogin) throws ResourceNotFoundException, AuthenticationException{
+	public Object loginEmployeeMaster(@Valid @RequestBody EmployeeMasterLogin empLogin) throws ResourceNotFoundException, AuthenticationException{
 
 		Object response;
 		EmployeeMaster existingEmployee = employeeMasterService.getEmployeeMasterById(empLogin.getEmployeeId());
@@ -118,7 +118,7 @@ public class EmployeeMasterController {
 	@Transactional
 	@PostMapping("/applyLoan")
 
-	public Object applyLoan(@RequestBody ApplyLoanData loanData) throws ResourceNotFoundException {
+	public Object applyLoan(@Valid @RequestBody ApplyLoanData loanData) throws ResourceNotFoundException {
 
 
 		EmployeeMaster employeeMaster = employeeMasterService.getEmployeeMasterById(loanData.getEmployeeId()); 

@@ -14,6 +14,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="loan_card_master")
@@ -22,10 +23,12 @@ public class LoanCardMaster {
 	@Column(name="loan_id", nullable=false, length=6)
 	private String loanId;
 	
-	@Column(name="loan_type", length=15)
+	@Column(name="loan_type",nullable=false, length=15)
+	@NotBlank(message = "loan type cannot be left blank")
 	private String loanType;
 	
-	@Column(name="duration_in_years")
+	@Column(name="duration_in_years", nullable=false)
+	@NotBlank(message = "enter duration in years")
 	private int durationInYears;
 	
 	@OnDelete(action=OnDeleteAction.CASCADE)

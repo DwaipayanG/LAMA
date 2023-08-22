@@ -3,6 +3,7 @@ package com.example.backend.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +22,7 @@ import com.example.backend.services.LoanCardMasterServiceImpl;
 import jakarta.validation.Valid;
 
 @RestController
+@Validated
 @CrossOrigin("http://localhost:3000")
 public class LoanCardMasterController {
 	
@@ -44,7 +46,7 @@ public class LoanCardMasterController {
 	
 	@PostMapping("/addLoanCard")
 
-	public LoanCardMaster addLoanCard(@RequestBody LoanCardMaster loanCard) throws DuplicateEntryException {
+	public LoanCardMaster addLoanCard(@Valid @RequestBody LoanCardMaster loanCard) throws DuplicateEntryException {
 		try {
 			LoanCardMaster loanCardMaster = this.getLoanCardById(loanCard.getLoanId());
 			throw new DuplicateEntryException("Loan card already exists!");
@@ -55,14 +57,14 @@ public class LoanCardMasterController {
 	}
 	
 	@GetMapping("/deleteLoanCard")
-	public String deleteLoanCard( @RequestParam String loanId) {
+	public String deleteLoanCard(@Valid @RequestParam String loanId) {
 		loanCardMasterService.deleteLoanCard(loanId);
 		return "deleted";
 	}
 	
 	@PutMapping("/updateLoanCard")
 
-	public LoanCardMaster updateLoanCard(@RequestParam String loanId, @RequestBody LoanCardMaster newLoanCardMaster) throws ResourceNotFoundException {
+	public LoanCardMaster updateLoanCard(@Valid @RequestParam String loanId, @Valid @RequestBody LoanCardMaster newLoanCardMaster) throws ResourceNotFoundException {
 
 		LoanCardMaster loanCardMaster = loanCardMasterService.getLoanCardById(loanId);
 		loanCardMaster = loanCardMasterService.updateLoanCard(loanCardMaster, newLoanCardMaster);
@@ -72,12 +74,12 @@ public class LoanCardMasterController {
 	@GetMapping("/getLoanCardByLoanType")
 	@ResponseBody
 
-	public LoanCardMaster getLoanCardByLoanType(@RequestParam("loanType") String loanType) throws ResourceNotFoundException {
+	public LoanCardMaster getLoanCardByLoanType(@Valid @RequestParam("loanType") String loanType) throws ResourceNotFoundException {
 		return loanCardMasterService.getLoanCardByLoanType(loanType);
 	}
 	
 	@GetMapping("/getLoanCardById")
-	public LoanCardMaster getLoanCardById(@RequestParam("loanId") String loanId) throws ResourceNotFoundException {
+	public LoanCardMaster getLoanCardById(@Valid @RequestParam("loanId") String loanId) throws ResourceNotFoundException {
 		return loanCardMasterService.getLoanCardById(loanId);
 	}
 }

@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="employee_issue_details")
@@ -21,11 +22,12 @@ public class EmployeeIssueDetails {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int issueId;
 	
+	@Column(name="issue_date", nullable = false)
 	
-	@Column(name="issue_date")
 	private Date issueDate;
 	
-	@Column(name="return_date")
+	@Column(name="return_date", nullable = false)
+	
 	private Date returnDate;
 	
 	@ManyToOne

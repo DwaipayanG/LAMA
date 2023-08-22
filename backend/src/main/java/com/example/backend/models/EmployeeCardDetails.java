@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="employee_card_details")
@@ -23,7 +24,8 @@ public class EmployeeCardDetails{
 	private int cardId;
 	
 
-	@Column(name="card_issue_date")
+	@Column(name="card_issue_date", nullable = false)
+	
 	private Date cardIssueDate;
 	
 	

@@ -13,6 +13,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="items_master")
@@ -21,19 +22,22 @@ public class ItemsMaster {
 	@Column(name="item_id", nullable=false, length=4)
 	private String itemId;
 	
-	@Column(name="item_description", length=25)
+	@Column(name="item_description",  length=25)
 	private String itemDescription;
 	
-	@Column(name="item_status")
+	@Column(name="item_status", nullable = false)
+	@NotBlank(message ="Item status is missing")
 	private char itemStatus;
 	
 	@Column(name="item_make", length=25)
 	private String itemMake;
 	
-	@Column(name="item_category", length=20)
+	@Column(name="item_category", nullable = false, length=20)
+	@NotBlank(message ="Item category is missing")
 	private String itemCategory;
 	
-	@Column(name="item_valuation")
+	@Column(name="item_valuation", nullable = false)
+	@NotBlank(message ="IssItem valuation date is missing")
 	private int itemValuation;
 	
 	@OnDelete(action=OnDeleteAction.CASCADE)
