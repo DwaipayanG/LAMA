@@ -28,7 +28,7 @@ public class LoanCardMaster {
 	private String loanType;
 	
 	@Column(name="duration_in_years", nullable=false)
-	@NotBlank(message = "enter duration in years")
+//	@NotBlank(message = "enter duration in years")
 	private int durationInYears;
 	
 	@OnDelete(action=OnDeleteAction.CASCADE)

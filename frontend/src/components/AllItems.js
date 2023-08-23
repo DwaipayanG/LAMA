@@ -10,6 +10,7 @@ import { FcEmptyTrash } from "react-icons/fc";
 
 function AllItems() {
     const [items, setItems] = useState([]);
+    const [error,setError] = useState(null);
     const navigate = useNavigate();
 
     useEffect(()=>{
@@ -20,7 +21,7 @@ function AllItems() {
             console.log(response.data);
             const data=response.data;
             if(data['statusCode']&&data['statusCode']==400)
-              alert("No data to display");
+              setError("No data to display");
             else
               setItems(response.data);
         })
@@ -43,6 +44,7 @@ function AllItems() {
           setItems(itemData);
           
         }
+        navigate("/viewAllItems");
       } catch(err){
         console.error("could not delete the item");
       }
@@ -59,6 +61,8 @@ function AllItems() {
     <Header></Header>
     <AdminNavigation/>
     <h3>View All Items</h3>
+    {
+    !error &&
     <Table striped bordered hover>
       <thead>
         <tr>
@@ -89,6 +93,12 @@ function AllItems() {
     ))}
       </tbody>
     </Table>
+    }
+    {
+      error
+      &&
+      <div>{error}</div>
+    }
     </div>
   );
 }

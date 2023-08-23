@@ -16,6 +16,7 @@ export default function AddItem(){
     const [itemValue, setItemValue] = useState('');
     const [itemMake, setItemMake] = useState('');
     const [itemStatus, setItemStatus] = useState("");
+    const [error, setError] = useState(null);
   
     useEffect(()=>{
         const url="http://localhost:8080/api/loan-card/all-loan-types";
@@ -55,6 +56,7 @@ export default function AddItem(){
     }
 
     const submitActionHandler = (event) => {
+        event.preventDefault();
         axios
             .post(baseURL, {
                 "itemId": itemId,
@@ -67,7 +69,7 @@ export default function AddItem(){
             .then((response) => {
                 const data=response.data;
                 if(data["statusCode"]&&data["statusCode"]==400)
-                    alert(data["message"]);
+                    setError(data["message"]);
                 else
                     alert("Item created");
             })
@@ -123,6 +125,7 @@ export default function AddItem(){
                     Submit
                 </Button>
             </Form>
+            {error && <div style={{color:"red"}}><b>{error}</b></div>}
         </div>
         </div>
     );

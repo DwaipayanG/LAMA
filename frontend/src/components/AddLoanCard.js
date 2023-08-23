@@ -9,11 +9,12 @@ import { useNavigate } from "react-router-dom";
 export default function AddLoanCard(){
 
     const baseURL = "http://localhost:8080/api/loan-card";
-    navigation = useNavigate();
+    const navigation = useNavigate();
 
     const [loanId, setLoanId] = useState("");
     const [loanType, setLoanType] = useState("");
     const [duration, setDuration] = useState("");
+    const [error, setError] = useState(null);
 
     const loanIdChangeHandler = (event) => {
         setLoanId(event.target.value)
@@ -28,7 +29,7 @@ export default function AddLoanCard(){
     }
 
     const submitActionHandler = (event) => {
-        
+        event.preventDefault();
         axios
             .post(baseURL, {
                 "loanId": loanId,
@@ -38,9 +39,9 @@ export default function AddLoanCard(){
             .then((response) => {
                 console.log(response.data)
                 const data=response.data;
-                if(data["statusCode"]&&data["statusCode"]==400)
-                    alert(data["message"]);
-                else
+                if(data["statusCode"]&&data["statusCode"]==400){
+                    setError(data["message"]);
+                }else
                     alert("Loan Card created!");
             })
             .catch((error) => {
@@ -74,6 +75,7 @@ export default function AddLoanCard(){
                     Submit
                 </Button>
             </Form>
+            {error && <div style={{color:"red"}}><b>{error}</b></div>}
         </div>
         </div>
     );

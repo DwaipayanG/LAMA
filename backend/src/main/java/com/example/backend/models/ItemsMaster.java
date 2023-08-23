@@ -26,7 +26,7 @@ public class ItemsMaster {
 	private String itemDescription;
 	
 	@Column(name="item_status", nullable = false)
-	@NotBlank(message ="Item status is missing")
+//	@NotBlank(message ="Item status is missing")
 	private char itemStatus;
 	
 	@Column(name="item_make", length=25)
@@ -37,7 +37,7 @@ public class ItemsMaster {
 	private String itemCategory;
 	
 	@Column(name="item_valuation", nullable = false)
-	@NotBlank(message ="IssItem valuation date is missing")
+//	@NotBlank(message ="IssItem valuation date is missing")
 	private int itemValuation;
 	
 	@OnDelete(action=OnDeleteAction.CASCADE)

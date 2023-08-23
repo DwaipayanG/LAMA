@@ -17,6 +17,7 @@ export default function AddEmployee(){
     const [password, setPassword] = useState("");
     const [dateOfBirth, setDateOfBirth] = useState(null);
     const [dateOfJoining, setDateOfJoining] = useState(null);
+    const [error, setError] = useState(null);
 
     const employeeIdChangeHandler = (event) => {
         setEmployeeId(event.target.value)
@@ -64,7 +65,7 @@ export default function AddEmployee(){
             .then((response) => {
                 const data=response.data;
                 if(data["statusCode"]&&data["statusCode"]==400)
-                    alert(data["message"]);
+                    setError(data["message"]);
                 else
                     alert("Employee created!");
             })
@@ -117,6 +118,7 @@ export default function AddEmployee(){
                     Submit
                 </Button>
             </Form>
+            {error && <div style={{color:"red"}}><b>{error}</b></div>}
         </div>
         </div>
     );

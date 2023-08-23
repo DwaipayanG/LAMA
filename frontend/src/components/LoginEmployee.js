@@ -31,7 +31,7 @@ function LoginEmployee() {
             //alert(response.data);
             const data=response.data;
             if(data["statusCode"]&&(data["statusCode"]==400||data["statusCode"]==404)){
-                alert(data["message"]);
+                setError(data["message"]);
             }else{
               sessionStorage.setItem("employeeId", response.data.employeeId);
               sessionStorage.setItem("employeeName",response.data.employeeName);
