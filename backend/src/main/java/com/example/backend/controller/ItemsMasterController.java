@@ -83,7 +83,7 @@ public class ItemsMasterController {
 	
 
 	
-	@GetMapping("/deleteItem")
+	@GetMapping("/api/item")
 	public String deleteItemById(@Valid @RequestParam String itemId) {
 		itemsMasterService.deleteItemById(itemId);
 		return "deleted";

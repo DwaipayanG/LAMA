@@ -33,7 +33,7 @@ function AllLoanCards() {
     const handleDelete = async (id)=>{
 
       try{
-        const response= await axios.get("http://localhost:8080/deleteLoanCard",{params: {loanId:id}});
+        const response= await axios.delete("http://localhost:8080/api/loan-card",{params: {loanId:id}});
         console.log(response.data)
         if(response.data ==="Failue"){
           console.error("Loan Id Not Found");

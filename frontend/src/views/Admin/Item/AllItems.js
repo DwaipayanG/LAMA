@@ -34,7 +34,7 @@ function AllItems() {
     const handleDelete = async (id)=>{
 
       try{
-        const response= await axios.get("http://localhost:8080/deleteItem",{params: {itemId:id}});
+        const response= await axios.delete("http://localhost:8080/api/item",{params: {itemId:id}});
         console.log(response.data)
         if(response.data ==="Failue"){
           console.error("Item Id Not Found");

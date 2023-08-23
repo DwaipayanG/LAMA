@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -55,7 +56,7 @@ public class LoanCardMasterController {
 		}
 	}
 	
-	@GetMapping("/deleteLoanCard")
+	@DeleteMapping("/api/loan-card")
 	public String deleteLoanCard(@Valid @RequestParam String loanId) {
 		loanCardMasterService.deleteLoanCard(loanId);
 		return "deleted";

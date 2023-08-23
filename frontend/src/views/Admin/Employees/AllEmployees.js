@@ -38,7 +38,7 @@ function AllEmployees() {
     const handleDelete = async (id)=>{
 
       try{
-        const response= await axios.get("http://localhost:8080/deleteEmployee",{params: {employeeId:id}});
+        const response= await axios.delete("http://localhost:8080/api/employee",{params: {employeeId:id}});
         console.log(response.data)
         if(response.data ==="Failue"){
           console.error("User Id Not Found");
