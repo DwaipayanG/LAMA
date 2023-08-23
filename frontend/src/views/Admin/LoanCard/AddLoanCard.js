@@ -2,9 +2,9 @@ import axios from "axios";
 import { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import "../style/AddLoanCard.css";
-import Header from "./Header";
-import AdminNavigation from "./AdminNavigation";
+import "../../../style/AddLoanCard.css";
+import Header from "../../../components/Header";
+import AdminNavigation from "../../../components/AdminNavigation";
 import { useNavigate } from "react-router-dom";
 export default function AddLoanCard(){
 

@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Header from "./Header";
-import AdminNavigation from "./AdminNavigation";
+import Header from "../../../components/Header";
+import AdminNavigation from "../../../components/AdminNavigation";
 
 export default function EditItem(){
     const location = useLocation();

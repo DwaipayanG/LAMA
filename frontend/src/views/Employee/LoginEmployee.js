@@ -3,7 +3,7 @@ import { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from "react-router-dom";
-import Header from "./Header";
+import Header from "../../components/Header";
 
 function LoginEmployee() {
     const baseURL = "http://localhost:8080/api/employee/login";

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import Card from 'react-bootstrap/Card';
 import {Row,Col} from 'react-bootstrap';
-import Header from "./Header";
-import AdminNavigation from "./AdminNavigation";
-import "../style/Card.css"
+import Header from "../../components/Header";
+import AdminNavigation from "../../components/AdminNavigation";
+import "../../style/Card.css"
 
 export default function AdminDashboard(){
 

@@ -17,7 +17,7 @@ function EmployeeNavigation (){
   }
 
   useEffect(() => {
-    const loggedInUser = sessionStorage.getItem("adminUsername");
+    const loggedInUser = sessionStorage.getItem("employeeName");
     if (loggedInUser === null) {
       navigate("/");
     }

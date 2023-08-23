@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Table from 'react-bootstrap/Table';
-import Header from "./Header";
-import EmployeeNavigation from "./EmployeeNavaigation";
+import Header from "../../components/Header";
+import EmployeeNavigation from "../../components/EmployeeNavaigation";
 
 
 function ViewItems() {
