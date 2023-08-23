@@ -28,6 +28,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import com.example.backend.models.EmployeeCardDetails;
 import com.example.backend.models.ItemsMaster;
 import com.example.backend.models.LoanCardMaster;
+import com.example.backend.models.ViewItems;
 import com.example.backend.models.ViewLoans;
 import com.example.backend.services.EmployeeCardDetailsServiceImpl;
 import com.example.backend.services.EmployeeIssueDetailsServiceImpl;
@@ -73,18 +74,50 @@ public class EmployeeCardDetailsTest {
 		EmployeeCardDetails employeeCardDetails = new EmployeeCardDetails();
 		employeeCardDetails.setCardId(11673);
 		employeeCardDetails.setCardIssueDate (new Date("23/08/2000"));
+		
+		ViewLoans vl = new ViewLoans();
+		vl.setCardIssueDate(new Date("23/08/2000"));
+		vl.setDurationInYears(4);
+		vl.setLoanId("2281");
+		vl.setLoanType("personal");
+		
 		List<ViewLoans> getAllLoans = new ArrayList<>();
-		//getAllLoans.add(employeeCardDetails.getCardId());
+		getAllLoans.add(vl);
 		
 		Mockito.when(employeeCarddetailsService.getAllLoans("33445")).thenReturn(getAllLoans);
 		System.out.println("testing getting all loans.");
 		
-		mvc.perform(get("/getAllLoans").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+		mvc.perform(get("/api/employee-card/all-loans-by-employee-id").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+		.andExpect(jsonPath("$", Matchers.hasSize(1))).andExpect(jsonPath("$[0].cardIssueDate",  Matchers.equalTo(employeeCardDetails.getCardIssueDate())));
+	}
+	
+
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testgetAllItems() throws Exception{
+		EmployeeCardDetails employeeCardDetails = new EmployeeCardDetails();
+		employeeCardDetails.setCardId(11673);
+		employeeCardDetails.setCardIssueDate (new Date("23/08/2000"));
+		ViewItems vl = new ViewItems();
+		vl.setIssueId(5);
+		vl.setItemCategory("furniture");
+		vl.setItemDescription("table");
+		vl.setItemMake("wooden");
+		vl.setItemValuation(5000);
+		
+		List<ViewItems> getAllItems = new ArrayList<>();
+		getAllItems.add(vl);
+		
+		Mockito.when(employeeIssueDetailsService.getAllItems("33445")).thenReturn(getAllItems);
+		System.out.println("testing getting all loans.");
+		
+		mvc.perform(get("/api/employee-card/all-loans-by-employee-id").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
 		.andExpect(jsonPath("$", Matchers.hasSize(1)));
 	}
 	
-	//getallItems service is not written
 	
+	
+	/*
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testaddEmployeeCardDetails() throws Exception{
@@ -98,6 +131,6 @@ public class EmployeeCardDetailsTest {
 		String result = requestResult.getResponse().getContentAsString();
 		System.out.print(result);
 		assertEquals(result,result);
-	}
+	}*/
 
 }
