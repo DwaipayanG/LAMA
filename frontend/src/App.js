@@ -2,25 +2,25 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import LoginEmployee from './components/LoginEmployee';
-import LoginAdmin from './components/LoginAdmin';
-import Home from './components/Home';
-import About from './components/About';
-import AddEmployee from './components/AddEmployee';
-import EmployeeDashboard from './components/EmployeeDasboard';
-import AdminDashboard from './components/AdminDashboard';
-import ApplyLoans from './components/ApplyLoan';
-import ViewLoans from './components/ViewLoans';
-import ViewItems from './components/ViewItem';
-import AddItem from './components/AddItem';
-import AddLoanCard from './components/AddLoanCard';
-import AllEmployees from './components/AllEmployees';
-import AllItems from './components/AllItems';
-import AllLoanCards from './components/AllLoanCards';
-import EditItem from './components/EditItem';
-import EditLoanCard from './components/EditLoanCard';
-import EditEmployee from './components/EditEmployee';
-import PageNotFound from './components/PageNotFound';
+import LoginEmployee from './views/Employee/LoginEmployee'
+import LoginAdmin from './views/Admin/LoginAdmin';
+import Home from './views/Home';
+import About from './views/About';
+import AddEmployee from './views/Admin/Employees/AddEmployee';
+import EmployeeDashboard from './views/Employee/EmployeeDasboard';
+import AdminDashboard from './views/Admin/AdminDashboard';
+import ApplyLoans from './views/Employee/ApplyLoan';
+import ViewLoans from './views/Employee/ViewLoans';
+import ViewItems from './views/Employee/ViewItem';
+import AddItem from './views/Admin/Item/AddItem';
+import AddLoanCard from './views/Admin/LoanCard/AddLoanCard';
+import AllEmployees from './views/Admin/Employees/AllEmployees';
+import AllItems from './views/Admin/Item/AllItems';
+import AllLoanCards from './views/Admin/LoanCard/AllLoanCards';
+import EditItem from './views/Admin/Item/EditItem';
+import EditLoanCard from './views/Admin/LoanCard/EditLoanCard';
+import EditEmployee from './views/Admin/Employees/EditEmployee';
+import PageNotFound from './views/PageNotFound';
 function App() {
   return (
     <div className="App">

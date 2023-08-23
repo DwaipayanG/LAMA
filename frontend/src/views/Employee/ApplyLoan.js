@@ -5,10 +5,10 @@ import Form from 'react-bootstrap/Form';
 import { Link } from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
-import Header from "./Header";
+import Header from "../../components/Header";
 
-import "../style/ApplyLoan.css"
-import EmployeeNavigation from "./EmployeeNavaigation";
+import "../../style/ApplyLoan.css"
+import EmployeeNavigation from "../../components/EmployeeNavaigation";
 
 export default function ApplyLoans(){
 

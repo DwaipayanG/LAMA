@@ -15,6 +15,7 @@ import org.springframework.validation.annotation.Validated;
 
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -83,7 +84,7 @@ public class EmployeeMasterController {
 		return ModelMap.map(employeeMaster, EmployeeMasterDTO.class);
 	}
 	
-	@GetMapping("/deleteEmployee")
+	@DeleteMapping("/api/employee")
 	public String deleteEmployeeById(@Valid @RequestParam String employeeId) throws ResourceNotFoundException {
 		EmployeeMaster employeeMaster = ModelMap.map(this.getEmployeeMaster(employeeId), EmployeeMaster.class);
 

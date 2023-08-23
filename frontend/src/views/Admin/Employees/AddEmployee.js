@@ -2,9 +2,9 @@ import axios from "axios";
 import { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import "../style/AddEmployee.css";
-import Header from "./Header";
-import AdminNavigation from "./AdminNavigation";
+import "../../../style/AddEmployee.css";
+import Header from "../../../components/Header";
+import AdminNavigation from "../../../components/AdminNavigation";
 
 export default function AddEmployee(){
     const baseURL = "http://localhost:8080/api/employee";

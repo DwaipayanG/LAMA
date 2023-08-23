@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import Card from 'react-bootstrap/Card';
-import Header from "./Header";
+import Header from "../../components/Header";
 import {Row,Col} from 'react-bootstrap';
-import "../style/Card.css"
-import EmployeeNavigation from "./EmployeeNavaigation";
+import "../../style/Card.css"
+import EmployeeNavigation from "../../components/EmployeeNavaigation";
 
 
 export default function EmployeeDasboard(){

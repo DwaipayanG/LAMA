@@ -2,9 +2,9 @@ import axios from "axios";
 import { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import '../style/LoginAdmin.css';
+import '../../style/LoginAdmin.css';
 import { useNavigate } from "react-router-dom";
-import Header from "./Header";
+import Header from "../../components/Header";
 
 function LoginAdmin() {
     const baseURL = "http://localhost:8080/api/admin/login";

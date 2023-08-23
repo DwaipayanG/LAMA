@@ -2,9 +2,9 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import "../style/AddItem.css";
-import Header from "./Header";
-import AdminNavigation from "./AdminNavigation";
+import "../../../style/AddItem.css";
+import Header from "../../../components/Header";
+import AdminNavigation from "../../../components/AdminNavigation";
 
 export default function AddItem(){
     const baseURL = "http://localhost:8080/api/item";

@@ -2,9 +2,9 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Table from 'react-bootstrap/Table';
 import { useNavigate } from "react-router-dom";
-import Header from "./Header";
-import AdminNavigation from "./AdminNavigation";
-import "../style/TabularViewAll.css";
+import Header from "../../../components/Header";
+import AdminNavigation from "../../../components/AdminNavigation";
+import "../../../style/TabularViewAll.css";
 import {CiEdit} from "react-icons/ci";
 import { FcEmptyTrash } from "react-icons/fc";
 
@@ -33,7 +33,7 @@ function AllLoanCards() {
     const handleDelete = async (id)=>{
 
       try{
-        const response= await axios.get("http://localhost:8080/deleteLoanCard",{params: {loanId:id}});
+        const response= await axios.delete("http://localhost:8080/api/loan-card",{params: {loanId:id}});
         console.log(response.data)
         if(response.data ==="Failue"){
           console.error("Loan Id Not Found");
