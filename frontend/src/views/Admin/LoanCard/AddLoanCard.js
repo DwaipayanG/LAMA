@@ -61,7 +61,7 @@ export default function AddLoanCard(){
             <Form onSubmit={submitActionHandler}>
                 <Form.Group className="mb-3">
                     <Form.Label className="addLoanCardColumn">Loan Id</Form.Label>
-                    <Form.Control className="addLoanCardValue" type="text" value={loanId} onChange={loanIdChangeHandler} id="employeeId" />
+                    <Form.Control className="addLoanCardValue" type="text" value={loanId} onChange={loanIdChangeHandler} id="employeeId" maxLength="6" />
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label className="addLoanCardColumn">Loan Type</Form.Label>

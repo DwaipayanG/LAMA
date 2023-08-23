@@ -54,7 +54,7 @@ function LoginEmployee() {
         <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Employee ID</Form.Label>
             <Form.Control type="text" value={employeeId} onChange={employeeIdChangeHandler} placeholder="Enter Employee ID"
-            className= "textInput" />
+            className= "textInput"  required/>
             <Form.Text className="text-muted">
             We'll never share your email with anyone else.
             </Form.Text>
@@ -62,7 +62,7 @@ function LoginEmployee() {
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control type="password" value={password} onChange={passwordChangeHandler} placeholder="Password"  className="textInput"/>
+            <Form.Control type="password" value={password} onChange={passwordChangeHandler} placeholder="Password"  className="textInput" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 6 or more characters" required/>
         </Form.Group>
         <Button variant="primary" type="submit">
             Submit

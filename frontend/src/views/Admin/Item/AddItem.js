@@ -88,7 +88,7 @@ export default function AddItem(){
             <Form onSubmit={submitActionHandler}>
                 <Form.Group className="mb-3">
                     <Form.Label className="addItemColumn">Item ID</Form.Label>
-                    <Form.Control className="addItemValue" type="text" value={itemId} onChange={itemIdChangeHandler} id="itemId" />
+                    <Form.Control className="addItemValue" type="text" value={itemId} onChange={itemIdChangeHandler} id="itemId" maxLength="4" required/>
                 </Form.Group>
                 <div className="addItemColumn"> Item Status </div>
                     <div className="addItemValue">

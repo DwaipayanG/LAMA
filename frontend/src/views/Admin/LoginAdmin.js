@@ -51,11 +51,11 @@ function LoginAdmin() {
             <h1>Admin Login Page</h1>
         <Form onSubmit={submitActionHandler}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Control type="text" value={adminUsername} onChange={adminUsernameChangeHandler} placeholder="Admin ID" className="textInput" />
+            <Form.Control type="text" value={adminUsername} onChange={adminUsernameChangeHandler} placeholder="Admin ID" className="textInput" required />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Control type="password" value={password} onChange={passwordChangeHandler} placeholder="Password" className="textInput" />
+            <Form.Control type="password" value={password} onChange={passwordChangeHandler} placeholder="Password" className="textInput" required/>
         </Form.Group>
         <Button variant="primary" type="submit">
             Submit

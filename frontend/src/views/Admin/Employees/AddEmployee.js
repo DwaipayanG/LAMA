@@ -84,35 +84,35 @@ export default function AddEmployee(){
             <Form onSubmit={submitActionHandler}>
                 <Form.Group className="mb-3">
                     <Form.Label className="addEmployeeColumn">Employee Id</Form.Label>
-                    <Form.Control className="addEmployeeValue" type="text" value={employeeId} onChange={employeeIdChangeHandler} id="employeeId" />
+                    <Form.Control className="addEmployeeValue" type="text" value={employeeId} onChange={employeeIdChangeHandler} id="employeeId" required/>
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label className="addEmployeeColumn">Password</Form.Label>
-                    <Form.Control className="addEmployeeValue" type="password" value={password} onChange={passwordChangeHandler} id="password" />
+                    <Form.Control className="addEmployeeValue" type="password" value={password} onChange={passwordChangeHandler} id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 6 or more characters" required />
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label className="addEmployeeColumn">Employee Name</Form.Label>
-                    <Form.Control className="addEmployeeValue" type="text" value={employeeName} onChange={employeeNameChangeHandler} id="employeeName" />
+                    <Form.Control className="addEmployeeValue" type="text" value={employeeName} onChange={employeeNameChangeHandler} id="employeeName" required />
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label className="addEmployeeColumn"> Department</Form.Label>
-                    <Form.Control className="addEmployeeValue" type="text" value={department} onChange={departmentChangeHandler} id="department" />
+                    <Form.Control className="addEmployeeValue" type="text" value={department} onChange={departmentChangeHandler} id="department" requried />
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label className="addEmployeeColumn">Designation</Form.Label>
-                    <Form.Control className="addEmployeeValue" type="text" value={designation} onChange={designationChangeHandler} id="designation" />
+                    <Form.Control className="addEmployeeValue" type="text" value={designation} onChange={designationChangeHandler} id="designation" required />
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label className="addEmployeeColumn">Gender</Form.Label>
-                    <Form.Control className="addEmployeeValue" type="text" value={gender} onChange={genderChangeHandler} id="gender" />
+                    <Form.Control className="addEmployeeValue" type="text" value={gender} onChange={genderChangeHandler} id="gender" required />
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label className="addEmployeeColumn">Date of Joining</Form.Label>
-                    <Form.Control className="addEmployeeValue" type="date" value={dateOfJoining} onChange={dateOfJoiningChangeHandler} id="dateOfJoining" />
+                    <Form.Control className="addEmployeeValue" type="date" value={dateOfJoining} onChange={dateOfJoiningChangeHandler} id="dateOfJoining" required />
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label className="addEmployeeColumn">Date of Birth</Form.Label>
-                    <Form.Control className="addEmployeeValue" type="date" value={dateOfBirth} onChange={dateOfBirthChangeHandler} id="dateOfJoining" />
+                    <Form.Control className="addEmployeeValue" type="date" value={dateOfBirth} onChange={dateOfBirthChangeHandler} id="dateOfJoining" required />
                 </Form.Group>
                 <Button variant="primary" type="submit">
                     Submit
