@@ -1,9 +1,9 @@
-package com.example.backend.models;
+package com.example.backend.dto;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class EmployeeMasterLogin {
+public class EmployeeMasterLoginDTO {
 	
 	private String employeeId;
 	private String password;
@@ -19,6 +19,5 @@ public class EmployeeMasterLogin {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 	
 }
