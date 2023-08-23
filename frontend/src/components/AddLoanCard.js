@@ -5,9 +5,11 @@ import Form from 'react-bootstrap/Form';
 import "../style/AddLoanCard.css";
 import Header from "./Header";
 import AdminNavigation from "./AdminNavigation";
-
+import { useNavigate } from "react-router-dom";
 export default function AddLoanCard(){
+
     const baseURL = "http://localhost:8080/api/loan-card";
+    navigation = useNavigate();
 
     const [loanId, setLoanId] = useState("");
     const [loanType, setLoanType] = useState("");
@@ -44,6 +46,8 @@ export default function AddLoanCard(){
             .catch((error) => {
                 alert(error);
             })
+
+            navigation("/viewAllLoanCards")
     }
     
     return (
