@@ -3,7 +3,8 @@ import Card from 'react-bootstrap/Card';
 import {Row,Col} from 'react-bootstrap';
 import Header from "../../components/Header";
 import AdminNavigation from "../../components/AdminNavigation";
-import "../../style/Card.css"
+import "../../style/Card.css";
+import { AiOutlineFileAdd,AiOutlineEye } from "react-icons/ai";
 
 export default function AdminDashboard(){
 
@@ -27,10 +28,10 @@ export default function AdminDashboard(){
                 
 
             <Card.Body>
-                <Card.Title>Customer Data Management</Card.Title>
+                <Card.Title>Employee Data </Card.Title>
                 
-                <Card.Link href="/addEmployee">Add</Card.Link>
-                <Card.Link href="/viewAllEmployees">Edit</Card.Link>
+                <Card.Link href="/addEmployee"><AiOutlineFileAdd/>Add</Card.Link>
+                <Card.Link href="/viewAllEmployees"><AiOutlineEye/>View</Card.Link>
             </Card.Body>
             </Card>
             </Col>
@@ -38,10 +39,10 @@ export default function AdminDashboard(){
             <Card className="bgCard bg2 ">
 
             <Card.Body>
-                <Card.Title>Items Master Data</Card.Title>
+                <Card.Title>Items Data</Card.Title>
                 
-                <Card.Link href="/addItem">Add</Card.Link>
-                <Card.Link href="/viewAllItems">Edit</Card.Link>
+                <Card.Link href="/addItem"><AiOutlineFileAdd/>Add</Card.Link>
+                <Card.Link href="/viewAllItems"><AiOutlineEye/>View</Card.Link>
             </Card.Body>
             </Card>
             </Col>
@@ -50,8 +51,8 @@ export default function AdminDashboard(){
             <Card.Body>
                 <Card.Title>Loan Card Data</Card.Title>
                
-                <Card.Link href="/addLoanCard">Add</Card.Link>
-                <Card.Link href="/viewAllLoanCards">Edit</Card.Link>
+                <Card.Link href="/addLoanCard"><AiOutlineFileAdd/>Add</Card.Link>
+                <Card.Link href="/viewAllLoanCards"><AiOutlineEye/>View</Card.Link>
             </Card.Body>
             </Card>
             </Col>

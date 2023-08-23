@@ -1,0 +1,93 @@
+.homeBackground{
+    background-image: url("../assets/homePageBg.jpg");
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-attachment:fixed ;
+    background-size: 300% 300%;
+    background-image: linear-gradient(-45deg, #434343 0%, black 100%);
+    animation: AnimateBG 5s ease infinite;
+}
+
+
+  
+ 
+  
+  
+  
+  .homeText {
+    padding: 30vh;
+    color: #fffad2;
+    text-align: center;
+    margin-top: 0;
+    text-shadow: 1px 0px #000;
+  }
+  .homeHighlight {
+    color: #e10000;
+  }
+  .fadeInUp {
+    animation: fadeIn s ease-in;
+  }
+  
+  /* text rotation CSS */
+  .rotator {
+    display: inline-block;
+    width: 12vh;
+  }
+  .rotator:before {
+    content: "";
+    width: 12vh;
+    animation: textRotate 6s linear infinite;
+  }
+
+  /*Animation and CSS for twinkling starlight*/
+.starlight {
+    position: absolute;
+    background-color: #e47723;
+    border-radius: 50px;
+    animation: fadeIn 3s linear infinite;
+    z-index: 4;
+  }
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      size: 0;
+    }
+    50% {
+      opacity: 1;
+      size: 50%;
+    }
+    100% {
+      opacity: 0;
+      size: 100%;
+    }
+  }
+  
+  /* Animation for rotating text */
+  @keyframes textRotate {
+    0% {
+      content: "Furniture";
+    }
+    50% {
+      content: "Crockery";
+    }
+    100% {
+      content: "Vehicle";
+    }
+   
+  }
+  
+ 
+  /* Gradient moving backgorun */
+  @keyframes AnimateBG {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }

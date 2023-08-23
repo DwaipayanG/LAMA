@@ -49,8 +49,9 @@ function AdminNavigation() {
               <NavDropdown.Item href="/viewAllLoanCards">View Loans</NavDropdown.Item>
             </NavDropdown>
           </Nav>
-        </Navbar.Collapse>
         <Button variant="danger" onClick={() =>handleLogout()}>Logout</Button>
+
+        </Navbar.Collapse>
 
         
       </Container>
