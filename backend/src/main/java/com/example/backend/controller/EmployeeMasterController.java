@@ -2,6 +2,9 @@ package com.example.backend.controller;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.dao.DuplicateKeyException;
@@ -21,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.backend.dto.EmployeeMasterDTO;
+import com.example.backend.dto.EmployeeMasterLoginDTO;
 import com.example.backend.exception.AuthenticationException;
 import com.example.backend.exception.DataUnavailableException;
 import com.example.backend.exception.DuplicateEntryException;
@@ -48,59 +53,64 @@ public class EmployeeMasterController {
 	@Autowired
 	private EmployeeIssueDetailsServiceImpl employeeIssueDetailsService;
 	
+	@Autowired 
+	private ModelMapper ModelMap;
+	
 	@GetMapping("/api/employee/all-employees")
-	public List<EmployeeMaster> getAllEmployees() throws DataUnavailableException{
+	public List<EmployeeMasterDTO> getAllEmployees() throws DataUnavailableException{
 		List<EmployeeMaster> employees = employeeMasterService.getAllEmployees();
 		if(employees.size() == 0)
 			throw new DataUnavailableException("No Employees found.");
 		else
-			return employees;
+			return employees.stream().map(employee->ModelMap.map(employee, EmployeeMasterDTO.class)).collect(Collectors.toList());
 	}
 	
 	@GetMapping("/api/employee/by-employee-id")
-	public EmployeeMaster getEmployeeMaster(@Valid @RequestParam("employeeId") String employeeId) throws ResourceNotFoundException {
+	public EmployeeMasterDTO getEmployeeMaster(@Valid @RequestParam("employeeId") String employeeId) throws ResourceNotFoundException {
 		EmployeeMaster employeeMaster = employeeMasterService.getEmployeeMasterById(employeeId);
 		if(employeeMaster == null)
 			throw new ResourceNotFoundException("Employee Id not found");
 		else 
-			return employeeMaster;
+			return ModelMap.map(employeeMaster,EmployeeMasterDTO.class);
 	}
 	
 	@PutMapping("/api/employee")
-	public EmployeeMaster updateEmployeeMaster(@Valid @RequestParam String employeeId,@Valid @RequestBody EmployeeMaster newEmployeeMaster) throws ResourceNotFoundException {
+	public EmployeeMasterDTO updateEmployeeMaster(@Valid @RequestParam String employeeId,@Valid @RequestBody EmployeeMasterDTO newEmployeeMaster) throws ResourceNotFoundException {
+
 		EmployeeMaster employeeMaster = employeeMasterService.getEmployeeMasterById(employeeId);
 
-		employeeMaster = employeeMasterService.updateEmployee(employeeMaster, newEmployeeMaster);
+		employeeMaster = employeeMasterService.updateEmployee(employeeMaster, ModelMap.map(newEmployeeMaster, EmployeeMaster.class));
 		employeeMasterService.addEmployeeMaster(employeeMaster);
-		return employeeMaster;
+		return ModelMap.map(employeeMaster, EmployeeMasterDTO.class);
 	}
 	
 	@DeleteMapping("/api/employee")
 	public String deleteEmployeeById(@Valid @RequestParam String employeeId) throws ResourceNotFoundException {
-		EmployeeMaster employeeMaster = this.getEmployeeMaster(employeeId);
+		EmployeeMaster employeeMaster = ModelMap.map(this.getEmployeeMaster(employeeId), EmployeeMaster.class);
 
 		employeeMasterService.deleteEmployeeMasterById(employeeId);
 		return "deleted";
 	}
 	
 	@PostMapping("/api/employee")
-	public EmployeeMaster addEmployeeMaster(@Valid @RequestBody EmployeeMaster newEmployee) throws DuplicateEntryException{
+	public EmployeeMasterDTO addEmployeeMaster(@Valid @RequestBody EmployeeMasterDTO newEmployeeDTO) throws DuplicateEntryException{
 		try {
-			EmployeeMaster employeeMaster = this.getEmployeeMaster(newEmployee.getEmployeeId());
+			EmployeeMasterDTO employeeMasterDTO = this.getEmployeeMaster(newEmployeeDTO.getEmployeeId());
 			throw new DuplicateEntryException("Employee already exists!");
 		} catch (ResourceNotFoundException e) {
 			// TODO: handle exception
-			EmployeeMaster employee = employeeMasterService.addEmployeeMaster(newEmployee);
-			return employee;
+			EmployeeMaster employee = employeeMasterService.addEmployeeMaster(ModelMap.map(newEmployeeDTO, EmployeeMaster.class));
+			return ModelMap.map(employee, EmployeeMasterDTO.class);
 		}
 	}
 	
 	
 	@PostMapping("/api/employee/login")
 	@ResponseBody
-	public Object loginEmployeeMaster(@Valid @RequestBody EmployeeMasterLogin empLogin) throws ResourceNotFoundException, AuthenticationException{
+	public Object loginEmployeeMaster(@Valid @RequestBody EmployeeMasterLoginDTO empLoginDTO) throws ResourceNotFoundException, AuthenticationException{
 
 		Object response;
+		EmployeeMasterLogin empLogin = ModelMap.map(empLoginDTO, EmployeeMasterLogin.class);
 		EmployeeMaster existingEmployee = employeeMasterService.getEmployeeMasterById(empLogin.getEmployeeId());
 		if(existingEmployee.getPassword().equals(empLogin.getPassword())) {
 			response = existingEmployee;

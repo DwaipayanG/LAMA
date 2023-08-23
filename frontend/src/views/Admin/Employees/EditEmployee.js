@@ -33,8 +33,8 @@ export default function EditEmployee(){
             setDepartment(response.data.department);
             setDesignation(response.data.designation);
             setGender(response.data.gender);
-            setDateOfBirth(response.data.dateOfBirth);
-            setDateOfJoining(response.data.dateOfJoining);
+            setDateOfBirth(response.data.dateOfBirth.substr(0, 10));
+            setDateOfJoining(response.data.dateOfJoining.substr(0, 10));
             setPassword(response.data.password);
         })
         .catch((error) => {
@@ -74,7 +74,7 @@ export default function EditEmployee(){
     }
 
     const submitActionHandler = (event) => {
-        event.preventDefault();
+
         axios
             .put(editURL, {
                     "employeeId": employeeId,
@@ -90,7 +90,7 @@ export default function EditEmployee(){
                 "employeeId": employeeId
             }})
             .then((response) => {
-                alert(response.data);
+                alert(response.data["dateOfJoining"]);
             })
             .catch((error) => {
                 alert(error);
