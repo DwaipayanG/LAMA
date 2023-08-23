@@ -29,19 +29,13 @@ public class EmployeeCardDetailsController {
 		
 		@Autowired
 		private EmployeeIssueDetailsServiceImpl employeeIssueDetailsService;
-		
-		@PostMapping("/addEmployeeCardDetails")
-		@Valid @ResponseBody
-		public EmployeeCardDetails addEmployeeCardDetails(EmployeeCardDetails employeeCardDetails) {
-			return employeeCardDetailsService.addEmployeeCardDetails(employeeCardDetails);
-		}
-		
-		@GetMapping("/getAllLoans")
+				
+		@GetMapping("/api/employee-card/all-loans-by-employee-id")
 		public List<ViewLoans> getAllLoans(@Valid @RequestParam("employeeId") String employeeId) {
 			return employeeCardDetailsService.getAllLoans(employeeId);
 		}
 		
-		@GetMapping("/getAllItems")
+		@GetMapping("/api/employee-card/all-items-by-employee-id")
 		public List<ViewItems> getAllItems(@Valid @RequestParam("employeeId") String employeeId) {
 			return employeeIssueDetailsService.getAllItems(employeeId);
 		}

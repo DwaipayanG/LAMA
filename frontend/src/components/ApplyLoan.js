@@ -27,7 +27,7 @@ export default function ApplyLoans(){
     },[]);
 
     useEffect(()=>{
-        const url="http://localhost:8080/getAllCategory";
+        const url="http://localhost:8080/api/item/all-category";
         axios
         .get(url)
         .then((response) => {
@@ -40,7 +40,7 @@ export default function ApplyLoans(){
     },[]);
 
     useEffect(()=>{
-        const url="http://localhost:8080/getDistinctMakesByCategory";
+        const url="http://localhost:8080/api/item/makes-by-category";
         axios
         .get(url,{ params: {"itemCategory": selectedCategory }})
         .then((response) => {
@@ -54,7 +54,7 @@ export default function ApplyLoans(){
     },[selectedCategory]);
 
     useEffect(()=>{
-        const url="http://localhost:8080/getItemByMakeAndCategory";
+        const url="http://localhost:8080/api/item/by-make-and-category";
         axios
         .get(url,{params:{
             itemCategory:selectedCategory,
@@ -88,8 +88,8 @@ export default function ApplyLoans(){
     }
 
     const submitActionHandler = async(event) => {
-        const getLoanCardUrl = "http://localhost:8080/getLoanCardByLoanType"
-        const loanApplyUrl = "http://localhost:8080/applyLoan"
+        const getLoanCardUrl = "http://localhost:8080/api/loan-card/by-loan-type"
+        const loanApplyUrl = "http://localhost:8080/api/employee/apply-loan"
 
         const loanIssueDate = new Date();
 

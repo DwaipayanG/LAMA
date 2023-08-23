@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 
 function LoginAdmin() {
-    const baseURL = "http://localhost:8080/loginAdmin";
+    const baseURL = "http://localhost:8080/api/admin/login";
     const navigate = useNavigate();
 
     const [adminUsername, setAdminUsername] = useState('');

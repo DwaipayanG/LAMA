@@ -18,8 +18,8 @@ export default function EditItem(){
     const [itemMake, setItemMake] = useState('');
     const [itemStatus, setItemStatus] = useState("");
 
-    const getURL="http://localhost:8080/getItemById";
-    const editURL="http://localhost:8080/updateItem";
+    const getURL="http://localhost:8080/api/item/by-item-id";
+    const editURL="http://localhost:8080/api/item";
 
      useEffect(()=>{
         setItemId(location.state.itemId);

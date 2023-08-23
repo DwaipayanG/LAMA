@@ -31,7 +31,7 @@ public class ItemsMasterController {
 	@Autowired
 	private ItemsMasterServiceImpl itemsMasterService;
 	
-	@GetMapping("/getAllItem")
+	@GetMapping("/api/item/all-items")
 	public List<ItemsMaster> getAllItems() throws DataUnavailableException{
 		List<ItemsMaster> allItems = itemsMasterService.getAllItems();
 		if(allItems.size()==0)
@@ -40,30 +40,28 @@ public class ItemsMasterController {
 			return allItems;
 	}
 	
-	@GetMapping("/getDistinctMakesByCategory")
+	@GetMapping("/api/item/makes-by-category")
 	@ResponseBody
-
 	public List<String> getDistinctMakesByCategory(@Valid @RequestParam("itemCategory") String itemCategory) throws ResourceNotFoundException{
 		return itemsMasterService.getDistinctMakesByCategory(itemCategory);
 	}
 	
-	@GetMapping("/getAllCategory")
+	@GetMapping("/api/item/all-category")
 	public List<String> getAllCategory(){
 		return itemsMasterService.getAllCategory();
 	}
 	
-	@GetMapping("/getItemByMakeAndCategory")
-	public ItemsMaster getItemByMakeAndCategory(@Valid @RequestParam("itemCategory") String itemCategory, @Valid @RequestParam("itemMake") String itemMake) throws ResourceNotFoundException {
+	@GetMapping("/api/item/by-make-and-category")
+	public ItemsMaster getItemByMakeAndCategory(@Valid @RequestParam("itemCategory") String itemCategory,@Valid @RequestParam("itemMake") String itemMake) throws ResourceNotFoundException {
 		return itemsMasterService.getItemByMakeAndCategory(itemCategory, itemMake);
 	}
 	
-	@GetMapping("/getItemById")
+	@GetMapping("/api/item/by-item-id")
 	public ItemsMaster getItemById(@Valid @RequestParam("itemId") String itemId) throws ResourceNotFoundException {
 		return itemsMasterService.getItemById(itemId);
 	}
 
-	@PostMapping("/addItem")
-
+	@PostMapping("/api/item")
 	public ItemsMaster addItem(@Valid @RequestBody ItemsMaster itemsMaster) throws DuplicateEntryException {
 		try {
 			this.getItemById(itemsMaster.getItemId());
@@ -74,7 +72,7 @@ public class ItemsMasterController {
 		}
 	}
 	
-	@PutMapping("/updateItem")
+	@PutMapping("/api/item")
 	public ItemsMaster updateItem(@Valid @RequestParam String itemId,@Valid @RequestBody ItemsMaster newItemsMaster) throws ResourceNotFoundException {
 
 		ItemsMaster itemsMaster = itemsMasterService.getItemById(itemId);

@@ -19,8 +19,8 @@ export default function EditEmployee(){
     const [dateOfBirth, setDateOfBirth] = useState(null);
     const [dateOfJoining, setDateOfJoining] = useState(null);
 
-    const getURL="http://localhost:8080/getEmployeeById";
-    const editURL="http://localhost:8080/updateEmployee";
+    const getURL="http://localhost:8080/api/employee/by-employee-id";
+    const editURL="http://localhost:8080/api/employee";
 
      useEffect(()=>{
        

@@ -7,7 +7,7 @@ import Header from "./Header";
 import AdminNavigation from "./AdminNavigation";
 
 export default function AddEmployee(){
-    const baseURL = "http://localhost:8080/addEmployee";
+    const baseURL = "http://localhost:8080/api/employee";
 
     const [employeeId, setEmployeeId] = useState('');
     const [employeeName, setEmployeeName] = useState('');

@@ -13,7 +13,7 @@ function AllItems() {
     const navigate = useNavigate();
 
     useEffect(()=>{
-        const url= "http://localhost:8080/getAllItem";
+        const url= "http://localhost:8080/api/item/all-items";
         axios
         .get(url)
         .then((response) => {

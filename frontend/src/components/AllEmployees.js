@@ -13,7 +13,7 @@ import { FcEmptyTrash } from "react-icons/fc";
 
 
 function AllEmployees() {
-    const getURL= "http://localhost:8080/getAllEmployees";
+    const getURL= "http://localhost:8080/api/employee/all-employees";
 
     const [employees, setEmployees] = useState([]);
     const navigate = useNavigate();

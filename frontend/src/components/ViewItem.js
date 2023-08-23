@@ -15,7 +15,7 @@ function ViewItems() {
     });
 
     useEffect(()=>{
-        const url= "http://localhost:8080/getAllItems";
+        const url= "http://localhost:8080/api/employee-card/all-items-by-employee-id";
         axios
         .get(url, {params: {employeeId:sessionStorage.getItem("employeeId")}})
         .then((response) => {

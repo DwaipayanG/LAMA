@@ -7,7 +7,7 @@ import Header from "./Header";
 import AdminNavigation from "./AdminNavigation";
 
 export default function AddItem(){
-    const baseURL = "http://localhost:8080/addItem";
+    const baseURL = "http://localhost:8080/api/item";
 
     const [allCategory, setAllCategory] = useState([]);
     const [itemId, setItemId] = useState('');
@@ -18,7 +18,7 @@ export default function AddItem(){
     const [itemStatus, setItemStatus] = useState("");
   
     useEffect(()=>{
-        const url="http://localhost:8080/getAllLoanTypes";
+        const url="http://localhost:8080/api/loan-card/all-loan-types";
         axios
         .get(url)
         .then((response) => {

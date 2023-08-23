@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 
 function LoginEmployee() {
-    const baseURL = "http://localhost:8080/loginEmployee";
+    const baseURL = "http://localhost:8080/api/employee/login";
     const navigate = useNavigate();
 
     const [employeeId, setEmployeeId] = useState('');

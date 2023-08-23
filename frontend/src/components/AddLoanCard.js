@@ -7,7 +7,7 @@ import Header from "./Header";
 import AdminNavigation from "./AdminNavigation";
 
 export default function AddLoanCard(){
-    const baseURL = "http://localhost:8080/addLoanCard";
+    const baseURL = "http://localhost:8080/api/loan-card";
 
     const [loanId, setLoanId] = useState("");
     const [loanType, setLoanType] = useState("");
