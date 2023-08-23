@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import '../../style/LoginAdmin.css';
+import '../../style/Login.css';
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 
@@ -47,7 +47,7 @@ function LoginAdmin() {
     return (
         <div>
             <Header></Header>
-        <div id="loginAdminForm">
+        <div id="loginForm">
             <h1>Admin Login Page</h1>
         <Form onSubmit={submitActionHandler}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
