@@ -90,7 +90,7 @@ export default function EditEmployee(){
                 "employeeId": employeeId
             }})
             .then((response) => {
-                alert(response.data["dateOfJoining"]);
+                
             })
             .catch((error) => {
                 alert(error);

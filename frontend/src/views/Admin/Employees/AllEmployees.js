@@ -87,8 +87,8 @@ function AllEmployees() {
          <td>{employee.designation}</td>
          <td>{employee.department}</td>
          <td>{employee.gender}</td>
-         <td>{employee.dateOfBirth}</td>
-         <td>{employee.dateOfJoining}</td>
+         <td>{employee.dateOfBirth.substr(0, 10)}</td>
+         <td>{employee.dateOfJoining.substr(0, 10)}</td>
          <td className="noBorder"><button className="noBorder smallIcons"onClick={() => handleEdit(employee.employeeId)}><CiEdit/></button></td>
          <td className="noBorder"><button className="noBorder smallIcons" onClick={() => handleDelete(employee.employeeId)}><FcEmptyTrash/></button></td>
        </tr>
