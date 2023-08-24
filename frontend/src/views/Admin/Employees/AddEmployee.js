@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import "../../../style/AddEmployee.css";
 import Header from "../../../components/Header";
 import AdminNavigation from "../../../components/AdminNavigation";
+import { useNavigate } from "react-router-dom";
 
 export default function AddEmployee(){
     const baseURL = "http://localhost:8080/api/employee";
@@ -18,6 +19,8 @@ export default function AddEmployee(){
     const [dateOfBirth, setDateOfBirth] = useState(null);
     const [dateOfJoining, setDateOfJoining] = useState(null);
     const [error, setError] = useState(null);
+
+    const navigate = useNavigate();
 
     const employeeIdChangeHandler = (event) => {
         setEmployeeId(event.target.value)
@@ -67,7 +70,7 @@ export default function AddEmployee(){
                 if(data["statusCode"]&&data["statusCode"]==400)
                     setError(data["message"]);
                 else
-                    alert("Employee created!");
+                    navigate("/viewAllEmployees");
             })
             .catch((error) => {
                 alert(error);

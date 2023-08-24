@@ -8,6 +8,7 @@ import EmployeeNavigation from "../../components/EmployeeNavaigation";
 function ViewItems() {
     const [items, setItem] = useState([]);
     const [empId, setEmployeeId]= useState("");
+    const [error, setError] = useState(null);
 
     useEffect(()=>{
         setEmployeeId(sessionStorage.getItem("employeeId"));
@@ -20,7 +21,11 @@ function ViewItems() {
         .get(url, {params: {employeeId:sessionStorage.getItem("employeeId")}})
         .then((response) => {
             console.log(response.data);
-            setItem(response.data);
+            const data = response.data;
+            if(data.length==0)
+              setError("No Items purchased!");
+            else
+              setItem(response.data);
         })
         .catch((err) =>{
           console.log(err);
@@ -33,7 +38,8 @@ function ViewItems() {
     <Header></Header>
     <EmployeeNavigation/>
     
-    <Table striped bordered hover>
+    { !error &&
+      <Table striped bordered hover>
       <thead>
         <tr>
           <th>Issue ID</th>
@@ -55,7 +61,9 @@ function ViewItems() {
        </tr>
     ))}
       </tbody>
-    </Table>
+    </Table>}
+    {error &&
+    <div><h1>{error}</h1></div>}
     </>
   );
 }

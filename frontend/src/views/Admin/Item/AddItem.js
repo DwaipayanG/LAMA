@@ -5,6 +5,8 @@ import Form from 'react-bootstrap/Form';
 import "../../../style/AddItem.css";
 import Header from "../../../components/Header";
 import AdminNavigation from "../../../components/AdminNavigation";
+import { useNavigate } from "react-router-dom";
+
 
 export default function AddItem(){
     const baseURL = "http://localhost:8080/api/item";
@@ -17,6 +19,8 @@ export default function AddItem(){
     const [itemMake, setItemMake] = useState('');
     const [itemStatus, setItemStatus] = useState("");
     const [error, setError] = useState(null);
+
+    const navigate = useNavigate();
   
     useEffect(()=>{
         const url="http://localhost:8080/api/loan-card/all-loan-types";
@@ -71,7 +75,7 @@ export default function AddItem(){
                 if(data["statusCode"]&&data["statusCode"]==400)
                     setError(data["message"]);
                 else
-                    alert("Item created");
+                    navigate("/viewAllItems");
             })
             .catch((error) => {
                 alert(error);

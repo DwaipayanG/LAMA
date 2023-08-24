@@ -8,6 +8,7 @@ import EmployeeNavigation from "../../components/EmployeeNavaigation";
 function ViewLoans() {
     const [loans, setLoan] = useState([]);
     const [empId, setEmployeeId]= useState("");
+    const [error, setError] = useState(null);
 
     useEffect(()=>{
         setEmployeeId(sessionStorage.getItem("employeeId"));
@@ -20,7 +21,11 @@ function ViewLoans() {
         .get(url, {params: {employeeId:sessionStorage.getItem("employeeId")}})
         .then((response) => {
             console.log(response.data);
-            setLoan(response.data);
+            const data = response.data;
+            if(data.length==0)
+              setError("No Loans!");
+            else
+              setLoan(response.data);
         })
         .catch((err) =>{
           console.log(err);
@@ -37,7 +42,9 @@ function ViewLoans() {
       <Header/>
       <EmployeeNavigation/>
      
-    <Table striped bordered hover>
+    {
+      !error &&
+      <Table striped bordered hover>
       <thead>
         <tr>
           <th>Loan ID</th>
@@ -58,6 +65,8 @@ function ViewLoans() {
     ))}
       </tbody>
     </Table>
+    }
+    {error && <div><h1>{error}</h1></div>}
     </div>
   );
 }

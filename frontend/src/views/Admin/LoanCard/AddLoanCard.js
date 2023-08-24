@@ -42,7 +42,7 @@ export default function AddLoanCard(){
                 if(data["statusCode"]&&data["statusCode"]==400){
                     setError(data["message"]);
                 }else
-                    alert("Loan Card created!");
+                    navigation("/viewAllLoanCards");
             })
             .catch((error) => {
                 alert(error);

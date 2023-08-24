@@ -7,7 +7,7 @@ export default function Starlight() {
       Different shade of yellow and orange to mimic starlight at night.
     */
     let locLeft = Math.random() * (window.innerWidth-15); //to get a random left position of star
-    let locTop = Math.random() * (window.innerHeight-15) + 150; //to get a ranodme right position of star
+    let locTop = Math.random() * (window.innerHeight-150) + 150; //to get a ranodme right position of star
     let size = Math.random() * 5+ 2;
     let timing = Math.random() * 3;
     let colors = [
