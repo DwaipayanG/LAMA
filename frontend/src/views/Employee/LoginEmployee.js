@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from "react-router-dom";
@@ -20,6 +20,12 @@ function LoginEmployee() {
     const passwordChangeHandler = (event) => {
         setPassword(event.target.value)
     }
+
+    useEffect(()=>{
+        if(sessionStorage.getItem("employeeName")){
+            navigate("/employeeDashboard");
+        }
+    },[]);
 
     const submitActionHandler = (event) => {
         event.preventDefault();

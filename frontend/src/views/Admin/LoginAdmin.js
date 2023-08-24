@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import '../../style/Login.css';
@@ -20,6 +20,13 @@ function LoginAdmin() {
     const passwordChangeHandler = (event) => {
         setPassword(event.target.value)
     }
+
+    useEffect(()=>{
+        if(sessionStorage.getItem("adminUsername")){
+            navigate("/adminDashboard");
+        }
+    },[]);
+
 
 
     const submitActionHandler = (event) => {
