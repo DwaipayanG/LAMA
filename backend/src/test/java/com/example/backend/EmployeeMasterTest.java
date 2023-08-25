@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.hamcrest.Matchers;
+import org.json.JSONObject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentMatchers;
@@ -31,6 +32,7 @@ import org.springframework.test.web.servlet.MvcResult;
 
 import com.example.backend.controller.EmployeeMasterController;
 import com.example.backend.dto.EmployeeMasterDTO;
+import com.example.backend.dto.EmployeeMasterLoginDTO;
 import com.example.backend.models.ApplyLoanData;
 import com.example.backend.models.EmployeeMaster;
 import com.example.backend.models.EmployeeMasterLogin;
@@ -42,6 +44,8 @@ import com.example.backend.services.ItemsMasterServiceImpl;
 import com.example.backend.services.LoanCardMasterServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+
+import net.minidev.json.JSONValue;
 
 @SuppressWarnings("deprecation")
 @RunWith(SpringRunner.class)
@@ -102,7 +106,8 @@ public class EmployeeMasterTest {
 		Mockito.when(employeeMasterService.getAllEmployees()).thenReturn(getAllEmployees);
 		System.out.println("testing getting all employee.");
 		
-		mvc.perform(get("/api/employee/all-employees").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+		mvc.perform(get("/api/employee/all-employees")
+				.contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
 	}
 	
 	@Test
@@ -135,16 +140,22 @@ public class EmployeeMasterTest {
 		
 	}
 
-	/*
+	
 	@Test
 	public void testupdateEmployee() throws Exception{
+		String d1="1987-05-21";
+		String d2="2020-06-01";
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		Date dob=sdf.parse(d1);
+		Date doj=sdf.parse(d2);
+		
 		EmployeeMaster employeeMaster = new EmployeeMaster();
-		employeeMaster.setDateOfBirth(new Date("13/07/1989"));
-		employeeMaster.setDateOfJoining(new Date("24/07/2023"));
+		employeeMaster.setEmployeeId("12345");
+		employeeMaster.setDateOfBirth(dob);
+		employeeMaster.setDateOfJoining(doj);
 		employeeMaster.setDepartment("tco");
 		employeeMaster.setDesignation("head");
 		employeeMaster.setEmployeeCardDetails(null);
-		employeeMaster.setEmployeeId("3342");
 		employeeMaster.setEmployeeName("jasmine");
 		employeeMaster.setGender('f');
 		employeeMaster.setPassword("password");
@@ -152,20 +163,25 @@ public class EmployeeMasterTest {
 		Mockito.when(employeeMasterService.updateEmployee(employeeMaster, employeeMaster)).thenReturn(employeeMaster);
 		
 		String json = mapper.writeValueAsString(employeeMaster);
-		mvc.perform(put("/api/employee").contentType(MediaType.APPLICATION_JSON).content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
-	}
-			
+		mvc.perform(put("/api/employee?employeeId=12345").contentType(MediaType.APPLICATION_JSON).content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+	}		
 
 	
 	@Test
 	public void testdeleteEmployee() throws Exception{
+		String d1="1987-05-21";
+		String d2="2020-06-01";
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		Date dob=sdf.parse(d1);
+		Date doj=sdf.parse(d2);
+		
 		EmployeeMaster employeeMaster = new EmployeeMaster();
-		employeeMaster.setDateOfBirth(new Date("13/07/1989"));
-		employeeMaster.setDateOfJoining(new Date("24/07/2023"));
+		employeeMaster.setEmployeeId("12345");
+		employeeMaster.setDateOfBirth(dob);
+		employeeMaster.setDateOfJoining(doj);
 		employeeMaster.setDepartment("tco");
 		employeeMaster.setDesignation("head");
 		employeeMaster.setEmployeeCardDetails(null);
-		employeeMaster.setEmployeeId("3342");
 		employeeMaster.setEmployeeName("jasmine");
 		employeeMaster.setGender('f');
 		employeeMaster.setPassword("password");
@@ -174,89 +190,93 @@ public class EmployeeMasterTest {
 		Mockito.when(employeeMasterController.deleteEmployeeById(employeeMaster.getEmployeeId())).thenReturn(del);
 		System.out.println("testing deleting employee by id");
 		
-		mvc.perform(delete("/api/employee").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+		mvc.perform(delete("/api/employee?employeeId=12345").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
 	}
 	
 	@Test
 	public void testaddEmployeeMaster() throws Exception{
-		EmployeeMaster employeeMaster = new EmployeeMaster();
-		employeeMaster.setDateOfBirth(new Date("13/07/1989"));
-		employeeMaster.setDateOfJoining(new Date("24/07/2023"));
-		employeeMaster.setDepartment("tco");
-		employeeMaster.setDesignation("head");
-		employeeMaster.setEmployeeCardDetails(null);
-		employeeMaster.setEmployeeId("3342");
-		employeeMaster.setEmployeeName("jasmine");
-		employeeMaster.setGender('f');
-		employeeMaster.setPassword("password");
+		String d1="1987-05-21";
+		String d2="2020-06-01";
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		Date dob=sdf.parse(d1);
+		Date doj=sdf.parse(d2);
 		
-		Mockito.when(employeeMasterService.addEmployeeMaster(ArgumentMatchers.any())).thenReturn(employeeMaster);
-		String json = mapper.writeValueAsString(employeeMaster);	
-		MvcResult requestResult = mvc.perform(post("/api/employee").contentType(MediaType.APPLICATION_JSON).characterEncoding("utf-8").content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
-		String result = requestResult.getResponse().getContentAsString();
-		System.out.print(result);
-		assertEquals(result,result);
+		EmployeeMasterDTO dto = new EmployeeMasterDTO();
+		dto.setEmployeeId("12345");
+		dto.setDateOfBirth(dob);
+		dto.setDateOfJoining(doj);
+		dto.setDepartment("tco");
+		dto.setDesignation("head");
+		dto.setEmployeeName("jasmine");
+		dto.setGender('f');
+		dto.setPassword("password");
+		
+		
+		Mockito.when(employeeMasterController.addEmployeeMaster(ArgumentMatchers.any())).thenReturn(dto);
+		String json = mapper.writeValueAsString(dto);	
+		mvc.perform(post("/api/employee?", dto)
+				.contentType(MediaType.APPLICATION_JSON).characterEncoding("utf-8")
+				.content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
+		
 	}
 	
 	
 	@Test
 	public void testloginEmployeeMaster() throws Exception{
-		EmployeeMaster employeeMaster = new EmployeeMaster();
-		employeeMaster.setDateOfBirth(new Date("13/07/1989"));
-		employeeMaster.setDateOfJoining(new Date("24/07/2023"));
-		employeeMaster.setDepartment("tco");
-		employeeMaster.setDesignation("head");
-		employeeMaster.setEmployeeCardDetails(null);
-		employeeMaster.setEmployeeId("3342");
-		employeeMaster.setEmployeeName("jasmine");
-		employeeMaster.setGender('f');
-		employeeMaster.setPassword("password");
+		/*
+		String d1="1987-05-21";
+		String d2="2020-06-01";
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		Date dob=sdf.parse(d1);
+		Date doj=sdf.parse(d2);
 		
-		EmployeeMasterLogin emp = new EmployeeMasterLogin();
-		emp.setEmployeeId("3342");
-		emp.setPassword("password");
+		EmployeeMasterDTO dto = new EmployeeMasterDTO();
+		dto.setEmployeeId("12345");
+		dto.setDateOfBirth(dob);
+		dto.setDateOfJoining(doj);
+		dto.setDepartment("tco");
+		dto.setDesignation("head");
+		dto.setEmployeeName("jasmine");
+		dto.setGender('f');
+		dto.setPassword("password");
+		*/
 		
-		Object obj = new Object();
+		EmployeeMasterLoginDTO dto = new EmployeeMasterLoginDTO();
+		dto.setEmployeeId("12345");
+		dto.setPassword("password");
 		
 		
-		Mockito.when(employeeMasterController.loginEmployeeMaster(ArgumentMatchers.any())).thenReturn(obj);
-		//String json = mapper.writeValueAsString(obj);	
-		//mvc.perform(post("/api/employee/login").contentType(MediaType.APPLICATION_JSON).characterEncoding("utf-8").content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
-		mvc.perform(post("/api/employee/login").contentType(MediaType.APPLICATION_JSON).characterEncoding("utf-8").accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
-		//String result = requestResult.getResponse().getContentAsString();
-		//System.out.print(result);
-		//assertEquals(result,result);
+		
+		String obj = new String("loggedIn");
+		
+		Mockito.when(employeeMasterController.loginEmployeeMaster(dto)).thenReturn(obj);
+		
+		String json2 = mapper.writeValueAsString(dto);
+		mvc.perform(post("/api/employee/login").contentType(MediaType.APPLICATION_JSON).characterEncoding("utf-8")
+				.content(json2).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
+		
 	}
+	
 	
 	@Test
 	public void testapplyLoan() throws Exception{
-		EmployeeMaster employeeMaster = new EmployeeMaster();
-		employeeMaster.setDateOfBirth(new Date("13/07/1989"));
-		employeeMaster.setDateOfJoining(new Date("24/07/2023"));
-		employeeMaster.setDepartment("tco");
-		employeeMaster.setDesignation("head");
-		employeeMaster.setEmployeeCardDetails(null);
-		employeeMaster.setEmployeeId("3342");
-		employeeMaster.setEmployeeName("jasmine");
-		employeeMaster.setGender('f');
-		employeeMaster.setPassword("password");
 		
+		String d2="2020-06-01";
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		Date dob=sdf.parse(d2);
 		ApplyLoanData emp = new ApplyLoanData();
 		emp.setEmployeeId("3342");
 		emp.setItemId("3398");
 		emp.setLoanId("5532");
-		emp.setLoanIssueDate(new Date("24/07/2023"));
+		emp.setLoanIssueDate(dob);
 		
-		Object obj = new Object();
+		String obj = new String("Loan applied");
 		
-		Mockito.when(employeeMasterController.applyLoan(ArgumentMatchers.any())).thenReturn(obj);
-		//String json = mapper.writeValueAsString(obj);	
-		//MvcResult requestResult = mvc.perform(post("/api/employee/apply-loan").contentType(MediaType.APPLICATION_JSON).characterEncoding("utf-8").content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
-		mvc.perform(post("/api/employee/apply-loan").contentType(MediaType.APPLICATION_JSON).characterEncoding("utf-8").accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
-		//String result = requestResult.getResponse().getContentAsString();
-		//System.out.print(result);
-		//assertEquals(result,result);
+		Mockito.when(employeeMasterController.applyLoan(emp)).thenReturn(obj);
+		String json = mapper.writeValueAsString(emp);	
+		mvc.perform(post("/api/employee/apply-loan").contentType(MediaType.APPLICATION_JSON).characterEncoding("utf-8").content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
+		
 	}
-	*/
+	
 	
 	}
