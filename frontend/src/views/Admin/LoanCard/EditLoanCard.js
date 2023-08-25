@@ -12,6 +12,7 @@ export default function EditLoanCard(){
     const [loanId, setLoanId] = useState(location.state.loanId);
     const [loanType, setLoanType] = useState("");
     const [duration, setDuration] = useState("");
+    const [message, setMessage] = useState(null);
 
     const getURL="http://localhost:8080/api/loan-card/by-loan-id";
     const editURL="http://localhost:8080/api/loan-card";
@@ -55,7 +56,7 @@ export default function EditLoanCard(){
                 params:{"loanId": loanId}
             })
             .then((response) => {
-                console.log(response.data)
+                setMessage("Loan card edited successfully!");
             })
             .catch((error) => {
                 alert(error);
@@ -86,6 +87,7 @@ export default function EditLoanCard(){
                     Submit
                 </Button>
             </Form>
+            {message && <div style={{color:"green"}}><b>{message}</b></div>}
         </div>
         </div>
     );

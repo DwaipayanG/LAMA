@@ -18,6 +18,7 @@ export default function EditEmployee(){
     const [password, setPassword] = useState("");
     const [dateOfBirth, setDateOfBirth] = useState(null);
     const [dateOfJoining, setDateOfJoining] = useState(null);
+    const [message, setMessage] = useState(null);
 
     const getURL="http://localhost:8080/api/employee/by-employee-id";
     const editURL="http://localhost:8080/api/employee";
@@ -74,7 +75,7 @@ export default function EditEmployee(){
     }
 
     const submitActionHandler = (event) => {
-
+        event.preventDefault();
         axios
             .put(editURL, {
                     "employeeId": employeeId,
@@ -90,7 +91,7 @@ export default function EditEmployee(){
                 "employeeId": employeeId
             }})
             .then((response) => {
-                
+                setMessage("Employee edited!");
             })
             .catch((error) => {
                 alert(error);

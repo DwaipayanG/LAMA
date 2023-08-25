@@ -17,6 +17,7 @@ export default function EditItem(){
     const [itemValue, setItemValue] = useState('');
     const [itemMake, setItemMake] = useState('');
     const [itemStatus, setItemStatus] = useState("");
+    const [message, setMessage] = useState(null);
 
     const getURL="http://localhost:8080/api/item/by-item-id";
     const editURL="http://localhost:8080/api/item";
@@ -113,7 +114,7 @@ export default function EditItem(){
                 }
             })
             .then((response) => {
-                alert(response.data);
+                setMessage("Item edited successfully!")
             })
             .catch((error) => {
                 alert(error);
@@ -165,6 +166,7 @@ export default function EditItem(){
                     Submit
                 </Button>
             </Form>
+            {message && <div style={{color:"green"}}><b>{message}</b></div>}
         </div>
         </div>
     );

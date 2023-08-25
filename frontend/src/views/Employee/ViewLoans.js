@@ -26,6 +26,7 @@ function ViewLoans() {
               setError("No Loans!");
             else
               setLoan(response.data);
+              
         })
         .catch((err) =>{
           console.log(err);
@@ -51,18 +52,25 @@ function ViewLoans() {
           <th>Loan Type</th>
           <th>Duration</th>
           <th>Card Issue Date</th>
+          <th>Active/Inactive</th>
         </tr>
       </thead>
 
       <tbody>
-    {loans.map(loan =>(
+    {loans.map(loan =>{
+      let date = new Date(loan.cardIssueDate.substr(0,10));
+      date.setFullYear(date.getFullYear()+loan.durationInYears);
+      
+      return (
          <tr>
          <td>{loan.loanId}</td>
          <td>{loan.loanType}</td>
          <td>{loan.durationInYears}</td>
          <td>{loan.cardIssueDate.substr(0,10)}</td>
+         <td>{(date>new Date()) && date.toDateString()}{(date<new Date()) && <div style={{color:"red"}}><b>Inactive</b></div>}</td>
+         {/* <td>{(date<new Date()) && <div style={{color:"red"}}><b>Inactive</b></div>}</td> */}
        </tr>
-    ))}
+    )})}
       </tbody>
     </Table>
     }
