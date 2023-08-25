@@ -223,29 +223,10 @@ public class EmployeeMasterTest {
 	
 	@Test
 	public void testloginEmployeeMaster() throws Exception{
-		/*
-		String d1="1987-05-21";
-		String d2="2020-06-01";
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-		Date dob=sdf.parse(d1);
-		Date doj=sdf.parse(d2);
-		
-		EmployeeMasterDTO dto = new EmployeeMasterDTO();
-		dto.setEmployeeId("12345");
-		dto.setDateOfBirth(dob);
-		dto.setDateOfJoining(doj);
-		dto.setDepartment("tco");
-		dto.setDesignation("head");
-		dto.setEmployeeName("jasmine");
-		dto.setGender('f');
-		dto.setPassword("password");
-		*/
 		
 		EmployeeMasterLoginDTO dto = new EmployeeMasterLoginDTO();
 		dto.setEmployeeId("12345");
 		dto.setPassword("password");
-		
-		
 		
 		String obj = new String("loggedIn");
 		

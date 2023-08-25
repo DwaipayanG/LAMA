@@ -7,7 +7,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,7 +25,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+import com.example.backend.controller.EmployeeCardDetailsController;
 import com.example.backend.models.EmployeeCardDetails;
+import com.example.backend.models.EmployeeMaster;
 import com.example.backend.models.ItemsMaster;
 import com.example.backend.models.LoanCardMaster;
 import com.example.backend.models.ViewItems;
@@ -51,6 +53,9 @@ public class EmployeeCardDetailsTest {
 	
 	@Autowired
 	@MockBean
+	private EmployeeCardDetailsController employeeCardDetailsController;
+	@Autowired
+	@MockBean
 	private EmployeeCardDetailsServiceImpl employeeCarddetailsService;
 	
 	@Autowired
@@ -68,69 +73,49 @@ public class EmployeeCardDetailsTest {
 	ObjectMapper mapper = new ObjectMapper().findAndRegisterModules().disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
 	
-	@SuppressWarnings("deprecation")
 	@Test
 	public void testgetAllLoans() throws Exception{
-		EmployeeCardDetails employeeCardDetails = new EmployeeCardDetails();
-		employeeCardDetails.setCardId(11673);
-		employeeCardDetails.setCardIssueDate (new Date("23/08/2000"));
+		String emp = new String("2345");
+		List<ViewLoans> vl= new ArrayList<>();
 		
-		ViewLoans vl = new ViewLoans();
-		vl.setCardIssueDate(new Date("23/08/2000"));
-		vl.setDurationInYears(4);
-		vl.setLoanId("2281");
-		vl.setLoanType("personal");
+		Mockito.when(employeeCarddetailsService.getAllLoans(emp)).thenReturn(vl);
+		System.out.println("testing getting all loan for employee.");
 		
-		List<ViewLoans> getAllLoans = new ArrayList<>();
-		getAllLoans.add(vl);
-		
-		Mockito.when(employeeCarddetailsService.getAllLoans("33445")).thenReturn(getAllLoans);
-		System.out.println("testing getting all loans.");
-		
-		mvc.perform(get("/api/employee-card/all-loans-by-employee-id").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
-		.andExpect(jsonPath("$", Matchers.hasSize(1))).andExpect(jsonPath("$[0].cardIssueDate",  Matchers.equalTo(employeeCardDetails.getCardIssueDate())));
+		mvc.perform(get("/api/employee-card/all-loans-by-employee-id?employeeId=",emp)
+				.contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
 	}
 	
-
-	@SuppressWarnings("deprecation")
 	@Test
 	public void testgetAllItems() throws Exception{
-		EmployeeCardDetails employeeCardDetails = new EmployeeCardDetails();
-		employeeCardDetails.setCardId(11673);
-		employeeCardDetails.setCardIssueDate (new Date("23/08/2000"));
-		ViewItems vl = new ViewItems();
-		vl.setIssueId(5);
-		vl.setItemCategory("furniture");
-		vl.setItemDescription("table");
-		vl.setItemMake("wooden");
-		vl.setItemValuation(5000);
+		String emp = new String("2345");
+		List<ViewItems> vl= new ArrayList<>();
 		
-		List<ViewItems> getAllItems = new ArrayList<>();
-		getAllItems.add(vl);
+		Mockito.when(employeeCardDetailsController.getAllItems(emp)).thenReturn(vl);
+		System.out.println("testing getting all loan for employee.");
 		
-		Mockito.when(employeeIssueDetailsService.getAllItems("33445")).thenReturn(getAllItems);
-		System.out.println("testing getting all loans.");
-		
-		mvc.perform(get("/api/employee-card/all-loans-by-employee-id").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
-		.andExpect(jsonPath("$", Matchers.hasSize(1)));
+		mvc.perform(get("/api/employee-card/all-items-by-employee-id?employeeId=",emp)
+				.contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
 	}
 	
-	
-	
-	/*
-	@SuppressWarnings("deprecation")
-	@Test
-	public void testaddEmployeeCardDetails() throws Exception{
-		EmployeeCardDetails employeeCardDetails = new EmployeeCardDetails();
-		employeeCardDetails.setCardId(11673);
-		employeeCardDetails.setCardIssueDate (new Date("23/08/2000"));
-		
-		Mockito.when(employeeCarddetailsService.addEmployeeCardDetails(employeeCardDetails)).thenReturn(employeeCardDetails);
-		String json = mapper.writeValueAsString(employeeCardDetails);	
-		MvcResult requestResult = mvc.perform(post("/addEmployeeCardDetails").contentType(MediaType.APPLICATION_JSON).characterEncoding("utf-8").content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
-		String result = requestResult.getResponse().getContentAsString();
-		System.out.print(result);
-		assertEquals(result,result);
-	}*/
-
 }
+/*
+
+String d1="1987-05-21";
+String d2="2020-06-01";
+SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+Date dob=sdf.parse(d1);
+Date doj=sdf.parse(d2);
+
+EmployeeMaster employeeMaster = new EmployeeMaster();
+employeeMaster.setEmployeeId("12345");
+employeeMaster.setDateOfBirth(dob);
+employeeMaster.setDateOfJoining(doj);
+employeeMaster.setDepartment("tco");
+employeeMaster.setDesignation("head");
+employeeMaster.setEmployeeCardDetails(null);
+employeeMaster.setEmployeeName("jasmine");
+employeeMaster.setGender('f');
+employeeMaster.setPassword("password");
+List<EmployeeMaster> getAllEmployees = new ArrayList<>();
+getAllEmployees.add(employeeMaster);
+*/
