@@ -40,7 +40,7 @@ function LoginEmployee() {
             if(data["statusCode"]&&(data["statusCode"]==400||data["statusCode"]==404)){
                 setError(data["message"]);
             }else{
-              sessionStorage.setItem("employeeId", response.data.employeeId);
+              sessionStorage.setItem("employeeId", employeeId);
               sessionStorage.setItem("employeeName",response.data.employeeName);
               navigate("/employeeDashboard");
             }

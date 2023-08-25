@@ -61,15 +61,15 @@ export default function AddLoanCard(){
             <Form onSubmit={submitActionHandler}>
                 <Form.Group className="mb-3">
                     <Form.Label className="addLoanCardColumn">Loan Id</Form.Label>
-                    <Form.Control className="addLoanCardValue" type="text" value={loanId} onChange={loanIdChangeHandler} id="employeeId" maxLength="6" />
+                    <Form.Control className="addLoanCardValue" type="text" value={loanId} onChange={loanIdChangeHandler} id="employeeId" maxLength="6" required/>
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label className="addLoanCardColumn">Loan Type</Form.Label>
-                    <Form.Control className="addLoanCardValue" type="text" value={loanType} onChange={loanTypeChangeHandler} id="password" />
+                    <Form.Control className="addLoanCardValue" type="text" value={loanType} onChange={loanTypeChangeHandler} id="password" required/>
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label className="addLoanCardColumn">Duration</Form.Label>
-                    <Form.Control className="addLoanCardValue" type="text" value={duration} onChange={durationChangeHandler} id="employeeName" />
+                    <Form.Control className="addLoanCardValue" type="text" value={duration} onChange={durationChangeHandler} id="employeeName" required/>
                 </Form.Group>
                 <Button variant="primary" type="submit">
                     Submit

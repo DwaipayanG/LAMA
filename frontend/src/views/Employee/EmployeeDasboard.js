@@ -16,7 +16,7 @@ export default function EmployeeDasboard(){
             <Header></Header>
             <EmployeeNavigation/>
                     
-        <p className="welcomeText" style={{fontSize: "2em"}}> Welcome <b>{sessionStorage.getItem("employeeName")}</b> </p>
+        <p className="welcomeText" style={{fontSize: "2em"}}> Welcome <b>{sessionStorage.getItem("employeeId")}</b> </p>
 
         <Row style={{width:"70%",margin:"auto"}} > 
              

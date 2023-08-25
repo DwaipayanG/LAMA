@@ -115,15 +115,15 @@ export default function AddItem(){
                     </div>
                 <Form.Group className="mb-3">
                     <Form.Label className="addItemColumn">Item Description</Form.Label>
-                    <Form.Control className="addItemValue" type="text" value={itemDescription} onChange={itemDescriptionChangeHandler} id="itemDescription" />
+                    <Form.Control className="addItemValue" type="text" value={itemDescription} onChange={itemDescriptionChangeHandler} id="itemDescription" required/>
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label className="addItemColumn">Item Value</Form.Label>
-                    <Form.Control className="addItemValue" type="text" value={itemValue} onChange={itemValueChangeHandler} id="itemValue" />
+                    <Form.Control className="addItemValue" type="text" value={itemValue} onChange={itemValueChangeHandler} id="itemValue" required/>
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label className="addItemColumn">Item Make</Form.Label>
-                    <Form.Control className="addItemValue" type="text" value={itemMake} onChange={itemMakeChangeHandler} id="itemMake" />
+                    <Form.Control className="addItemValue" type="text" value={itemMake} onChange={itemMakeChangeHandler} id="itemMake" required/>
                 </Form.Group>
                 <Button variant="primary" type="submit">
                     Submit
