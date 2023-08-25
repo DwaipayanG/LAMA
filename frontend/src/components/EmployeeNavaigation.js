@@ -36,8 +36,9 @@ function EmployeeNavigation (){
             <Nav.Link href="/viewItems" >View Item</Nav.Link>
             <Nav.Link href="/applyLoan" >Apply Loan</Nav.Link>
           </Nav>
+          <Button variant="danger" onClick={() =>handleLogout()}>Logout</Button>
         </Navbar.Collapse>
-        <Button variant="danger" onClick={() =>handleLogout()}>Logout</Button>
+        
 
       </Container>
     </Navbar>

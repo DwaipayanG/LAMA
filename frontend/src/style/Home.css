@@ -91,3 +91,12 @@
       background-position: 0% 50%;
     }
   }
+
+  @media screen and (max-width:800px) {
+    .homeText{
+      padding-top: 30vh;
+      padding-left: 4vw;
+      padding-right: 4vw;
+    }
+    
+  }

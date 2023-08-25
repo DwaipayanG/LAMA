@@ -30,4 +30,13 @@
 
 .value{
     text-align: left;
+    width: 50%;
+
+}
+
+@media screen and (max-width: 800px) {
+    .borderBox{
+        width: 90%;
+    }
+    
 }

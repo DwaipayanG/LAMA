@@ -23,4 +23,12 @@
 
 .addItemValue{
     text-align: left;
+    width: 50%;
+}
+
+@media screen and (max-width: 800px) {
+    .addItemBox{
+        width: 90%;
+    }
+    
 }
