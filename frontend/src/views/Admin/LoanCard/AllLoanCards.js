@@ -11,6 +11,8 @@ import { FcEmptyTrash } from "react-icons/fc";
 function AllLoanCards() {
     const [loans, setLoans] = useState([]);
     const navigate = useNavigate();
+    var fd= [1,2,34,5];
+   
 
     useEffect(()=>{
         const url= "http://localhost:8080/api/loan-card/all-loans";
@@ -57,6 +59,7 @@ function AllLoanCards() {
       <Header></Header>
       <AdminNavigation/>
       <h3>View All Loan</h3>
+    <div className="scrollOverflowX">
     <Table striped bordered hover>
       <thead>
         <tr>
@@ -80,6 +83,7 @@ function AllLoanCards() {
     ))}
       </tbody>
     </Table>
+    </div>
     </div>
   );
 }
