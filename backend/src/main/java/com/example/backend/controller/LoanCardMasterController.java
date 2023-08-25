@@ -1,7 +1,9 @@
 package com.example.backend.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.backend.dto.LoanCardMasterDTO;
 import com.example.backend.exception.DataUnavailableException;
 import com.example.backend.exception.DuplicateEntryException;
 import com.example.backend.exception.ResourceNotFoundException;
@@ -30,14 +33,17 @@ public class LoanCardMasterController {
 	@Autowired
 	private LoanCardMasterServiceImpl loanCardMasterService;
 	
+	@Autowired
+	private ModelMapper ModelMap;
+	
 	@GetMapping("/api/loan-card/all-loans")
-	public List<LoanCardMaster> getAllLoanCard() throws DataUnavailableException{
+	public List<LoanCardMasterDTO> getAllLoanCard() throws DataUnavailableException{
 		
 		List<LoanCardMaster> loanCards =  loanCardMasterService.getAllLoanCards();
 		if(loanCards.size()==0)
 			throw new DataUnavailableException("No Loan Cards present");
 		else
-			return loanCards;
+			return loanCards.stream().map(loanCard->ModelMap.map(loanCard, LoanCardMasterDTO.class)).collect(Collectors.toList());
 	}
 	
 	@GetMapping("/api/loan-card/all-loan-types")
@@ -46,13 +52,14 @@ public class LoanCardMasterController {
 	}
 	
 	@PostMapping("/api/loan-card")
-	public LoanCardMaster addLoanCard(@Valid @RequestBody LoanCardMaster loanCard) throws DuplicateEntryException {
+	public LoanCardMasterDTO addLoanCard(@Valid @RequestBody LoanCardMasterDTO loanCardDTO) throws DuplicateEntryException {
+		LoanCardMaster loanCard = ModelMap.map(loanCardDTO, LoanCardMaster.class);
 		try {
-			LoanCardMaster loanCardMaster = this.getLoanCardById(loanCard.getLoanId());
+			LoanCardMaster loanCardMaster = ModelMap.map(this.getLoanCardById(loanCard.getLoanId()), LoanCardMaster.class);
 			throw new DuplicateEntryException("Loan card already exists!");
 		} catch (ResourceNotFoundException e) {
 			// TODO: handle exception
-			return loanCardMasterService.addLoanCard(loanCard);
+			return ModelMap.map(loanCardMasterService.addLoanCard(loanCard), LoanCardMasterDTO.class);
 		}
 	}
 	
@@ -63,21 +70,22 @@ public class LoanCardMasterController {
 	}
 	
 	@PutMapping("/api/loan-card")
-	public LoanCardMaster updateLoanCard(@Valid @RequestParam String loanId, @Valid @RequestBody LoanCardMaster newLoanCardMaster) throws ResourceNotFoundException {
-
+	public LoanCardMasterDTO updateLoanCard(@Valid @RequestParam String loanId, @Valid @RequestBody LoanCardMasterDTO newLoanCardMasterDTO) throws ResourceNotFoundException {
+		
+		LoanCardMaster newLoanCardMaster = ModelMap.map(newLoanCardMasterDTO, LoanCardMaster.class);
 		LoanCardMaster loanCardMaster = loanCardMasterService.getLoanCardById(loanId);
 		loanCardMaster = loanCardMasterService.updateLoanCard(loanCardMaster, newLoanCardMaster);
-		return loanCardMaster;
+		return ModelMap.map(loanCardMaster, LoanCardMasterDTO.class);
 	}
 	
 	@GetMapping("/api/loan-card/by-loan-type")
 	@ResponseBody
-	public LoanCardMaster getLoanCardByLoanType(@Valid @RequestParam("loanType") String loanType) throws ResourceNotFoundException {
-		return loanCardMasterService.getLoanCardByLoanType(loanType);
+	public LoanCardMasterDTO getLoanCardByLoanType(@Valid @RequestParam("loanType") String loanType) throws ResourceNotFoundException {
+		return ModelMap.map(loanCardMasterService.getLoanCardByLoanType(loanType), LoanCardMasterDTO.class);
 	}
 	
 	@GetMapping("/api/loan-card/by-loan-id")
-	public LoanCardMaster getLoanCardById(@Valid @RequestParam("loanId") String loanId) throws ResourceNotFoundException {
-		return loanCardMasterService.getLoanCardById(loanId);
+	public LoanCardMasterDTO getLoanCardById(@Valid @RequestParam("loanId") String loanId) throws ResourceNotFoundException {
+		return ModelMap.map(loanCardMasterService.getLoanCardById(loanId), LoanCardMasterDTO.class);
 	}
 }

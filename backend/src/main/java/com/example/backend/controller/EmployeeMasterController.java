@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.backend.dto.ApplyLoanDataDTO;
 import com.example.backend.dto.EmployeeMasterDTO;
 import com.example.backend.dto.EmployeeMasterLoginDTO;
 import com.example.backend.exception.AuthenticationException;
@@ -119,8 +120,9 @@ public class EmployeeMasterController {
 	
 	@Transactional
 	@PostMapping("/api/employee/apply-loan")
-	public Object applyLoan(@Valid @RequestBody ApplyLoanData loanData) throws ResourceNotFoundException {
+	public Object applyLoan(@Valid @RequestBody ApplyLoanDataDTO loanDataDTO) throws ResourceNotFoundException {
 
+		ApplyLoanData loanData = ModelMap.map(loanDataDTO, ApplyLoanData.class);
 
 		EmployeeMaster employeeMaster = employeeMasterService.getEmployeeMasterById(loanData.getEmployeeId()); 
 				
