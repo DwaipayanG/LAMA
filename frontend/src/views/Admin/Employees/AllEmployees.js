@@ -8,6 +8,7 @@ import AdminNavigation from "../../../components/AdminNavigation";
 import "../../../style/TabularViewAll.css";
 import {CiEdit} from "react-icons/ci";
 import { FcEmptyTrash } from "react-icons/fc";
+import "../../../style/TabularViewAll.css";
 
 
 
@@ -64,7 +65,8 @@ function AllEmployees() {
     <Header></Header>
     <AdminNavigation/>
     <h3>View All Employees</h3>
-    <Table striped bordered hover>
+    <div className="scrollOverflowX">
+    <Table striped bordered hover className="scrollOverflow">
       <thead>
         <tr>
           <th>Employee ID</th>
@@ -95,6 +97,7 @@ function AllEmployees() {
     ))}
       </tbody>
     </Table>
+    </div>
     </div>
   );
 

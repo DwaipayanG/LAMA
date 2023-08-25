@@ -8,6 +8,7 @@ import "../../../style/TabularViewAll.css";
 import {CiEdit} from "react-icons/ci";
 import { FcEmptyTrash } from "react-icons/fc";
 
+
 function AllItems() {
     const [items, setItems] = useState([]);
     const [error,setError] = useState(null);
@@ -63,6 +64,7 @@ function AllItems() {
     <h3>View All Items</h3>
     {
     !error &&
+    <div className="scrollOverflowX">
     <Table striped bordered hover>
       <thead>
         <tr>
@@ -93,6 +95,7 @@ function AllItems() {
     ))}
       </tbody>
     </Table>
+    </div>
     }
     {
       error
