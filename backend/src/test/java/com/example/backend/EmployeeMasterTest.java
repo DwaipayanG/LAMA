@@ -45,9 +45,6 @@ import com.example.backend.services.LoanCardMasterServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
-import net.minidev.json.JSONValue;
-
-@SuppressWarnings("deprecation")
 @RunWith(SpringRunner.class)
 @WebMvcTest
 		

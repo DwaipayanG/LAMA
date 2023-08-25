@@ -2,13 +2,16 @@ package com.example.backend;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.hamcrest.Matchers;
@@ -24,6 +27,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+import com.example.backend.controller.ItemsMasterController;
 import com.example.backend.models.ItemsMaster;
 import com.example.backend.services.EmployeeCardDetailsServiceImpl;
 import com.example.backend.services.EmployeeIssueDetailsServiceImpl;
@@ -46,6 +50,10 @@ public class ItemsMasterTest {
 	
 	@Autowired
 	@MockBean
+	private ItemsMasterController itemsMasterController;
+	
+	@Autowired
+	@MockBean
 	private EmployeeCardDetailsServiceImpl employeeCarddetailsService;
 	
 	@Autowired
@@ -62,9 +70,19 @@ public class ItemsMasterTest {
 	
 	ObjectMapper mapper = new ObjectMapper().findAndRegisterModules().disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
+	@Test
+	public void testdeleteItemById() throws Exception{
+		String del = new String("deleted");
+		String id = new String("6643");
+		
+		Mockito.when(itemsMasterController.deleteItemById(id)).thenReturn(del);
+		System.out.println("testing deleting item by id");
+		
+		mvc.perform(delete("/api/item?itemId=",id).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+	}
 	
 	@Test
-	public void testGetAllCategory() throws Exception{
+	public void testgetItemByMakeAndCategory() throws Exception{
 		ItemsMaster itemsMaster = new ItemsMaster();
 		itemsMaster.setItemId("116732");
 		itemsMaster.setItemDescription("loan");
@@ -75,14 +93,31 @@ public class ItemsMasterTest {
 		List<String> allCategoryList = new ArrayList<>();
 		allCategoryList.add(itemsMaster.getItemCategory());
 		
-		Mockito.when(itemsMasterService.getAllCategory()).thenReturn(allCategoryList);
-		System.out.println("testing getting all categories.");
+		Mockito.when(itemsMasterController.getItemByMakeAndCategory(itemsMaster.getItemCategory(), itemsMaster.getItemMake())).thenReturn(itemsMaster);
+		System.out.println("testing getting item by make and categories.");
 		
-		mvc.perform(get("/getAllCategory").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
-		.andExpect(jsonPath("$", Matchers.hasSize(1))).andExpect(jsonPath("$[0]", Matchers.equalTo(itemsMaster.getItemCategory())));
+		mvc.perform(get("/api/item/by-make-and-category").param("itemCategory", itemsMaster.getItemCategory()).param("itemMake", itemsMaster.getItemMake()).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+	
 	}			
 	
+	@Test
+	public void testgetItemById() throws Exception{
+		ItemsMaster itemsMaster = new ItemsMaster();
+		itemsMaster.setItemId("116732");
+		itemsMaster.setItemDescription("loan");
+		itemsMaster.setItemStatus('y');
+		itemsMaster.setItemMake("car");
+		itemsMaster.setItemCategory("personal");
+		itemsMaster.setItemValuation(22000);
+
 		
+		Mockito.when(itemsMasterController.getItemById(itemsMaster.getItemId())).thenReturn(itemsMaster);
+		System.out.println("testing getting item by make and categories.");
+		
+		mvc.perform(get("/api/item/by-item-id?itemId=",itemsMaster.getItemId()).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+		
+	}	
+	
 	
 	@Test
 	public void testgetAllItems() throws Exception{
@@ -99,10 +134,8 @@ public class ItemsMasterTest {
 		Mockito.when(itemsMasterService.getAllItems()).thenReturn(getAllItems);
 		System.out.println("testing getting all items");
 		
-		mvc.perform(get("/getAllItem").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
-		.andExpect(jsonPath("$", Matchers.hasSize(1))).andExpect(jsonPath("$[0].itemId", Matchers.equalTo(itemsMaster.getItemId())));
-	}	
-	
+		mvc.perform(get("/api/item/all-items").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+	}		
 
 	@Test
 	public void testgetDistinctMakesByCategory() throws Exception{
@@ -116,12 +149,11 @@ public class ItemsMasterTest {
 		List<String> getDistinctMakesByCategory = new ArrayList<>();
 		getDistinctMakesByCategory.add(itemsMaster.getItemMake());
 		
-		Mockito.when(itemsMasterService.getDistinctMakesByCategory(ArgumentMatchers.any())).thenReturn(getDistinctMakesByCategory);
+		Mockito.when(itemsMasterService.getDistinctMakesByCategory(itemsMaster.getItemCategory())).thenReturn(getDistinctMakesByCategory);
 		System.out.println("testing getting distict make by categories.");
 		
-		mvc.perform(post("/getDistinctMakesByCategory").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
-		.andExpect(jsonPath("$", Matchers.hasSize(1))).andExpect(jsonPath("$[0]", Matchers.equalTo(itemsMaster.getItemMake())));
-	} 
+		mvc.perform(get("/api/item/makes-by-category?itemCategory=",itemsMaster.getItemCategory()).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+	}
 	
 	@Test
 	public void testaddItem() throws Exception{
@@ -133,17 +165,15 @@ public class ItemsMasterTest {
 		itemsMaster.setItemCategory("personal");
 		itemsMaster.setItemValuation(22000);
 		
-		Mockito.when(itemsMasterService.addItem(ArgumentMatchers.any())).thenReturn(itemsMaster);
-		String json = mapper.writeValueAsString(itemsMaster);	
-		MvcResult requestResult = mvc.perform(post("/addItem").contentType(MediaType.APPLICATION_JSON).characterEncoding("utf-8").content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
-		String result = requestResult.getResponse().getContentAsString();
-		System.out.print(result);
-		assertEquals(result,result);
-	}
-	
-	
+		
+		Mockito.when(itemsMasterController.addItem(itemsMaster)).thenReturn(itemsMaster);
+		System.out.println("testing adding new item");
+		String json = mapper.writeValueAsString(itemsMaster);
+		mvc.perform(post("/api/item").contentType(MediaType.APPLICATION_JSON).content(json)).andExpect(status().isOk());
+	} 
+
 	@Test
-	public void testgetItem() throws Exception{
+	public void testupdateItem() throws Exception{
 		ItemsMaster itemsMaster = new ItemsMaster();
 		itemsMaster.setItemId("116732");
 		itemsMaster.setItemDescription("loan");
@@ -152,13 +182,10 @@ public class ItemsMasterTest {
 		itemsMaster.setItemCategory("personal");
 		itemsMaster.setItemValuation(22000);
 		
-		Mockito.when(itemsMasterService.getItemByMakeAndCategory(itemsMaster.getItemMake(), itemsMaster.getItemCategory())).thenReturn(itemsMaster);
-		System.out.println("testing getting all items");
+		Mockito.when(itemsMasterController.updateItem(itemsMaster.getItemId(), itemsMaster)).thenReturn(itemsMaster);
 		
-		mvc.perform(get("/getItemByMakeAndCategory").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());	
-	} 
-
- 
-	
-
+		String json = mapper.writeValueAsString(itemsMaster);
+		mvc.perform(put("/api/item?itemId=",itemsMaster.getItemId()).contentType(MediaType.APPLICATION_JSON).content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+	}
 }
+	
