@@ -52,6 +52,12 @@ public class ItemsMasterController {
 		return itemsMasterService.getAllCategory();
 	}
 	
+	@DeleteMapping("/api/item")
+	public String deleteItemById(@Valid @RequestParam String itemId) {
+		itemsMasterService.deleteItemById(itemId);
+		return "deleted";
+	}
+	
 	@GetMapping("/api/item/by-make-and-category")
 	public ItemsMaster getItemByMakeAndCategory(@Valid @RequestParam("itemCategory") String itemCategory,@Valid @RequestParam("itemMake") String itemMake) throws ResourceNotFoundException {
 		return itemsMasterService.getItemByMakeAndCategory(itemCategory, itemMake);
@@ -61,7 +67,7 @@ public class ItemsMasterController {
 	public ItemsMaster getItemById(@Valid @RequestParam("itemId") String itemId) throws ResourceNotFoundException {
 		return itemsMasterService.getItemById(itemId);
 	}
-
+	
 	@PostMapping("/api/item")
 	public ItemsMaster addItem(@Valid @RequestBody ItemsMaster itemsMaster) throws DuplicateEntryException {
 		try {
@@ -83,12 +89,5 @@ public class ItemsMasterController {
 	}
 	
 
-	
-	@DeleteMapping("/api/item")
-	public String deleteItemById(@Valid @RequestParam String itemId) {
-		itemsMasterService.deleteItemById(itemId);
-		return "deleted";
-	}
-	
 	
 }
