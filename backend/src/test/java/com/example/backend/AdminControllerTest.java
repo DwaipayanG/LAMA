@@ -80,7 +80,7 @@ public class AdminControllerTest {
 		
 		String sr = new String("authorized"); 
 					
-		
+		System.out.println("Testing admin login");
 		Mockito.when(adminController.loginAdmin(adminLogin)).thenReturn(sr);
 		String json = mapper.writeValueAsString(adminLogin);	
 		mvc.perform(post("/api/admin/login")

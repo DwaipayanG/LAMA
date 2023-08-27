@@ -100,6 +100,8 @@ public class EmployeeMasterTest {
 		List<EmployeeMaster> getAllEmployees = new ArrayList<>();
 		getAllEmployees.add(employeeMaster);
 		
+		System.out.println("Testing getting all data of employee");
+		
 		Mockito.when(employeeMasterService.getAllEmployees()).thenReturn(getAllEmployees);
 		System.out.println("testing getting all employee.");
 		
@@ -128,7 +130,7 @@ public class EmployeeMasterTest {
 		
 		EmployeeMasterDTO emp = new EmployeeMasterDTO();
 		
-		
+		System.out.println("Testing getting all data for an employee");
 		
 		Mockito.when(employeeMasterController.getEmployeeMaster(employeeMaster.getEmployeeId())).thenReturn(emp);
 		System.out.println("testing getting employee by id");
@@ -157,6 +159,8 @@ public class EmployeeMasterTest {
 		employeeMaster.setGender('f');
 		employeeMaster.setPassword("password");
 		
+		System.out.println("Testing updating data for employee");
+		
 		Mockito.when(employeeMasterService.updateEmployee(employeeMaster, employeeMaster)).thenReturn(employeeMaster);
 		
 		String json = mapper.writeValueAsString(employeeMaster);
@@ -184,6 +188,8 @@ public class EmployeeMasterTest {
 		employeeMaster.setPassword("password");
 		String del = "deleted";
 		
+		System.out.println("Testing deleting an employee");
+		
 		Mockito.when(employeeMasterController.deleteEmployeeById(employeeMaster.getEmployeeId())).thenReturn(del);
 		System.out.println("testing deleting employee by id");
 		
@@ -208,6 +214,7 @@ public class EmployeeMasterTest {
 		dto.setGender('f');
 		dto.setPassword("password");
 		
+		System.out.println("Testing adding a new employee");
 		
 		Mockito.when(employeeMasterController.addEmployeeMaster(ArgumentMatchers.any())).thenReturn(dto);
 		String json = mapper.writeValueAsString(dto);	
@@ -226,6 +233,8 @@ public class EmployeeMasterTest {
 		dto.setPassword("password");
 		
 		String obj = new String("loggedIn");
+		
+		System.out.println("Testing login for an employee");
 		
 		Mockito.when(employeeMasterController.loginEmployeeMaster(dto)).thenReturn(obj);
 		
@@ -249,6 +258,8 @@ public class EmployeeMasterTest {
 		emp.setLoanIssueDate(dob);
 		
 		String obj = new String("Loan applied");
+		
+		System.out.println("Testing apply loan for employee");
 		
 		Mockito.when(employeeMasterController.applyLoan(emp)).thenReturn(obj);
 		String json = mapper.writeValueAsString(emp);	

@@ -74,7 +74,7 @@ public class ItemsMasterTest {
 	public void testdeleteItemById() throws Exception{
 		String del = new String("deleted");
 		String id = new String("6643");
-		
+		System.out.println("Testing deleting an item");
 		Mockito.when(itemsMasterController.deleteItemById(id)).thenReturn(del);
 		System.out.println("testing deleting item by id");
 		
@@ -93,6 +93,8 @@ public class ItemsMasterTest {
 		List<String> allCategoryList = new ArrayList<>();
 		allCategoryList.add(itemsMaster.getItemCategory());
 		
+		System.out.println("Testing to get item by make and category");
+		
 		Mockito.when(itemsMasterController.getItemByMakeAndCategory(itemsMaster.getItemCategory(), itemsMaster.getItemMake())).thenReturn(itemsMaster);
 		System.out.println("testing getting item by make and categories.");
 		
@@ -110,6 +112,7 @@ public class ItemsMasterTest {
 		itemsMaster.setItemCategory("personal");
 		itemsMaster.setItemValuation(22000);
 
+		System.out.println("Testing getting an item by id");
 		
 		Mockito.when(itemsMasterController.getItemById(itemsMaster.getItemId())).thenReturn(itemsMaster);
 		System.out.println("testing getting item by make and categories.");
@@ -131,6 +134,8 @@ public class ItemsMasterTest {
 		List<ItemsMaster> getAllItems = new ArrayList<>();
 		getAllItems.add(itemsMaster);
 		
+		System.out.println("Testing getting all items");
+		
 		Mockito.when(itemsMasterService.getAllItems()).thenReturn(getAllItems);
 		System.out.println("testing getting all items");
 		
@@ -149,6 +154,8 @@ public class ItemsMasterTest {
 		List<String> getDistinctMakesByCategory = new ArrayList<>();
 		getDistinctMakesByCategory.add(itemsMaster.getItemMake());
 		
+		System.out.println("Testing getting ditinct make by category");
+		
 		Mockito.when(itemsMasterService.getDistinctMakesByCategory(itemsMaster.getItemCategory())).thenReturn(getDistinctMakesByCategory);
 		System.out.println("testing getting distict make by categories.");
 		
@@ -165,6 +172,7 @@ public class ItemsMasterTest {
 		itemsMaster.setItemCategory("personal");
 		itemsMaster.setItemValuation(22000);
 		
+		System.out.println("Testing adding a new item");
 		
 		Mockito.when(itemsMasterController.addItem(itemsMaster)).thenReturn(itemsMaster);
 		System.out.println("testing adding new item");
@@ -181,6 +189,8 @@ public class ItemsMasterTest {
 		itemsMaster.setItemMake("car");
 		itemsMaster.setItemCategory("personal");
 		itemsMaster.setItemValuation(22000);
+		
+		System.out.println("Testing updating item");
 		
 		Mockito.when(itemsMasterController.updateItem(itemsMaster.getItemId(), itemsMaster)).thenReturn(itemsMaster);
 		

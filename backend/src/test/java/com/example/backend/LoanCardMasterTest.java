@@ -77,6 +77,8 @@ public void testgetAllLoanCard() throws Exception{
 	List<LoanCardMaster> getAllLoanCard = new ArrayList<>();
 	getAllLoanCard.add(loanCardMaster);
 	
+	System.out.println("Testing getting all loan cards");
+	
 	Mockito.when(loanCardMasterController.getAllLoanCard()).thenReturn(getAllLoanCard);
 	System.out.println("testing getting all employee.");
 		
@@ -93,10 +95,11 @@ public void testgetAllLoanTypes() throws Exception{
 	loanCardMaster.setDurationInYears(15);
 	
 	List<String> getAllLoanTypes = new ArrayList<>();
-	//getAllLoanTypes.add(loanCardMaster);
+	
+	System.out.println("Testing getting all loans types");
 	
 	Mockito.when(loanCardMasterController.getAllLoanTypes()).thenReturn(getAllLoanTypes);
-	System.out.println("testing getting all employee.");
+	
 		
 	mvc.perform(get("/api/loan-card/all-loan-types")
 			.contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
@@ -110,11 +113,10 @@ public void testgetLoanCardByLoanType() throws Exception{
 	loanCardMaster.setLoanType("furniture");
 	loanCardMaster.setDurationInYears(15);
 	
-	//List<String> getAllLoanTypes = new ArrayList<>();
-	//getAllLoanTypes.add(loanCardMaster);
+	System.out.println("Testing getting all loan card by loan type");
 	
 	Mockito.when(loanCardMasterController.getLoanCardByLoanType(loanCardMaster.getLoanType())).thenReturn(loanCardMaster);
-	System.out.println("testing getting all employee.");
+	
 		
 	mvc.perform(get("/api/loan-card/by-loan-type?loanType=",loanCardMaster.getLoanType())
 			.contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
@@ -128,8 +130,9 @@ public void testgetLoanCardById() throws Exception{
 	loanCardMaster.setLoanType("furniture");
 	loanCardMaster.setDurationInYears(15);
 	
+	System.out.println("Testing getting all loan card by id");
+	
 	Mockito.when(loanCardMasterController.getLoanCardById(loanCardMaster.getLoanId())).thenReturn(loanCardMaster);
-	System.out.println("testing getting all employee.");
 		
 	mvc.perform(get("/api/loan-card/by-loan-id?loanId=",loanCardMaster.getLoanId())
 			.contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
@@ -145,8 +148,10 @@ public void testdeleteLoanCard() throws Exception{
 	
 	String del = "deleted";
 	
+	System.out.println("Testing deleting a loan card");
+	
 	Mockito.when(loanCardMasterController.deleteLoanCard(loanCardMaster.getLoanId())).thenReturn(del);
-	System.out.println("testing deleting employee by id");
+	
 	
 	mvc.perform(delete("/api/loan-card?loanId=",loanCardMaster.getLoanId()).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
 }
@@ -158,6 +163,7 @@ public void testaddLoanCard() throws Exception{
 	loanCardMaster.setLoanType("furniture");
 	loanCardMaster.setDurationInYears(15);
 		
+	System.out.println("Testing adding a loan card");
 	
 	Mockito.when(loanCardMasterController.addLoanCard(loanCardMaster)).thenReturn(loanCardMaster);
 	String json = mapper.writeValueAsString(loanCardMaster);	
@@ -173,6 +179,8 @@ public void testupdateLoanCard() throws Exception{
 	loanCardMaster.setLoanId("123456");
 	loanCardMaster.setLoanType("furniture");
 	loanCardMaster.setDurationInYears(15);
+	
+	System.out.println("Testing updating a loan card");
 	
 	Mockito.when(loanCardMasterController.updateLoanCard(loanCardMaster.getLoanId(), loanCardMaster)).thenReturn(loanCardMaster);
 	

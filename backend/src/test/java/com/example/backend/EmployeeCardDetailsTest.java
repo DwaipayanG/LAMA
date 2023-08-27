@@ -77,7 +77,7 @@ public class EmployeeCardDetailsTest {
 	public void testgetAllLoans() throws Exception{
 		String emp = new String("2345");
 		List<ViewLoans> vl= new ArrayList<>();
-		
+		System.out.println("Testing getting all loans for employee");
 		Mockito.when(employeeCarddetailsService.getAllLoans(emp)).thenReturn(vl);
 		System.out.println("testing getting all loan for employee.");
 		
@@ -89,7 +89,7 @@ public class EmployeeCardDetailsTest {
 	public void testgetAllItems() throws Exception{
 		String emp = new String("2345");
 		List<ViewItems> vl= new ArrayList<>();
-		
+		System.out.println("Testing getting all items for employee");
 		Mockito.when(employeeCardDetailsController.getAllItems(emp)).thenReturn(vl);
 		System.out.println("testing getting all loan for employee.");
 		
@@ -98,24 +98,3 @@ public class EmployeeCardDetailsTest {
 	}
 	
 }
-/*
-
-String d1="1987-05-21";
-String d2="2020-06-01";
-SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-Date dob=sdf.parse(d1);
-Date doj=sdf.parse(d2);
-
-EmployeeMaster employeeMaster = new EmployeeMaster();
-employeeMaster.setEmployeeId("12345");
-employeeMaster.setDateOfBirth(dob);
-employeeMaster.setDateOfJoining(doj);
-employeeMaster.setDepartment("tco");
-employeeMaster.setDesignation("head");
-employeeMaster.setEmployeeCardDetails(null);
-employeeMaster.setEmployeeName("jasmine");
-employeeMaster.setGender('f');
-employeeMaster.setPassword("password");
-List<EmployeeMaster> getAllEmployees = new ArrayList<>();
-getAllEmployees.add(employeeMaster);
-*/
