@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import "../style/Header.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import user from "../assets/user.png";
 
 
 
@@ -49,6 +50,7 @@ function AdminNavigation() {
               <NavDropdown.Item href="/viewAllLoanCards">View Loans</NavDropdown.Item>
             </NavDropdown>
           </Nav>
+          <img src={user} style ={{marginRight:"5px"}}/>
         <Button variant="danger" onClick={() =>handleLogout()}>Logout</Button>
 
         </Navbar.Collapse>

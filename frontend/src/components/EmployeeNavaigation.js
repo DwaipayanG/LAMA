@@ -6,6 +6,7 @@ import "../style/Header.css"
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { useEffect } from "react";
+import user from "../assets/user.png"
 
 function EmployeeNavigation (){
 
@@ -36,6 +37,7 @@ function EmployeeNavigation (){
             <Nav.Link href="/viewItems" >View Item</Nav.Link>
             <Nav.Link href="/applyLoan" >Apply Loan</Nav.Link>
           </Nav>
+          <img src={user} style ={{marginRight:"5px"}}/>
           <Button variant="danger" onClick={() =>handleLogout()}>Logout</Button>
         </Navbar.Collapse>
         
