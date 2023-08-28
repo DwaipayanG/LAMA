@@ -32,10 +32,10 @@ function EmployeeNavigation (){
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="m-auto">
-            <Nav.Link href="/employeeDashboard" >Dashboard</Nav.Link>
-            <Nav.Link href="/viewLoans" >View Loans</Nav.Link>
-            <Nav.Link href="/viewItems" >View Item</Nav.Link>
-            <Nav.Link href="/applyLoan" >Apply Loan</Nav.Link>
+            <Nav.Link href="/employee/dashboard" >Dashboard</Nav.Link>
+            <Nav.Link href="/employee/loans" >View Loans</Nav.Link>
+            <Nav.Link href="/employee/items" >View Item</Nav.Link>
+            <Nav.Link href="/employee/apply-loan" >Apply Loan</Nav.Link>
           </Nav>
           <img src={user} style ={{marginRight:"5px"}}/>
           <Button variant="danger" onClick={() =>handleLogout()}>Logout</Button>

@@ -23,7 +23,7 @@ function LoginAdmin() {
 
     useEffect(()=>{
         if(sessionStorage.getItem("adminUsername")){
-            navigate("/adminDashboard");
+            navigate("/admin/dashboard");
         }
     },[]);
 
@@ -42,7 +42,7 @@ function LoginAdmin() {
                 setError(data["message"]);
             }else{
               sessionStorage.setItem("adminUsername", response.data);
-              navigate("/adminDashboard");
+              navigate("/admin/dashboard");
             }
         })
         .catch((error) => {

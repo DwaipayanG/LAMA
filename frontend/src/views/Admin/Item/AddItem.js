@@ -75,7 +75,7 @@ export default function AddItem(){
                 if(data["statusCode"]&&data["statusCode"]==400)
                     setError(data["message"]);
                 else
-                    navigate("/viewAllItems");
+                    navigate("/admin/items/view");
             })
             .catch((error) => {
                 alert(error);

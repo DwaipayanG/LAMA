@@ -48,7 +48,7 @@ export default function EmployeeDasboard(){
            
 
             
-                <Card.Link href="/viewLoans" style ={{textDecoration: "none"}}>  
+                <Card.Link href="/employee/loans" style ={{textDecoration: "none"}}>  
                 <Card.Body>
                 <Card.Img variant="top" style={{width: "clamp(100px, 80%, 200px)", margin: "0 auto"}} src={showLoan} />
                 <Card.Title >Show Loans</Card.Title>
@@ -63,7 +63,7 @@ export default function EmployeeDasboard(){
            
 
             
-                <Card.Link href="/applyLoan" style ={{textDecoration: "none"}}>  
+                <Card.Link href="/employee/apply-loan" style ={{textDecoration: "none"}}>  
                 <Card.Body>
                 <Card.Img variant="top" style={{width: "clamp(100px, 80%, 200px)", margin: "0 auto"}} src={loan} />
                 <Card.Title >Apply Loan</Card.Title>
@@ -76,7 +76,7 @@ export default function EmployeeDasboard(){
            
 
             
-           <Card.Link href="/viewItems" style ={{textDecoration: "none"}}>  
+           <Card.Link href="/employee/items" style ={{textDecoration: "none"}}>  
            <Card.Body>
            <Card.Img variant="top" style={{width: "clamp(100px, 80%, 200px)", margin: "0 auto"}} src={purchasedItem} />
            <Card.Title >Items Purchased</Card.Title>

@@ -36,18 +36,18 @@ function AdminNavigation() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="m-auto">
-            <Nav.Link href="/adminDashboard" >Dashboard</Nav.Link>
+            <Nav.Link href="/admin/dashboard" >Dashboard</Nav.Link>
             <NavDropdown title="Employee Data"  id="basic-nav-dropdown">
-              <NavDropdown.Item  href="/addEmployee">Add Employee</NavDropdown.Item>
-              <NavDropdown.Item href="/viewAllEmployees" >View Employees</NavDropdown.Item>
+              <NavDropdown.Item  href="/admin/employees/add">Add Employee</NavDropdown.Item>
+              <NavDropdown.Item href="/admin/employees/view" >View Employees</NavDropdown.Item>
             </NavDropdown>
             <NavDropdown  title="Item" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/addItem">Add Item</NavDropdown.Item>
-              <NavDropdown.Item href="/viewAllItems" >View Items</NavDropdown.Item>
+              <NavDropdown.Item href="/admin/items/add">Add Item</NavDropdown.Item>
+              <NavDropdown.Item href="/admin/items/view" >View Items</NavDropdown.Item>
             </NavDropdown>
             <NavDropdown  title="Loan" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/addLoanCard" >Add Loan</NavDropdown.Item>
-              <NavDropdown.Item href="/viewAllLoanCards">View Loans</NavDropdown.Item>
+              <NavDropdown.Item href="/admin/loan-cards/add" >Add Loan</NavDropdown.Item>
+              <NavDropdown.Item href="/admin/loan-cards/view">View Loans</NavDropdown.Item>
             </NavDropdown>
           </Nav>
           <img src={user} style ={{marginRight:"5px"}}/>

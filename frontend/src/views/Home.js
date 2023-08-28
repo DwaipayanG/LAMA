@@ -1,8 +1,6 @@
-import { Link } from "react-router-dom";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import Header from "../components/Header";
 import "../style/Home.css";
 import Starlights from "../components/Starlight/Starlights";
@@ -16,8 +14,8 @@ function Home() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="m-auto">
-            <Nav.Link href="/loginAdmin">Admin Login</Nav.Link>
-            <Nav.Link href="/loginEmployee">Employee Login</Nav.Link>
+            <Nav.Link href="/admin/login">Admin Login</Nav.Link>
+            <Nav.Link href="/employee/login">Employee Login</Nav.Link>
             <Nav.Link href="/about">About</Nav.Link>
           </Nav>
         </Navbar.Collapse>
