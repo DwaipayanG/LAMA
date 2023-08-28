@@ -1,21 +1,14 @@
 package com.example.backend;
 
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -23,14 +16,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-
 import com.example.backend.controller.EmployeeCardDetailsController;
-import com.example.backend.models.EmployeeCardDetails;
-import com.example.backend.models.EmployeeMaster;
-import com.example.backend.models.ItemsMaster;
-import com.example.backend.models.LoanCardMaster;
-import com.example.backend.models.ViewItems;
+import com.example.backend.dto.ViewItemsDTO;
 import com.example.backend.models.ViewLoans;
 import com.example.backend.services.EmployeeCardDetailsServiceImpl;
 import com.example.backend.services.EmployeeIssueDetailsServiceImpl;
@@ -88,7 +75,7 @@ public class EmployeeCardDetailsTest {
 	@Test
 	public void testgetAllItems() throws Exception{
 		String emp = new String("2345");
-		List<ViewItems> vl= new ArrayList<>();
+		List<ViewItemsDTO> vl= new ArrayList<>();
 		System.out.println("Testing getting all items for employee");
 		Mockito.when(employeeCardDetailsController.getAllItems(emp)).thenReturn(vl);
 		System.out.println("testing getting all loan for employee.");

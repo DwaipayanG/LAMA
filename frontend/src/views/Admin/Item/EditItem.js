@@ -41,7 +41,7 @@ export default function EditItem(){
     },[]);
 
     useEffect(()=>{
-        const url="http://localhost:8080/getAllLoanTypes";
+        const url="http://localhost:8080/loan-card/all-loan-types";
         axios
         .get(url)
         .then((response) => {

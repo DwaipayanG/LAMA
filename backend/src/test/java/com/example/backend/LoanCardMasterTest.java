@@ -28,6 +28,7 @@ import org.springframework.test.web.servlet.MvcResult;
 
 import com.example.backend.controller.LoanCardMasterController;
 import com.example.backend.dto.EmployeeMasterDTO;
+import com.example.backend.dto.LoanCardMasterDTO;
 import com.example.backend.models.EmployeeMaster;
 import com.example.backend.models.LoanCardMaster;
 import com.example.backend.services.EmployeeCardDetailsServiceImpl;
@@ -37,6 +38,8 @@ import com.example.backend.services.ItemsMasterServiceImpl;
 import com.example.backend.services.LoanCardMasterServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+
+import jakarta.validation.Valid;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest
@@ -69,12 +72,12 @@ public class LoanCardMasterTest {
 @Test
 public void testgetAllLoanCard() throws Exception{
 
-	LoanCardMaster loanCardMaster= new LoanCardMaster();
+	LoanCardMasterDTO loanCardMaster= new LoanCardMasterDTO();
 	loanCardMaster.setLoanId("123456");
 	loanCardMaster.setLoanType("furniture");
 	loanCardMaster.setDurationInYears(15);
 	
-	List<LoanCardMaster> getAllLoanCard = new ArrayList<>();
+	List<LoanCardMasterDTO> getAllLoanCard = new ArrayList<>();
 	getAllLoanCard.add(loanCardMaster);
 	
 	System.out.println("Testing getting all loan cards");
@@ -158,7 +161,7 @@ public void testdeleteLoanCard() throws Exception{
 
 @Test
 public void testaddLoanCard() throws Exception{
-	LoanCardMaster loanCardMaster= new LoanCardMaster();
+	LoanCardMasterDTO loanCardMaster= new LoanCardMasterDTO();
 	loanCardMaster.setLoanId("123456");
 	loanCardMaster.setLoanType("furniture");
 	loanCardMaster.setDurationInYears(15);
@@ -175,7 +178,7 @@ public void testaddLoanCard() throws Exception{
 
 @Test
 public void testupdateLoanCard() throws Exception{
-	LoanCardMaster loanCardMaster= new LoanCardMaster();
+	@Valid LoanCardMasterDTO loanCardMaster= new LoanCardMasterDTO();
 	loanCardMaster.setLoanId("123456");
 	loanCardMaster.setLoanType("furniture");
 	loanCardMaster.setDurationInYears(15);
