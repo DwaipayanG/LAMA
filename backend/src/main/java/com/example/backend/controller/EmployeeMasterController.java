@@ -120,7 +120,7 @@ public class EmployeeMasterController {
 	
 	@Transactional
 	@PostMapping("/api/employee/apply-loan")
-	public String applyLoan(@Valid @RequestBody ApplyLoanData loanData) throws ResourceNotFoundException {
+	public String applyLoan(@Valid @RequestBody ApplyLoanData loanDataDTO) throws ResourceNotFoundException {
 
 		ApplyLoanData loanData = ModelMap.map(loanDataDTO, ApplyLoanData.class);
 

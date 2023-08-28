@@ -88,15 +88,4 @@ public class LoanCardMasterController {
 		loanCardMaster = loanCardMasterService.updateLoanCard(loanCardMaster, newLoanCardMaster);
 		return ModelMap.map(loanCardMaster, LoanCardMasterDTO.class);
 	}
-
-	@GetMapping("/api/loan-card/by-loan-type")
-	@ResponseBody
-	public LoanCardMasterDTO getLoanCardByLoanType(@Valid @RequestParam("loanType") String loanType) throws ResourceNotFoundException {
-		return ModelMap.map(loanCardMasterService.getLoanCardByLoanType(loanType), LoanCardMasterDTO.class);
-	}
-	
-	@GetMapping("/api/loan-card/by-loan-id")
-	public LoanCardMasterDTO getLoanCardById(@Valid @RequestParam("loanId") String loanId) throws ResourceNotFoundException {
-		return ModelMap.map(loanCardMasterService.getLoanCardById(loanId), LoanCardMasterDTO.class);
-	}
 }

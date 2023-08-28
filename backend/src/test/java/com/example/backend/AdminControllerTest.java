@@ -28,6 +28,7 @@ import org.springframework.test.web.servlet.MvcResult;
 
 import com.example.backend.controller.AdminController;
 import com.example.backend.controller.LoanCardMasterController;
+import com.example.backend.dto.AdminLoginDTO;
 import com.example.backend.dto.EmployeeMasterDTO;
 import com.example.backend.models.AdminLogin;
 import com.example.backend.models.EmployeeMaster;
@@ -74,7 +75,7 @@ public class AdminControllerTest {
 	
 	@Test
 	public void testloginAdmin() throws Exception{
-		AdminLogin adminLogin= new AdminLogin();
+		AdminLoginDTO adminLogin= new AdminLoginDTO();
 		adminLogin.setAdminUsername("admin");
 		adminLogin.setPassword("password");
 		

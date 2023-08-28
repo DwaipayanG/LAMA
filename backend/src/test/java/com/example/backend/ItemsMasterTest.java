@@ -28,6 +28,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import com.example.backend.controller.ItemsMasterController;
+import com.example.backend.dto.ItemsMasterDTO;
 import com.example.backend.models.ItemsMaster;
 import com.example.backend.services.EmployeeCardDetailsServiceImpl;
 import com.example.backend.services.EmployeeIssueDetailsServiceImpl;
@@ -36,6 +37,8 @@ import com.example.backend.services.ItemsMasterServiceImpl;
 import com.example.backend.services.LoanCardMasterServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+
+import jakarta.validation.Valid;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest
@@ -83,7 +86,7 @@ public class ItemsMasterTest {
 	
 	@Test
 	public void testgetItemByMakeAndCategory() throws Exception{
-		ItemsMaster itemsMaster = new ItemsMaster();
+		ItemsMasterDTO itemsMaster = new ItemsMasterDTO();
 		itemsMaster.setItemId("116732");
 		itemsMaster.setItemDescription("loan");
 		itemsMaster.setItemStatus('y');
@@ -104,7 +107,7 @@ public class ItemsMasterTest {
 	
 	@Test
 	public void testgetItemById() throws Exception{
-		ItemsMaster itemsMaster = new ItemsMaster();
+		ItemsMasterDTO itemsMaster = new ItemsMasterDTO();
 		itemsMaster.setItemId("116732");
 		itemsMaster.setItemDescription("loan");
 		itemsMaster.setItemStatus('y');
@@ -164,7 +167,7 @@ public class ItemsMasterTest {
 	
 	@Test
 	public void testaddItem() throws Exception{
-		ItemsMaster itemsMaster = new ItemsMaster();
+		ItemsMasterDTO itemsMaster = new ItemsMasterDTO();
 		itemsMaster.setItemId("116732");
 		itemsMaster.setItemDescription("loan");
 		itemsMaster.setItemStatus('y');
@@ -182,7 +185,7 @@ public class ItemsMasterTest {
 
 	@Test
 	public void testupdateItem() throws Exception{
-		ItemsMaster itemsMaster = new ItemsMaster();
+		ItemsMasterDTO itemsMaster = new ItemsMasterDTO();
 		itemsMaster.setItemId("116732");
 		itemsMaster.setItemDescription("loan");
 		itemsMaster.setItemStatus('y');
