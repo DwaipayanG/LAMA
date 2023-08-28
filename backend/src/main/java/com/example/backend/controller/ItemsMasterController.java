@@ -1,8 +1,9 @@
 package com.example.backend.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.validation.annotation.Validated;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.backend.dto.ItemsMasterDTO;
 import com.example.backend.exception.DataUnavailableException;
 import com.example.backend.exception.DuplicateEntryException;
 import com.example.backend.exception.ResourceNotFoundException;
@@ -32,13 +34,16 @@ public class ItemsMasterController {
 	@Autowired
 	private ItemsMasterServiceImpl itemsMasterService;
 	
+	@Autowired 
+	private ModelMapper ModelMap;
+	
 	@GetMapping("/api/item/all-items")
-	public List<ItemsMaster> getAllItems() throws DataUnavailableException{
+	public List<ItemsMasterDTO> getAllItems() throws DataUnavailableException{
 		List<ItemsMaster> allItems = itemsMasterService.getAllItems();
 		if(allItems.size()==0)
 			throw new DataUnavailableException("No Items present");
 		else
-			return allItems;
+			return allItems.stream().map(item->ModelMap.map(item, ItemsMasterDTO.class)).collect(Collectors.toList());
 	}
 	
 	@GetMapping("/api/item/makes-by-category")
@@ -59,33 +64,34 @@ public class ItemsMasterController {
 	}
 	
 	@GetMapping("/api/item/by-make-and-category")
-	public ItemsMaster getItemByMakeAndCategory(@Valid @RequestParam("itemCategory") String itemCategory,@Valid @RequestParam("itemMake") String itemMake) throws ResourceNotFoundException {
-		return itemsMasterService.getItemByMakeAndCategory(itemCategory, itemMake);
+	public ItemsMasterDTO getItemByMakeAndCategory(@Valid @RequestParam("itemCategory") String itemCategory,@Valid @RequestParam("itemMake") String itemMake) throws ResourceNotFoundException {
+		return ModelMap.map(itemsMasterService.getItemByMakeAndCategory(itemCategory, itemMake), ItemsMasterDTO.class);
 	}
 	
 	@GetMapping("/api/item/by-item-id")
-	public ItemsMaster getItemById(@Valid @RequestParam("itemId") String itemId) throws ResourceNotFoundException {
-		return itemsMasterService.getItemById(itemId);
+	public ItemsMasterDTO getItemById(@Valid @RequestParam("itemId") String itemId) throws ResourceNotFoundException {
+		return ModelMap.map(itemsMasterService.getItemById(itemId), ItemsMasterDTO.class);
 	}
 	
 	@PostMapping("/api/item")
-	public ItemsMaster addItem(@Valid @RequestBody ItemsMaster itemsMaster) throws DuplicateEntryException {
+	public ItemsMasterDTO addItem(@Valid @RequestBody ItemsMasterDTO itemsMasterDTO) throws DuplicateEntryException {
+		ItemsMaster itemsMaster = ModelMap.map(itemsMasterDTO, ItemsMaster.class);
 		try {
 			this.getItemById(itemsMaster.getItemId());
 			throw new DuplicateEntryException("Item already exists!");
 		} catch (ResourceNotFoundException e) {
 			// TODO Auto-generated catch block
-			return itemsMasterService.addItem(itemsMaster);
+			return ModelMap.map(itemsMasterService.addItem(itemsMaster), ItemsMasterDTO.class);
 		}
 	}
 	
 	@PutMapping("/api/item")
-	public ItemsMaster updateItem(@Valid @RequestParam String itemId,@Valid @RequestBody ItemsMaster newItemsMaster) throws ResourceNotFoundException {
+	public ItemsMasterDTO updateItem(@Valid @RequestParam String itemId,@Valid @RequestBody ItemsMasterDTO newItemsMaster) throws ResourceNotFoundException {
 
 		ItemsMaster itemsMaster = itemsMasterService.getItemById(itemId);
-		itemsMaster = itemsMasterService.updateItem(itemsMaster, newItemsMaster);
+		itemsMaster = itemsMasterService.updateItem(itemsMaster, ModelMap.map(newItemsMaster, ItemsMaster.class));
 		itemsMasterService.addItem(itemsMaster);
-		return itemsMaster;
+		return ModelMap.map(itemsMaster, ItemsMasterDTO.class);
 	}
 	
 
