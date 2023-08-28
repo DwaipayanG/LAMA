@@ -142,6 +142,7 @@ export default function EditEmployee(){
                     Submit
                 </Button>
             </Form>
+            {message && <div style={{color:"green"}}><b>{message}</b></div>}
         </div>
         </div>
     );

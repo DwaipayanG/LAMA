@@ -35,7 +35,6 @@ function AllItems() {
     const handleDelete = async (id)=>{
 
       try{
-        navigate("/viewAllItems");
         const response= await axios.delete("http://localhost:8080/api/item",{params: {itemId:id}});
         console.log(response.data)
         if(response.data ==="Failue"){
@@ -44,7 +43,7 @@ function AllItems() {
         else{
           const itemData=items.filter(item => item.itemId!==id);
           setItems(itemData);
-          
+          navigate("/viewAllitems");
         }
       } catch(err){
         console.error("could not delete the item");

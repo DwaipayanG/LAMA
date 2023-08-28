@@ -90,6 +90,7 @@ export default function ApplyLoans(){
     }
 
     const submitActionHandler = async(event) => {
+        event.preventDefault();
         const getLoanCardUrl = "http://localhost:8080/api/loan-card/by-loan-type"
         const loanApplyUrl = "http://localhost:8080/api/employee/apply-loan"
 
@@ -117,7 +118,7 @@ export default function ApplyLoans(){
                 setError(error);
             });
 
-      
+        
     }
 
     return (
