@@ -37,14 +37,14 @@ function AllLoanCards() {
 
       try{
         const response= await axios.delete("http://localhost:8080/api/loan-card",{params: {loanId:id}});
-        console.log(response.data)
+        console.log(response.data);
         if(response.data ==="Failue"){
           console.error("Loan Id Not Found");
         }
         else{
-          const loanData=loans.filter(loan => loan.loanId!==id);
-          setLoans(loanData);
-          navigate("/viewAllLoanCards");
+          // const loanData=loans.filter(loan => loan.loanId!==id);
+          // setLoans(loanData);
+          window.location.reload();
         }
       } catch(err){
         console.error("could not delete the loan");
@@ -90,7 +90,7 @@ function AllLoanCards() {
     {
       error
       &&
-      <div>{error}</div>
+      <div><h1>{error}</h1></div>
     }
     </div>
     </div>

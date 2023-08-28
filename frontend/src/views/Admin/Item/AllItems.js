@@ -41,9 +41,9 @@ function AllItems() {
           console.error("Item Id Not Found");
         }
         else{
-          const itemData=items.filter(item => item.itemId!==id);
-          setItems(itemData);
-          navigate("/viewAllitems");
+          // const itemData=items.filter(item => item.itemId!==id);
+          // setItems(itemData);
+          window.location.reload();
         }
       } catch(err){
         console.error("could not delete the item");
@@ -99,7 +99,7 @@ function AllItems() {
     {
       error
       &&
-      <div>{error}</div>
+      <div><h1 style={{textColor:"blue"}}>{error}</h1></div>
     }
     </div>
   );

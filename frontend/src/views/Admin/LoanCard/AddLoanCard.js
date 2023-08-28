@@ -46,9 +46,7 @@ export default function AddLoanCard(){
             })
             .catch((error) => {
                 alert(error);
-            })
-
-            navigation("/viewAllLoanCards")
+            });
     }
     
     return (
