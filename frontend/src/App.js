@@ -21,6 +21,7 @@ import EditItem from './views/Admin/Item/EditItem';
 import EditLoanCard from './views/Admin/LoanCard/EditLoanCard';
 import EditEmployee from './views/Admin/Employees/EditEmployee';
 import PageNotFound from './views/PageNotFound';
+import ChangePassword from './views/Employee/ChangePassword';
 function App() {
   return (
     <div className="App">
@@ -45,6 +46,7 @@ function App() {
           <Route exact path ="/editItem" element ={<EditItem/>} />
           <Route exact path="/editLoanCard" element={<EditLoanCard />} />
           <Route excat path="/editEmployee" element={<EditEmployee/>} />
+          <Route excat path="/employee/changePassword" element={<ChangePassword/>} />
         </Routes>
       </BrowserRouter>
       <></>
