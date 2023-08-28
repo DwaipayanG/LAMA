@@ -17,7 +17,7 @@ export default function AddItem(){
     const [itemDescription, setItemDescription] = useState('');
     const [itemValue, setItemValue] = useState('');
     const [itemMake, setItemMake] = useState('');
-    const [itemStatus, setItemStatus] = useState("");
+    const [itemStatus, setItemStatus] = useState("No");
     const [error, setError] = useState(null);
 
     const navigate = useNavigate();
@@ -96,13 +96,12 @@ export default function AddItem(){
                 </Form.Group>
                 <div className="addItemColumn"> Item Status </div>
                     <div className="addItemValue">
-                        <select id="dropdown-basic-button" title="Dropdown button" onChange={itemStatusChangeHandler}>
-                                <option selected="selected">--Select--</option>
-                                <option value="N">No</option>
+                        <select id="dropdown-basic-button" title="Dropdown button" onChange={itemStatusChangeHandler} disabled>
+                                <option selected="selected" value="N">No</option>
                                 <option value="Y">Yes</option>
                         </select>
                     </div>
-                <div className="addItemColumn"> Item Category :</div>
+                <div className="addItemColumn"> Item Category </div>
                     <div className="addItemValue">
                         <select id="dropdown-basic-button" title="Dropdown button" onChange={itemCategoryChangeHandler}>
                             <option selected="selected">--Select--</option>
