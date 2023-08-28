@@ -21,6 +21,8 @@ export default function ApplyLoans(){
     const [description, setDescription] = useState("");
     const [loanId, setLoanId] = useState("");
     const [itemId, setItemId] = useState("");
+    const [error, setError] = useState(null);
+    const [message, setMessage] = useState(null);
 
     useEffect(()=>{
         setEmployeeId(sessionStorage.getItem("employeeId"));
@@ -104,15 +106,15 @@ export default function ApplyLoans(){
                     "loanIssueDate": loanIssueDate
                 })
                 .then((response)=>{
-                    alert(loanId)
+                    setMessage("Loan applied successfully!");
                 })
                 .catch((error)=> {
-                    alert(error)
+                    setError(error);
                 })
                 
             })
             .catch((error)=>{
-                alert(error)
+                setError(error);
             });
 
       
@@ -172,6 +174,8 @@ export default function ApplyLoans(){
                 Submit
             </Button>
             </Form>
+            {error && <div style={{color:"red"}}><b>{error}</b></div>}
+            {message && <div style={{color:"green"}}><b>{message}</b></div>}
         </div>
         </div>
     );

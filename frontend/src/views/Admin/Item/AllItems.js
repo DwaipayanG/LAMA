@@ -8,6 +8,7 @@ import "../../../style/TabularViewAll.css";
 import {CiEdit} from "react-icons/ci";
 import { FcEmptyTrash } from "react-icons/fc";
 
+
 function AllItems() {
     const [items, setItems] = useState([]);
     const [error,setError] = useState(null);
@@ -34,6 +35,7 @@ function AllItems() {
     const handleDelete = async (id)=>{
 
       try{
+        navigate("/viewAllItems");
         const response= await axios.delete("http://localhost:8080/api/item",{params: {itemId:id}});
         console.log(response.data)
         if(response.data ==="Failue"){
@@ -44,7 +46,6 @@ function AllItems() {
           setItems(itemData);
           
         }
-        navigate("/viewAllItems");
       } catch(err){
         console.error("could not delete the item");
       }
@@ -63,6 +64,7 @@ function AllItems() {
     <h3>View All Items</h3>
     {
     !error &&
+    <div className="scrollOverflowX">
     <Table striped bordered hover>
       <thead>
         <tr>
@@ -93,6 +95,7 @@ function AllItems() {
     ))}
       </tbody>
     </Table>
+    </div>
     }
     {
       error

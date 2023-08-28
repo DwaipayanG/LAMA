@@ -7,3 +7,7 @@
     font-size: 150%;
 
 }
+
+.scrollOverflowX{
+    overflow-x: scroll;
+}

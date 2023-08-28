@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -56,6 +57,12 @@ public class ItemsMasterController {
 		return itemsMasterService.getAllCategory();
 	}
 	
+	@DeleteMapping("/api/item")
+	public String deleteItemById(@Valid @RequestParam String itemId) {
+		itemsMasterService.deleteItemById(itemId);
+		return "deleted";
+	}
+	
 	@GetMapping("/api/item/by-make-and-category")
 	public ItemsMasterDTO getItemByMakeAndCategory(@Valid @RequestParam("itemCategory") String itemCategory,@Valid @RequestParam("itemMake") String itemMake) throws ResourceNotFoundException {
 		return ModelMap.map(itemsMasterService.getItemByMakeAndCategory(itemCategory, itemMake), ItemsMasterDTO.class);
@@ -65,7 +72,7 @@ public class ItemsMasterController {
 	public ItemsMasterDTO getItemById(@Valid @RequestParam("itemId") String itemId) throws ResourceNotFoundException {
 		return ModelMap.map(itemsMasterService.getItemById(itemId), ItemsMasterDTO.class);
 	}
-
+	
 	@PostMapping("/api/item")
 	public ItemsMasterDTO addItem(@Valid @RequestBody ItemsMasterDTO itemsMasterDTO) throws DuplicateEntryException {
 		ItemsMaster itemsMaster = ModelMap.map(itemsMasterDTO, ItemsMaster.class);
@@ -88,12 +95,5 @@ public class ItemsMasterController {
 	}
 	
 
-	
-	@GetMapping("/api/item")
-	public String deleteItemById(@Valid @RequestParam String itemId) {
-		itemsMasterService.deleteItemById(itemId);
-		return "deleted";
-	}
-	
 	
 }

@@ -1,12 +1,16 @@
 package com.example.backend;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.hamcrest.Matchers;
@@ -22,6 +26,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+import com.example.backend.controller.LoanCardMasterController;
+import com.example.backend.dto.EmployeeMasterDTO;
+import com.example.backend.models.EmployeeMaster;
 import com.example.backend.models.LoanCardMaster;
 import com.example.backend.services.EmployeeCardDetailsServiceImpl;
 import com.example.backend.services.EmployeeIssueDetailsServiceImpl;
@@ -45,6 +52,9 @@ public class LoanCardMasterTest {
 	private EmployeeCardDetailsServiceImpl employeeCarddetailsService;
 	
 	@MockBean
+	private LoanCardMasterController loanCardMasterController;
+	
+	@MockBean
 	private EmployeeIssueDetailsServiceImpl employeeIssueDetailsService;
 	
 	@MockBean
@@ -56,51 +66,126 @@ public class LoanCardMasterTest {
 	
 	ObjectMapper mapper= new ObjectMapper().findAndRegisterModules().disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 	
-	@Test
-	public void testAddLoanCard() throws Exception {
-		LoanCardMaster loanCardMaster= new LoanCardMaster();
-		loanCardMaster.setLoanId("123456");
-		loanCardMaster.setLoanType("furniture");
-		loanCardMaster.setDurationInYears(15);
-		Mockito.when(loanCardMasterService.addLoanCard(ArgumentMatchers.any())).thenReturn(loanCardMaster);
-		String json=mapper.writeValueAsString(loanCardMaster);
-		MvcResult requestResult= mvc.perform(post("/addLoanCard").contentType(MediaType.APPLICATION_JSON).characterEncoding("utf-8").content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
-		String result= requestResult.getResponse().getContentAsString();
-		System.out.print(result);
-		assertEquals(result,result);
+@Test
+public void testgetAllLoanCard() throws Exception{
+
+	LoanCardMaster loanCardMaster= new LoanCardMaster();
+	loanCardMaster.setLoanId("123456");
+	loanCardMaster.setLoanType("furniture");
+	loanCardMaster.setDurationInYears(15);
+	
+	List<LoanCardMaster> getAllLoanCard = new ArrayList<>();
+	getAllLoanCard.add(loanCardMaster);
+	
+	System.out.println("Testing getting all loan cards");
+	
+	Mockito.when(loanCardMasterController.getAllLoanCard()).thenReturn(getAllLoanCard);
+	System.out.println("testing getting all employee.");
+		
+	mvc.perform(get("/api/loan-card/all-loans")
+			.contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
 	}
+
+@Test
+public void testgetAllLoanTypes() throws Exception{
+
+	LoanCardMaster loanCardMaster= new LoanCardMaster();
+	loanCardMaster.setLoanId("123456");
+	loanCardMaster.setLoanType("furniture");
+	loanCardMaster.setDurationInYears(15);
 	
+	List<String> getAllLoanTypes = new ArrayList<>();
 	
-	@Test
-	public void testGetLoanCardByLoanType() throws Exception{
-		LoanCardMaster loanCardMaster= new LoanCardMaster();
-		loanCardMaster.setLoanId("123456");
-		loanCardMaster.setLoanType("furniture");
-		loanCardMaster.setDurationInYears(15);
-		Mockito.when(loanCardMasterService.addLoanCard(ArgumentMatchers.any())).thenReturn(loanCardMaster);
-		String json=mapper.writeValueAsString(loanCardMaster);
-		MvcResult requestResult= mvc.perform(post("/addLoanCard").contentType(MediaType.APPLICATION_JSON).characterEncoding("utf-8").content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
-		String result= requestResult.getResponse().getContentAsString();
-		System.out.print(result);
-		assertEquals(result,result);
+	System.out.println("Testing getting all loans types");
+	
+	Mockito.when(loanCardMasterController.getAllLoanTypes()).thenReturn(getAllLoanTypes);
+	
 		
+	mvc.perform(get("/api/loan-card/all-loan-types")
+			.contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
 	}
+
+@Test
+public void testgetLoanCardByLoanType() throws Exception{
+
+	LoanCardMaster loanCardMaster= new LoanCardMaster();
+	loanCardMaster.setLoanId("123456");
+	loanCardMaster.setLoanType("furniture");
+	loanCardMaster.setDurationInYears(15);
 	
-	@Test
-	public void testgetAllLoanCards() throws Exception{
-		LoanCardMaster loanCardMaster= new LoanCardMaster();
-		loanCardMaster.setLoanId("123456");
-		loanCardMaster.setLoanType("furniture");
-		loanCardMaster.setDurationInYears(15);
-		List<LoanCardMaster> getAllLoanCards = new ArrayList<>();
-		getAllLoanCards.add(loanCardMaster);
-		
-		Mockito.when(loanCardMasterService.getAllLoanCards()).thenReturn(getAllLoanCards);
-		System.out.println("testing getting all loan cards.");
-		
-		mvc.perform(get("/getAllLoanCards").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
-		.andExpect(jsonPath("$", Matchers.hasSize(1))).andExpect(jsonPath("$[0]", Matchers.equalTo(loanCardMaster)));
-	}	
-		
+	System.out.println("Testing getting all loan card by loan type");
 	
+	Mockito.when(loanCardMasterController.getLoanCardByLoanType(loanCardMaster.getLoanType())).thenReturn(loanCardMaster);
+	
+		
+	mvc.perform(get("/api/loan-card/by-loan-type?loanType=",loanCardMaster.getLoanType())
+			.contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+	}
+
+@Test
+public void testgetLoanCardById() throws Exception{
+
+	LoanCardMaster loanCardMaster= new LoanCardMaster();
+	loanCardMaster.setLoanId("123456");
+	loanCardMaster.setLoanType("furniture");
+	loanCardMaster.setDurationInYears(15);
+	
+	System.out.println("Testing getting all loan card by id");
+	
+	Mockito.when(loanCardMasterController.getLoanCardById(loanCardMaster.getLoanId())).thenReturn(loanCardMaster);
+		
+	mvc.perform(get("/api/loan-card/by-loan-id?loanId=",loanCardMaster.getLoanId())
+			.contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+	}
+
+
+@Test
+public void testdeleteLoanCard() throws Exception{
+	LoanCardMaster loanCardMaster= new LoanCardMaster();
+	loanCardMaster.setLoanId("123456");
+	loanCardMaster.setLoanType("furniture");
+	loanCardMaster.setDurationInYears(15);
+	
+	String del = "deleted";
+	
+	System.out.println("Testing deleting a loan card");
+	
+	Mockito.when(loanCardMasterController.deleteLoanCard(loanCardMaster.getLoanId())).thenReturn(del);
+	
+	
+	mvc.perform(delete("/api/loan-card?loanId=",loanCardMaster.getLoanId()).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+}
+
+@Test
+public void testaddLoanCard() throws Exception{
+	LoanCardMaster loanCardMaster= new LoanCardMaster();
+	loanCardMaster.setLoanId("123456");
+	loanCardMaster.setLoanType("furniture");
+	loanCardMaster.setDurationInYears(15);
+		
+	System.out.println("Testing adding a loan card");
+	
+	Mockito.when(loanCardMasterController.addLoanCard(loanCardMaster)).thenReturn(loanCardMaster);
+	String json = mapper.writeValueAsString(loanCardMaster);	
+	mvc.perform(post("/api/loan-card")
+			.contentType(MediaType.APPLICATION_JSON).characterEncoding("utf-8")
+			.content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
+	
+}
+
+@Test
+public void testupdateLoanCard() throws Exception{
+	LoanCardMaster loanCardMaster= new LoanCardMaster();
+	loanCardMaster.setLoanId("123456");
+	loanCardMaster.setLoanType("furniture");
+	loanCardMaster.setDurationInYears(15);
+	
+	System.out.println("Testing updating a loan card");
+	
+	Mockito.when(loanCardMasterController.updateLoanCard(loanCardMaster.getLoanId(), loanCardMaster)).thenReturn(loanCardMaster);
+	
+	String json = mapper.writeValueAsString(loanCardMaster);
+	mvc.perform(put("/api/loan-card?loanId=",loanCardMaster.getLoanId()).contentType(MediaType.APPLICATION_JSON).content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+}
+		
 }

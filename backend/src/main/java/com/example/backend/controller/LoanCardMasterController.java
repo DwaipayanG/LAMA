@@ -51,6 +51,17 @@ public class LoanCardMasterController {
 		return loanCardMasterService.getAllLoanTypes();
 	}
 	
+	@GetMapping("/api/loan-card/by-loan-type")
+	@ResponseBody
+	public LoanCardMaster getLoanCardByLoanType(@Valid @RequestParam("loanType") String loanType) throws ResourceNotFoundException {
+		return loanCardMasterService.getLoanCardByLoanType(loanType);
+	}
+	
+	@GetMapping("/api/loan-card/by-loan-id")
+	public LoanCardMaster getLoanCardById(@Valid @RequestParam("loanId") String loanId) throws ResourceNotFoundException {
+		return loanCardMasterService.getLoanCardById(loanId);
+	}
+	
 	@PostMapping("/api/loan-card")
 	public LoanCardMasterDTO addLoanCard(@Valid @RequestBody LoanCardMasterDTO loanCardDTO) throws DuplicateEntryException {
 		LoanCardMaster loanCard = ModelMap.map(loanCardDTO, LoanCardMaster.class);
@@ -77,7 +88,7 @@ public class LoanCardMasterController {
 		loanCardMaster = loanCardMasterService.updateLoanCard(loanCardMaster, newLoanCardMaster);
 		return ModelMap.map(loanCardMaster, LoanCardMasterDTO.class);
 	}
-	
+
 	@GetMapping("/api/loan-card/by-loan-type")
 	@ResponseBody
 	public LoanCardMasterDTO getLoanCardByLoanType(@Valid @RequestParam("loanType") String loanType) throws ResourceNotFoundException {

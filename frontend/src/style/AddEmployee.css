@@ -17,10 +17,16 @@
 
 .addEmployeeValue{
     display: inline-block;
-    width: 40%;
+    width: 50%;
     text-align: left;
     padding: 10px 30px;
 
 }
 
+@media screen and (max-width: 800px) {
+    .addEmployeeBox{
+        width: 90%;
+    }
+    
+}
 

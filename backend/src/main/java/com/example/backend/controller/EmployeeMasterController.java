@@ -105,13 +105,13 @@ public class EmployeeMasterController {
 	
 	@PostMapping("/api/employee/login")
 	@ResponseBody
-	public Object loginEmployeeMaster(@Valid @RequestBody EmployeeMasterLoginDTO empLoginDTO) throws ResourceNotFoundException, AuthenticationException{
+	public String loginEmployeeMaster(@Valid @RequestBody EmployeeMasterLoginDTO empLoginDTO) throws ResourceNotFoundException, AuthenticationException{
 
-		Object response;
+		String response = new String();
 		EmployeeMasterLogin empLogin = ModelMap.map(empLoginDTO, EmployeeMasterLogin.class);
 		EmployeeMaster existingEmployee = employeeMasterService.getEmployeeMasterById(empLogin.getEmployeeId());
 		if(existingEmployee.getPassword().equals(empLogin.getPassword())) {
-			response = existingEmployee;
+			response = "loggedIn";
 		}else {
 			throw new AuthenticationException("Authentication failed!");
 		}
@@ -120,7 +120,7 @@ public class EmployeeMasterController {
 	
 	@Transactional
 	@PostMapping("/api/employee/apply-loan")
-	public Object applyLoan(@Valid @RequestBody ApplyLoanDataDTO loanDataDTO) throws ResourceNotFoundException {
+	public String applyLoan(@Valid @RequestBody ApplyLoanData loanData) throws ResourceNotFoundException {
 
 		ApplyLoanData loanData = ModelMap.map(loanDataDTO, ApplyLoanData.class);
 
@@ -130,7 +130,7 @@ public class EmployeeMasterController {
 		
 		EmployeeIssueDetails employeeIssueDetails = employeeIssueDetailsService.addEmployeeIssueDetails(loanData.getItemId(), loanData.getLoanIssueDate(), loanReturnDate, employeeMaster);
 		
-		Object response = new String("Loan applied");
+		String response = new String("Loan applied");
 		
 		return response;
 		
