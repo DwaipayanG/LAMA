@@ -41,7 +41,7 @@ export default function EditItem(){
     },[]);
 
     useEffect(()=>{
-        const url="http://localhost:8080/loan-card/all-loan-types";
+        const url="http://localhost:8080/api/item/all-category";
         axios
         .get(url)
         .then((response) => {
@@ -100,6 +100,7 @@ export default function EditItem(){
 
     const submitActionHandler = (event) => {
         event.preventDefault();
+        console.log(itemCategory)
         axios
             .put(editURL, {
                 "itemId": itemId,
@@ -114,6 +115,7 @@ export default function EditItem(){
                 }
             })
             .then((response) => {
+                console.log(response)
                 setMessage("Item edited successfully!")
             })
             .catch((error) => {
@@ -139,7 +141,7 @@ export default function EditItem(){
                     </div>
                 <div className="addItemColumn"> Item Category :</div>
                 <div className="addItemValue">
-                    <select id="dropdown-basic-button" title="Dropdown button" onChange={itemCategoryChangeHandler}>
+                    <select id="dropdown-basic-button" title="Dropdown button" onChange={itemCategoryChangeHandler} disabled>
                         {
                             allCategory.map((val)=>{
                                 if (val=== itemCategory)
