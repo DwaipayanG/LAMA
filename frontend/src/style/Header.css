@@ -9,8 +9,6 @@
 }
 
 .navigationBar{
-    background-color: #0093E9;
-    background-image: linear-gradient(160deg, #e97c00 0%, #da9f20 100%);
     position:sticky !important;
     top: 0px;
     text-decoration: none;
