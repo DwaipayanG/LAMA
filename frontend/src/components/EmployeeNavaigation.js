@@ -45,7 +45,7 @@ function EmployeeNavigation (){
           <img src={user} style ={{marginRight:"5px", width:"35px"}}/>
             </span>
           } id="basic-nav-dropdown">
-              <NavDropdown.Item href="/employee/changePassword" >Change Password</NavDropdown.Item>
+              <NavDropdown.Item href="/employee/change-password" >Change Password</NavDropdown.Item>
               <NavDropdown.Item onClick={() =>handleLogout()}> 
                 Logout
               </NavDropdown.Item>

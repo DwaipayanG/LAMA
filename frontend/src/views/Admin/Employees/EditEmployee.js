@@ -15,7 +15,7 @@ export default function EditEmployee(){
     const [department, setDepartment] = useState('');
     const [designation, setDesignation] = useState('');
     const [gender, setGender] = useState('');
-    const [password, setPassword] = useState("");
+    const [password, setPassword] = useState('');
     const [dateOfBirth, setDateOfBirth] = useState(null);
     const [dateOfJoining, setDateOfJoining] = useState(null);
     const [message, setMessage] = useState(null);

@@ -92,7 +92,7 @@ export default function ChangePassword(){
 
                 <Form.Group className="mb-3">
                     <Form.Label className="addEmployeeColumn">Password</Form.Label>
-                    <Form.Control className="addEmployeeValue" type="password" value={password} onChange={passwordChangeHandler} id="password" />
+                    <Form.Control className="addEmployeeValue" type="password" value={password} onChange={passwordChangeHandler} id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 6 or more characters" required />
                 </Form.Group>
 
                 

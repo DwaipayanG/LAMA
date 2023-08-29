@@ -28,14 +28,11 @@ function ListEmployeeItem(props){
 
     const handleDelete = async (id)=>{
 
-        try{
-            
-        console.log(props.number);
-            
-            setEmployees(props.allEmployees)
+        try{           
+          setEmployees(props.allEmployees)
           const response= await axios.delete("http://localhost:8080/api/employee",{params: {employeeId:id}});
           console.log(response.data)
-          if(response.data ==="Failue"){
+          if(response.data ==="Failure"){
             console.error("User Id Not Found");
           }
           else{
@@ -49,7 +46,7 @@ function ListEmployeeItem(props){
       }
   
       const handleEdit = (id) => {
-        navigate('/editEmployee', { state: {employeeId: id} });
+        navigate('/admin/employees/edit', { state: {employeeId: id} });
        
       }
     return(

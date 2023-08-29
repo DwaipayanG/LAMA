@@ -27,23 +27,24 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route exact path ="*" element={<PageNotFound/>}/>
+          <Route exact path="*" element={<PageNotFound/>}/>
           <Route exact path="/" element={ <Home/> }/> 
           <Route exact path="/admin/login" element={ <LoginAdmin/> }/>
           <Route exact path="/employee/login"element= { <LoginEmployee/> }/>
           <Route exact path="/about" element={ <About/> }/>
           <Route exact path="/employee/dashboard" element={ <EmployeeDashboard/> }/> 
           <Route exact path="/employee/apply-loan" element={ <ApplyLoans/> }/> 
-          <Route exact path= "/employee/loans" element= {<ViewLoans/>} />
-          <Route exact path= "/employee/items" element= {<ViewItems/>} />
+          <Route exact path="/employee/loans" element= {<ViewLoans/>} />
+          <Route exact path="/employee/items" element= {<ViewItems/>} />
+          <Route exact path="/employee/change-password" element= {<ChangePassword />} />
           <Route exact path="/admin/dashboard" element={ <AdminDashboard /> }/>
           <Route exact path="/admin/employees/add" element={ <AddEmployee/> }/> 
           <Route exact path="/admin/loan-cards/add" element= {<AddLoanCard />} />
           <Route exact path="/admin/items/add" element= {<AddItem />} />
-          <Route exact path ="/admin/employees/view" element ={<AllEmployees />} />
-          <Route exact path ="/admin/items/view" element ={<AllItems/>} />
+          <Route exact path="/admin/employees/view" element ={<AllEmployees />} />
+          <Route exact path="/admin/items/view" element ={<AllItems/>} />
           <Route exact path="/admin/loan-cards/view" element={<AllLoanCards />} />
-          <Route exact path ="/admin/items/edit" element ={<EditItem/>} />
+          <Route exact path="/admin/items/edit" element ={<EditItem/>} />
           <Route exact path="/admin/loan-cards/edit" element={<EditLoanCard />} />
           <Route exact path="/admin/employees/edit" element={<EditEmployee/>} />
         </Routes>

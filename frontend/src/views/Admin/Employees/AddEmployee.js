@@ -99,7 +99,7 @@ export default function AddEmployee(){
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label className="addEmployeeColumn"> Department</Form.Label>
-                    <Form.Control className="addEmployeeValue" type="text" value={department} onChange={departmentChangeHandler} id="department" requried />
+                    <Form.Control className="addEmployeeValue" type="text" value={department} onChange={departmentChangeHandler} id="department" required />
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label className="addEmployeeColumn">Designation</Form.Label>
