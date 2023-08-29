@@ -23,7 +23,7 @@ function LoginEmployee() {
 
     useEffect(()=>{
         if(sessionStorage.getItem("employeeName")){
-            navigate("/employeeDashboard");
+            navigate("/employee/dashboard");
         }
     },[]);
 
@@ -35,14 +35,13 @@ function LoginEmployee() {
             "password": password
         })
         .then((response) => {
-            //alert(response.data);
             const data=response.data;
             if(data["statusCode"]&&(data["statusCode"]==400||data["statusCode"]==404)){
                 setError(data["message"]);
             }else{
               sessionStorage.setItem("employeeId", employeeId);
               sessionStorage.setItem("employeeName",response.data.employeeName);
-              navigate("/employeeDashboard");
+              navigate("/employee/dashboard");
             }
         })
         .catch((error) => {

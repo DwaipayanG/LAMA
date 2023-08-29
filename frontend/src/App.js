@@ -29,24 +29,23 @@ function App() {
         <Routes>
           <Route exact path ="*" element={<PageNotFound/>}/>
           <Route exact path="/" element={ <Home/> }/> 
-          <Route exact path="/loginAdmin" element={ <LoginAdmin/> }/>
-          <Route exact path="/loginEmployee"element= { <LoginEmployee/> }/>
+          <Route exact path="/admin/login" element={ <LoginAdmin/> }/>
+          <Route exact path="/employee/login"element= { <LoginEmployee/> }/>
           <Route exact path="/about" element={ <About/> }/>
-          <Route exact path="/adminDashboard" element={ <AdminDashboard /> }/>
-          <Route exact path="/addEmployee" element={ <AddEmployee/> }/> 
-          <Route exact path="/employeeDashboard" element={ <EmployeeDashboard/> }/> 
-          <Route exact path="/applyLoan" element={ <ApplyLoans/> }/> 
-          <Route exact path= "/viewLoans" element= {<ViewLoans/>} />
-          <Route exact path= "/viewItems" element= {<ViewItems/>} />
-          <Route exact path="/addLoanCard" element= {<AddLoanCard />} />
-          <Route exact path="/addItem" element= {<AddItem />} />
-          <Route exact path ="/viewAllEmployees" element ={<AllEmployees />} />
-          <Route exact path ="/viewAllItems" element ={<AllItems/>} />
-          <Route exact path="/viewAllLoanCards" element={<AllLoanCards />} />
-          <Route exact path ="/editItem" element ={<EditItem/>} />
-          <Route exact path="/editLoanCard" element={<EditLoanCard />} />
-          <Route excat path="/editEmployee" element={<EditEmployee/>} />
-          <Route excat path="/employee/changePassword" element={<ChangePassword/>} />
+          <Route exact path="/employee/dashboard" element={ <EmployeeDashboard/> }/> 
+          <Route exact path="/employee/apply-loan" element={ <ApplyLoans/> }/> 
+          <Route exact path= "/employee/loans" element= {<ViewLoans/>} />
+          <Route exact path= "/employee/items" element= {<ViewItems/>} />
+          <Route exact path="/admin/dashboard" element={ <AdminDashboard /> }/>
+          <Route exact path="/admin/employees/add" element={ <AddEmployee/> }/> 
+          <Route exact path="/admin/loan-cards/add" element= {<AddLoanCard />} />
+          <Route exact path="/admin/items/add" element= {<AddItem />} />
+          <Route exact path ="/admin/employees/view" element ={<AllEmployees />} />
+          <Route exact path ="/admin/items/view" element ={<AllItems/>} />
+          <Route exact path="/admin/loan-cards/view" element={<AllLoanCards />} />
+          <Route exact path ="/admin/items/edit" element ={<EditItem/>} />
+          <Route exact path="/admin/loan-cards/edit" element={<EditLoanCard />} />
+          <Route exact path="/admin/employees/edit" element={<EditEmployee/>} />
         </Routes>
       </BrowserRouter>
       <></>

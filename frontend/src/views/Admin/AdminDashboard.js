@@ -1,19 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Card from 'react-bootstrap/Card';
 import {Row,Col} from 'react-bootstrap';
 import Header from "../../components/Header";
 import AdminNavigation from "../../components/AdminNavigation";
 import "../../style/Card.css";
 import { AiOutlineFileAdd,AiOutlineEye } from "react-icons/ai";
-import  loan from "../../assets/loan.png";
 import  employee from "../../assets/employee.png";
 import item from "../../assets/item.png";
 import loanCard from "../../assets/Loan-Card.png"
 
 
 export default function AdminDashboard(){
-
-    const [user,setUser]=useState(null);
     
     return (
         <div>
@@ -21,7 +18,6 @@ export default function AdminDashboard(){
             <AdminNavigation/>
         
             <p className="welcomeText" style={{fontSize: "2em"}}> Welcome <b>{sessionStorage.getItem("adminUsername")}</b> </p>
-            {/* <div style={{width:"70%",margin:"auto"}} className="d-flex justify-content-center m-2"> */}
             <Row style={{width:"70%",margin:"auto"}} > 
              
                 <div>
@@ -35,8 +31,8 @@ export default function AdminDashboard(){
             <Card.Body>
                 <Card.Title>Employee Data </Card.Title>
                 
-                <Card.Link href="/addEmployee"><AiOutlineFileAdd/>Add</Card.Link>
-                <Card.Link href="/viewAllEmployees"><AiOutlineEye/>View</Card.Link>
+                <Card.Link href="/admin/employees/add"><AiOutlineFileAdd/>Add</Card.Link>
+                <Card.Link href="/admin/employees/view"><AiOutlineEye/>View</Card.Link>
             </Card.Body>
             </Card>
             </Col>
@@ -47,8 +43,8 @@ export default function AdminDashboard(){
             <Card.Body>
                 <Card.Title>Items Data</Card.Title>
                 
-                <Card.Link href="/addItem"><AiOutlineFileAdd/>Add</Card.Link>
-                <Card.Link href="/viewAllItems"><AiOutlineEye/>View</Card.Link>
+                <Card.Link href="/admin/items/add"><AiOutlineFileAdd/>Add</Card.Link>
+                <Card.Link href="/admin/items/view"><AiOutlineEye/>View</Card.Link>
             </Card.Body>
             </Card>
             </Col>
@@ -59,8 +55,8 @@ export default function AdminDashboard(){
             <Card.Body>
                 <Card.Title>Loan Card Data</Card.Title>
                
-                <Card.Link href="/addLoanCard"><AiOutlineFileAdd/>Add</Card.Link>
-                <Card.Link href="/viewAllLoanCards"><AiOutlineEye/>View</Card.Link>
+                <Card.Link href="/admin/loan-cards/add"><AiOutlineFileAdd/>Add</Card.Link>
+                <Card.Link href="/admin/loan-cards/view"><AiOutlineEye/>View</Card.Link>
             </Card.Body>
             </Card>
             </Col>

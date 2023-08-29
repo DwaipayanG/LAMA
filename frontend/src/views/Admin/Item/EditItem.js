@@ -100,7 +100,6 @@ export default function EditItem(){
 
     const submitActionHandler = (event) => {
         event.preventDefault();
-        console.log(itemCategory)
         axios
             .put(editURL, {
                 "itemId": itemId,

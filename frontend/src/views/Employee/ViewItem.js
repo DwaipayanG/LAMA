@@ -12,7 +12,6 @@ function ViewItems() {
 
     useEffect(()=>{
         setEmployeeId(sessionStorage.getItem("employeeId"));
-        console.log("yo");
     });
 
     useEffect(()=>{

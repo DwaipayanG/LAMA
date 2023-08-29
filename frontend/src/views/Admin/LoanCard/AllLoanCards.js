@@ -11,9 +11,7 @@ import { FcEmptyTrash } from "react-icons/fc";
 function AllLoanCards() {
     const [loans, setLoans] = useState([]);
     const [error,setError] = useState(null);
-    const navigate = useNavigate();
-    var fd= [1,2,34,5];
-   
+    const navigate = useNavigate(); 
 
     useEffect(()=>{
         const url= "http://localhost:8080/api/loan-card/all-loans";
@@ -42,8 +40,6 @@ function AllLoanCards() {
           console.error("Loan Id Not Found");
         }
         else{
-          // const loanData=loans.filter(loan => loan.loanId!==id);
-          // setLoans(loanData);
           window.location.reload();
         }
       } catch(err){
@@ -52,7 +48,7 @@ function AllLoanCards() {
     }
 
     const handleEdit = (loanId) => {
-      navigate('/editLoanCard', { state: {"loanId": loanId} });
+      navigate('/admin/loan-cards/edit', { state: {"loanId": loanId} });
      
     }
 

@@ -70,7 +70,7 @@ export default function AddEmployee(){
                 if(data["statusCode"]&&data["statusCode"]==400)
                     setError(data["message"]);
                 else
-                    navigate("/viewAllEmployees");
+                    navigate("/admin/employees/view");
             })
             .catch((error) => {
                 alert(error);

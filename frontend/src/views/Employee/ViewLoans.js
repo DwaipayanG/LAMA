@@ -68,7 +68,6 @@ function ViewLoans() {
          <td>{loan.durationInYears}</td>
          <td>{loan.cardIssueDate.substr(0,10)}</td>
          <td>{(date>new Date()) && date.toDateString()}{(date<new Date()) && <div style={{color:"red"}}><b>Inactive</b></div>}</td>
-         {/* <td>{(date<new Date()) && <div style={{color:"red"}}><b>Inactive</b></div>}</td> */}
        </tr>
     )})}
       </tbody>

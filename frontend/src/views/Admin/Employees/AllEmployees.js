@@ -43,21 +43,19 @@ function AllEmployees() {
       try{
         const response= await axios.delete("http://localhost:8080/api/employee",{params: {employeeId:id}});
         console.log(response.data)
-        if(response.data ==="Failue"){
+        if(response.data ==="Failure"){
           console.error("User Id Not Found");
         }
         else{
-          // const employeeData=employees.filter(employee => employee.employeeId!==id);
-          // setEmployees(employeeData);
           window.location.reload();
         }
       } catch(err){
-        console.error("could not delete the employee");
+        console.error("Could not delete the employee");
       }
     }
 
     const handleEdit = (id) => {
-      navigate('/editEmployee', { state: {employeeId: id} });
+      navigate('/admin/employees/edit', { state: {employeeId: id} });
      
     }
 

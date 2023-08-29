@@ -40,9 +40,7 @@ function AllItems() {
         if(response.data ==="Failue"){
           console.error("Item Id Not Found");
         }
-        else{
-          // const itemData=items.filter(item => item.itemId!==id);
-          // setItems(itemData);
+        else{;
           window.location.reload();
         }
       } catch(err){
@@ -51,7 +49,7 @@ function AllItems() {
     }
 
     const handleEdit = (id) => {
-      navigate('/editItem', { state: {itemId: id} });
+      navigate('/admin/items/edit', { state: {itemId: id} });
      
     }
 
