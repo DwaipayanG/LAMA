@@ -75,42 +75,8 @@ function AllEmployees() {
     <Header></Header>
     <AdminNavigation/>
     <h3>View All Employees</h3>
-    {/* <div className="scrollOverflowX"> */}
     {
       !message &&
-    // <Table striped bordered hover className="scrollOverflow">
-    //   <thead>
-    //     <tr>
-    //       <th>Employee ID</th>
-    //       <th>Employee Name</th>
-    //       <th>Designation</th>
-    //       <th>Department</th>
-    //       <th> Gender </th>
-    //       <th> Date of Birth</th>
-    //       <th>Date of Joining</th>
-    //       <th className="noBorder" ></th> 
-    //       <th className="noBorder"></th>
-    //     </tr>
-    //   </thead>
-
-    //   <tbody>
-    // {employees.map(employee =>(
-    //      <tr>
-    //      <td>{employee.employeeId}</td>
-    //      <td>{employee.employeeName}</td>
-    //      <td>{employee.designation}</td>
-    //      <td>{employee.department}</td>
-    //      <td>{employee.gender}</td>
-    //      <td>{employee.dateOfBirth.substr(0, 10)}</td>
-    //      <td>{employee.dateOfJoining.substr(0, 10)}</td>
-    //      <td className="noBorder"><button className="noBorder smallIcons"onClick={() => handleEdit(employee.employeeId)}><CiEdit/></button></td>
-    //      <td className="noBorder"><button className="noBorder smallIcons" onClick={() => handleDelete(employee.employeeId)}><FcEmptyTrash/></button></td>
-    //    </tr>
-    // ))}
-    //   </tbody>
-    // </Table>
-    // </div> */}
-    
     employees.map(employee =>(
       <ListEmployeeItem empId={employee.employeeId} empName = {employee.employeeName} dob ={employee.dateOfBirth.substr(0,10)} department= {employee.department} designation ={employee.designation} doj= {employee.dateOfJoining.substr(0,10)} gender={employee.gender} allEmployees={employees} number={addNum()}></ListEmployeeItem>
     ))
