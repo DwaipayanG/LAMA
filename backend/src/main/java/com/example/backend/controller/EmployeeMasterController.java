@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.backend.dto.ApplyLoanDataDTO;
 import com.example.backend.dto.EmployeeMasterDTO;
 import com.example.backend.dto.EmployeeMasterLoginDTO;
 import com.example.backend.exception.AuthenticationException;
@@ -96,7 +95,6 @@ public class EmployeeMasterController {
 			EmployeeMasterDTO employeeMasterDTO = this.getEmployeeMaster(newEmployeeDTO.getEmployeeId());
 			throw new DuplicateEntryException("Employee already exists!");
 		} catch (ResourceNotFoundException e) {
-			// TODO: handle exception
 			EmployeeMaster employee = employeeMasterService.addEmployeeMaster(ModelMap.map(newEmployeeDTO, EmployeeMaster.class));
 			return ModelMap.map(employee, EmployeeMasterDTO.class);
 		}
