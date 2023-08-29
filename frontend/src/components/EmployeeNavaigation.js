@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+
 import "../style/Header.css"
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
@@ -37,9 +39,21 @@ function EmployeeNavigation (){
             <Nav.Link href="/employee/items" >View Item</Nav.Link>
             <Nav.Link href="/employee/apply-loan" >Apply Loan</Nav.Link>
           </Nav>
-          <img src={user} style ={{marginRight:"5px"}}/>
-          <Button variant="danger" onClick={() =>handleLogout()}>Logout</Button>
-        </Navbar.Collapse>
+          </Navbar.Collapse>
+          <NavDropdown  title={
+            <span>
+          <img src={user} style ={{marginRight:"5px", width:"35px"}}/>
+            </span>
+          } id="basic-nav-dropdown">
+              <NavDropdown.Item href="/employee/changePassword" >Change Password</NavDropdown.Item>
+              <NavDropdown.Item onClick={() =>handleLogout()}> 
+                Logout
+              </NavDropdown.Item>
+
+            </NavDropdown>
+          
+        
+
         
 
       </Container>

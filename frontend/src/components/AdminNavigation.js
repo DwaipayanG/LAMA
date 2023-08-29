@@ -50,7 +50,7 @@ function AdminNavigation() {
               <NavDropdown.Item href="/admin/loan-cards/view">View Loans</NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          <img src={user} style ={{marginRight:"5px"}}/>
+          <img src={user} style ={{marginRight:"5px", width:"35px"}}/>
         <Button variant="danger" onClick={() =>handleLogout()}>Logout</Button>
 
         </Navbar.Collapse>

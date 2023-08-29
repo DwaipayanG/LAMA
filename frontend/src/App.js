@@ -21,6 +21,7 @@ import EditItem from './views/Admin/Item/EditItem';
 import EditLoanCard from './views/Admin/LoanCard/EditLoanCard';
 import EditEmployee from './views/Admin/Employees/EditEmployee';
 import PageNotFound from './views/PageNotFound';
+import ChangePassword from './views/Employee/ChangePassword';
 function App() {
   return (
     <div className="App">
