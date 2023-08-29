@@ -16,7 +16,6 @@ function Home() {
           <Nav className="m-auto">
             <Nav.Link href="/admin/login">Admin Login</Nav.Link>
             <Nav.Link href="/employee/login">Employee Login</Nav.Link>
-            <Nav.Link href="/about">About</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

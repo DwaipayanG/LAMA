@@ -77,7 +77,7 @@ export default function EditLoanCard(){
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label className="addLoanCardColumn">Loan Type</Form.Label>
-                    <Form.Control className="addLoanCardValue" type="text" value={loanType} onChange={loanTypeChangeHandler} id="loanType" />
+                    <Form.Control className="addLoanCardValue" type="text" value={loanType} onChange={loanTypeChangeHandler} id="loanType" disabled/>
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label className="addLoanCardColumn">Duration</Form.Label>

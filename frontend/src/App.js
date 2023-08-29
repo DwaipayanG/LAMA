@@ -31,7 +31,6 @@ function App() {
           <Route exact path="/" element={ <Home/> }/> 
           <Route exact path="/admin/login" element={ <LoginAdmin/> }/>
           <Route exact path="/employee/login"element= { <LoginEmployee/> }/>
-          <Route exact path="/about" element={ <About/> }/>
           <Route exact path="/employee/dashboard" element={ <EmployeeDashboard/> }/> 
           <Route exact path="/employee/apply-loan" element={ <ApplyLoans/> }/> 
           <Route exact path="/employee/loans" element= {<ViewLoans/>} />
