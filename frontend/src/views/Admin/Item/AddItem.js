@@ -17,7 +17,7 @@ export default function AddItem(){
     const [itemDescription, setItemDescription] = useState('');
     const [itemValue, setItemValue] = useState('');
     const [itemMake, setItemMake] = useState('');
-    const [itemStatus, setItemStatus] = useState("No");
+    const [itemStatus, setItemStatus] = useState('N');
     const [error, setError] = useState(null);
 
     const navigate = useNavigate();
