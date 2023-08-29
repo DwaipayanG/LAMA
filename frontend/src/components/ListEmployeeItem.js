@@ -5,7 +5,8 @@ import { FcEmptyTrash } from "react-icons/fc";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import "../style/ListEmployeeItem.css"
+import "../style/ListEmployeeItem.css";
+import { useEffect } from "react";
 
 
 
@@ -14,8 +15,28 @@ function ListEmployeeItem(props){
 
 
 
+    const getURL= "http://localhost:8080/api/employee/all-employees";
+
     const [employees, setEmployees] = useState([]);
+    const [message, setMessage] = useState();
     const navigate = useNavigate();
+
+    useEffect(()=>{
+       
+        axios
+        .get(getURL)
+        .then((response) => {
+            console.log(response.data);
+            const data=response.data;
+            if(data['statusCode']&&data['statusCode']==400)
+              setMessage("No employees to display");
+            else
+              setEmployees(response.data);
+        })
+        .catch((err) =>{
+          console.log(err);
+        });
+    },[]);
 
     function alternate(number){
     if(number== 0){
@@ -28,17 +49,14 @@ function ListEmployeeItem(props){
 
     const handleDelete = async (id)=>{
 
-        try{           
-          setEmployees(props.allEmployees)
+        try{
           const response= await axios.delete("http://localhost:8080/api/employee",{params: {employeeId:id}});
           console.log(response.data)
           if(response.data ==="Failure"){
             console.error("User Id Not Found");
           }
           else{
-            const employeeData=employees.filter(employee => employee.employeeId!==id);
-            setEmployees(employeeData);
-            
+            window.location.reload();           
           }
         } catch(err){
           console.error("could not delete the employee");
