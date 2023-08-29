@@ -54,6 +54,7 @@ export default function AddEmployee(){
     }
 
     const submitActionHandler = (event) => {
+        event.preventDefault();
         axios
             .post(baseURL, {
                 "employeeId": employeeId,
