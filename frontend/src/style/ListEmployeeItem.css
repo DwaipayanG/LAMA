@@ -1,0 +1,10 @@
+.oddChildList{
+    background-color: #d3cccc;
+}
+
+.employeeListItem {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    width: 90vw;
+    margin: 2vw;
+    border-radius: 5px;
+}

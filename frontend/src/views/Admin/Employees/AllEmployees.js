@@ -9,6 +9,7 @@ import "../../../style/TabularViewAll.css";
 import {CiEdit} from "react-icons/ci";
 import { FcEmptyTrash } from "react-icons/fc";
 import "../../../style/TabularViewAll.css";
+import ListEmployeeItem from "../../../components/ListEmployeeItem";
 
 
 
@@ -59,13 +60,23 @@ function AllEmployees() {
      
     }
 
+    let classNum=0;
+
+    function addNum(){
+      let temp= classNum +1;
+      temp= temp%2;
+      classNum= (temp);
+
+      return temp;
+    }
+
   return (
     <div>
 
     <Header></Header>
     <AdminNavigation/>
     <h3>View All Employees</h3>
-    <div className="scrollOverflowX">
+    {/* <div className="scrollOverflowX">
     <Table striped bordered hover className="scrollOverflow">
       <thead>
         <tr>
@@ -97,7 +108,13 @@ function AllEmployees() {
     ))}
       </tbody>
     </Table>
-    </div>
+    </div> */}
+    
+    {employees.map(employee =>(
+      <ListEmployeeItem empId={employee.employeeId} empName = {employee.employeeName} dob ={employee.dateOfBirth.substr(0,10)} department= {employee.department} designation ={employee.designation} doj= {employee.dateOfJoining.substr(0,10)} gender={employee.gender} allEmployees={employees} number={addNum()}></ListEmployeeItem>
+    ))}
+
+
     </div>
   );
 
